@@ -6,5 +6,6 @@ public class SensorSubsystem extends Subsystem {
 
   @Override
   public void initDefaultCommand() {
+
   }
 }
