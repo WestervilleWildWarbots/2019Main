@@ -1,0 +1,8 @@
+One joystick and one xbox controler
+Joystick:Drive+Climb
+
+Person A(David):Talons drive to joystick
+Person B(MyQ):Driveing Sensors
+Person C(Robert):Sensors NetworkTable and shuffleboard
+Person D(Open):Automation Driveing
+Person E(Max+Ethan):Sandstorm work with person B
