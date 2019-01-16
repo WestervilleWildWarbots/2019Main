@@ -3,7 +3,7 @@ package frc.robot.subsystems;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
-public class SensorSubsystem extends Subsystem {
+public class GrabSubsystem extends Subsystem {
 
   /* 
    * NOTICE: Using the NetworkTable
@@ -33,7 +33,7 @@ public class SensorSubsystem extends Subsystem {
   //initialize the NetworkTable and store a reference to it in table
   private NetworkTableInstance table;
 
-  public SensorSubsystem() {
+  public GrabSubsystem() {
 	  table = NetworkTableInstance.getDefault();
   }
 
