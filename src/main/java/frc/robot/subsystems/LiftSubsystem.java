@@ -2,22 +2,8 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import frc.robot.RobotMap;
-import edu.wpi.first.wpilibj.AnalogInput;
-import edu.wpi.first.wpilibj.AnalogGyro;
 
-public class DriveSubsystem extends Subsystem {
-  
-  //Initializing sensors relating to driving
-  private AnalogInput frontDist;
-  private AnalogInput rearDist;
-  private AnalogGyro gyro;
-
-  public DriveSubsystem (){
-    frontDist = new AnalogInput(RobotMap.FRONT_DISTANCE_SENSOR);
-    rearDist = new AnalogInput(RobotMap.REAR_DISTANCE_SENSOR);
-    gyro = new AnalogGyro(RobotMap.ANALOG_GYRO);
-  }
+public class LiftSubsystem extends Subsystem {
 
   /* 
    * NOTICE: Using the NetworkTable
@@ -47,7 +33,7 @@ public class DriveSubsystem extends Subsystem {
   //initialize the NetworkTable and store a reference to it in table
   private NetworkTableInstance table;
 
-  public DriveSubsystem() {
+  public LiftSubsystem() {
 	  table = NetworkTableInstance.getDefault();
   }
 

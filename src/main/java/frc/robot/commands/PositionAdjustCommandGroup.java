@@ -2,8 +2,8 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class ArmCommand extends Command {
-  public ArmCommand() {
+public class PositionAdjustCommandGroup extends Command {
+  public PositionAdjustCommandGroup() {
   }
 
   @Override
