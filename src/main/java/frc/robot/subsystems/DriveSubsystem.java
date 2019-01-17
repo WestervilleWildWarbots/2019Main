@@ -13,12 +13,6 @@ public class DriveSubsystem extends Subsystem {
   private AnalogInput rearDist;
   private AnalogGyro gyro;
 
-  public DriveSubsystem (){
-    frontDist = new AnalogInput(RobotMap.FRONT_DISTANCE_SENSOR);
-    rearDist = new AnalogInput(RobotMap.REAR_DISTANCE_SENSOR);
-    gyro = new AnalogGyro(RobotMap.ANALOG_GYRO);
-  }
-
   /* 
    * NOTICE: Using the NetworkTable
    * ==============================
@@ -48,7 +42,10 @@ public class DriveSubsystem extends Subsystem {
   private NetworkTableInstance table;
 
   public DriveSubsystem() {
-	  table = NetworkTableInstance.getDefault();
+    table = NetworkTableInstance.getDefault();
+    frontDist = new AnalogInput(RobotMap.FRONT_DISTANCE_SENSOR);
+    rearDist = new AnalogInput(RobotMap.REAR_DISTANCE_SENSOR);
+    gyro = new AnalogGyro(RobotMap.ANALOG_GYRO);
   }
 
   @Override
