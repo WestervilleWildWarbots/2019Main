@@ -4,9 +4,10 @@ import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.RobotMap;
 
-public class MonitorCommand extends Command {
+public class SensorReadCommand extends Command {
 
   //reference to NetworkTable
   private NetworkTableInstance table;
@@ -16,7 +17,7 @@ public class MonitorCommand extends Command {
   private AnalogInput rearDist;
   private AnalogGyro gyro;
 
-  public MonitorCommand() {
+  public SensorReadCommand() {
     table = NetworkTableInstance.getDefault();
     frontDist = new AnalogInput(RobotMap.FRONT_DISTANCE_SENSOR);
     rearDist = new AnalogInput(RobotMap.REAR_DISTANCE_SENSOR);
@@ -29,6 +30,9 @@ public class MonitorCommand extends Command {
 
   @Override
   protected void execute() {
+    //update gyro number in NetworkTable
+    table.getEntry("gyro_angle").setValue(gyro.getAngle());
+    SmartDashboard.getEntry("gyro_angle").getDouble(0);
   }
 
   @Override

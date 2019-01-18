@@ -10,4 +10,6 @@ public class RobotMap {
   public static final int MOTOR_FR = 3;
   public static final int MOTOR_BL = 4;
   public static final int MOTOR_BR = 5;
+  //the default value to pass to getDouble() calls for NetworkTable
+  public static final double DEFAULT_VALUE=0;
 }
