@@ -1,31 +1,42 @@
 package frc.robot;
+
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commands.DriveCommand;
-import frc.robot.commands.ArmCommand;
+import frc.robot.subsystems.ClimbSubsystem;
 import frc.robot.subsystems.DriveSubsystem;
-import frc.robot.subsystems.ArmSubsystem;
-import frc.robot.subsystems.SensorSubsystem;
+import frc.robot.subsystems.GrabSubsystem;
+import frc.robot.subsystems.LiftSubsystem;
+import edu.wpi.first.wpilibj.CameraServer;
 
 public class Robot extends TimedRobot {
-  public static ArmCommand a_command = new ArmCommand();
-  public static DriveSubsystem d_subsystem = new DriveSubsystem();
-  public static ArmSubsystem a_subsystem = new ArmSubsystem();
-  public static SensorSubsystem s_subsystem = new SensorSubsystem();
-  public static OI m_oi;
+
+  //subsystems
+  public static DriveSubsystem driveSubsystem;
+  public static ClimbSubsystem climbSubsystem;
+  public static GrabSubsystem grabSubsystem;
+  public static LiftSubsystem liftSubsystem;
+  public static OI oi;
 
   Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
 
  @Override
   public void robotInit() {
-    m_oi = new OI();
+    oi = new OI();
     m_chooser.setDefaultOption("Default Auto", new DriveCommand());
+    CameraServer.getInstance().startAutomaticCapture();
     // chooser.addOption("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", m_chooser);
+
+    //set up subsystems
+    driveSubsystem = new DriveSubsystem();
+    climbSubsystem = new ClimbSubsystem();
+    grabSubsystem = new GrabSubsystem();
+    liftSubsystem = new LiftSubsystem();
   }
 
   @Override

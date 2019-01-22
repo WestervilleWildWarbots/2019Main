@@ -1,11 +1,28 @@
 package frc.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.FeedbackDevice;
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.AnalogInput;
+import edu.wpi.first.wpilibj.AnalogGyro;
+import frc.robot.Robot;
+import frc.robot.RobotMap;
+import frc.robot.OI;
+import frc.robot.OI.Axis;
+import frc.robot.commands.DriveCommand;
 
 public class DriveSubsystem extends Subsystem {
+  private WPI_TalonSRX frontLeft;
+  private WPI_TalonSRX frontRight;
+  private WPI_TalonSRX backLeft;
+  private WPI_TalonSRX backRight;
 
-  /* 
+  private WPI_TalonSRX[] talons = {frontLeft, frontRight, backLeft, backRight};
+
+  /*
    * NOTICE: Using the NetworkTable
    * ==============================
    *
@@ -34,7 +51,41 @@ public class DriveSubsystem extends Subsystem {
   private NetworkTableInstance table;
 
   public DriveSubsystem() {
-	  table = NetworkTableInstance.getDefault();
+    table = NetworkTableInstance.getDefault();
+    frontLeft = new WPI_TalonSRX(RobotMap.MOTOR_FL);
+    frontRight = new WPI_TalonSRX(RobotMap.MOTOR_FR);
+    backLeft = new WPI_TalonSRX(RobotMap.MOTOR_BL);
+    backRight = new WPI_TalonSRX(RobotMap.MOTOR_BR);
+
+    if(OI.getJoystickAxis(RobotMap.DRIVE_STICK, Axis.Z) == 0){
+
+      if(OI.getJoystickAxis(RobotMap.DRIVE_STICK, Axis.X) < 0){
+
+        frontLeft.set(OI.getJoystickAxis(RobotMap.DRIVE_STICK, Axis.X)*DriveCommand.speed);
+        frontRight.set(OI.getJoystickAxis(RobotMap.DRIVE_STICK, Axis.X)*DriveCommand.speed);
+      }
+
+
+      if(OI.getJoystickAxis(RobotMap.DRIVE_STICK, Axis.X) > 0){
+        frontLeft.set(OI.getJoystickAxis(RobotMap.DRIVE_STICK, Axis.X)*-DriveCommand.speed);
+        frontRight.set(OI.getJoystickAxis(RobotMap.DRIVE_STICK, Axis.X)*DriveCommand.speed);
+      }
+    }else if(OI.getJoystickAxis(RobotMap.DRIVE_STICK, Axis.Z)>0){
+      frontLeft.set(OI.getJoystickAxis(RobotMap.DRIVE_STICK, Axis.X)*-0.5*DriveCommand.speed);
+      frontRight.set(OI.getJoystickAxis(RobotMap.DRIVE_STICK, Axis.X)*-0.5*DriveCommand.speed);
+
+    }else if(OI.getJoystickAxis(RobotMap.DRIVE_STICK, Axis.Z)<0){
+      frontLeft.set(OI.getJoystickAxis(RobotMap.DRIVE_STICK, Axis.X)*0.5*DriveCommand.speed);
+      frontRight.set(OI.getJoystickAxis(RobotMap.DRIVE_STICK, Axis.X)*0.5*DriveCommand.speed);
+
+    }else{
+    frontLeft.set(0);
+    frontRight.set(0);
+    }
+
+    backLeft.follow(frontLeft);
+    backRight.follow(frontRight);
+
   }
 
   @Override
