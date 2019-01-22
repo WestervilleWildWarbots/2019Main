@@ -32,7 +32,7 @@ public class SensorReadCommand extends Command {
   protected void execute() {
     //update gyro number
     table.getEntry("gyro_angle").setValue(gyro.getAngle());
-    SmartDashboard.getEntry("gyro_angle").getDouble(0);
+    SmartDashboard.getEntry("gyro_angle").getDouble(RobotMap.DEFAULT_VALUE);
   }
 
   @Override
