@@ -1,0 +1,14 @@
+Make sure that Shufleboard is easy to read and understand.
+
+Person A(-)(Sandstorm)Automation Driving
+Person B(-)Pnumatics for Arm
+Person C(-)Moving Arm up and down & Arm PID
+Person D(-)Automation alinement & Shufleboard Notifications
+Person E(-)Automation for Arm
+
+Saturday:
+1. Make sure all code to that point is in master and working
+2. Group code review
+3. Refactoring
+4. New assinements and anything not done from previous week
+5. Meeting to go over robot decitions
