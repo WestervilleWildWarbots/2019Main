@@ -1,10 +1,15 @@
 package frc.robot;
 
 public class RobotMap {
+  //Autonomous
+  public static final double AUTONOMOUS_SPEED = .25;
+  
+  //Posible drive methods
   public static final int DRIVE_STICK = 0;
   public static final int XBOX_CONTROLLER = 1;
   public static final int FRONT_DISTANCE_SENSOR = 0;
   public static final int REAR_DISTANCE_SENSOR = 1;
+  public static final int LINE_TRACKER = 6;
   public static final int ANALOG_GYRO = 2;
   public static final int MOTOR_FL = 2;
   public static final int MOTOR_FR = 3;

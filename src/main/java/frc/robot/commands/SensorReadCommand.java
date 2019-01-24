@@ -1,8 +1,12 @@
 package frc.robot.commands;
 
+import com.sun.source.tree.LineMap;
+
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.AnalogInput;
+import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.DigitalSource;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.RobotMap;
@@ -16,12 +20,14 @@ public class SensorReadCommand extends Command {
   private AnalogInput frontDist;
   private AnalogInput rearDist;
   private AnalogGyro gyro;
+  private DigitalInput tapeRead;
 
   public SensorReadCommand() {
     table = NetworkTableInstance.getDefault();
     frontDist = new AnalogInput(RobotMap.FRONT_DISTANCE_SENSOR);
     rearDist = new AnalogInput(RobotMap.REAR_DISTANCE_SENSOR);
     gyro = new AnalogGyro(RobotMap.ANALOG_GYRO);
+    tapeRead = new DigitalInput(RobotMap.LINE_TRACKER);
   }
 
   @Override
