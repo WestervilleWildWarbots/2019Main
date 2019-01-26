@@ -3,10 +3,10 @@ Make sure that Shufleboard is easy to read and understand.
 Look at UI diagrame for sensors. Make sure they match. 
 
 Person A(Robert)(Sandstorm)Automation Driving
-Person B(MyQ+Max)Pnumatics for Arm
-Person C(David)Moving Arm up and down & Arm PID
-Person D(Ethan)Automation alinement & Shufleboard Notifications
-Person E(Ryan)Automation for Arm
+Person B(David)Pnumatics for Arm
+Person C(Ethan)Moving Arm up and down & Arm PID
+Person D(Ryan)Automation alinement
+Person E(MyQ+Max)Automation for Arm & Shufleboard Notifications
 
 Saturday:
 1. Make sure all code to that point is in master and working
