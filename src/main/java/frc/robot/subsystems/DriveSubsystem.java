@@ -62,7 +62,7 @@ public class DriveSubsystem extends Subsystem {
       if(OI.getJoystickAxis(RobotMap.DRIVE_STICK, Axis.X) < 0){
 
         frontLeft.set(OI.getJoystickAxis(RobotMap.DRIVE_STICK, Axis.X)*DriveCommand.speed);
-        frontRight.set(OI.getJoystickAxis(RobotMap.DRIVE_STICK, Axis.X)*DriveCommand.speed);
+        frontRight.set(OI.getJoystickAxis(RobotMap.DRIVE_STICK, Axis.X)*-DriveCommand.speed);
       }
 
 
