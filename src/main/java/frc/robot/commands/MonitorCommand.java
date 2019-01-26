@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.RobotMap;
 
-public class SensorReadCommand extends Command {
+public class MonitorCommand extends Command {
 
   //reference to NetworkTable
   private NetworkTableInstance table;
