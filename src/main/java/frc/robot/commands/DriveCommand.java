@@ -13,6 +13,7 @@ import frc.robot.OI;
 public class DriveCommand extends Command {
   public static double speed = 20;
   private DriveSubsystem drive = Robot.driveSubsystem;
+
   public DriveCommand() {
   }
 
