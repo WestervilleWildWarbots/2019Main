@@ -11,19 +11,19 @@ import frc.robot.Robot;
 import frc.robot.OI;
 
 public class DriveCommand extends Command {
- public static double speed = 20;
+ public static double speed = 1;
   public DriveCommand() {
      
   }
 
   @Override
   protected void initialize() {
-    speed = 20;
+    speed = 1;
   }
 
   @Override
   protected void execute() {
-    speed = 20;
+    speed = 1;
   }
 
   @Override
