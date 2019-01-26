@@ -34,7 +34,7 @@ public class ClimbSubsystem extends Subsystem {
   private NetworkTableInstance table;
 
   public ClimbSubsystem() {
-	  table = NetworkTableInstance.getDefault();
+    table = NetworkTableInstance.getDefault();
   }
 
   @Override
