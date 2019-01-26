@@ -23,8 +23,8 @@ public class SandStormCommandGroup extends Command{
   public static final double targetDepth = 0; //0 always and only for FR / FL || 1,2,3 for L and R
   public static final double autoSpeed = 20;
 
+  public double time = 0;
   public double startDistance = 354.125;
-  public double startTime = 0;
 
   public static double startOffsetY = 0;
   public static double startOffsetX = 0;
@@ -76,17 +76,19 @@ public class SandStormCommandGroup extends Command{
         startOffsetY = 1;
       }
     }
-
     startOffsetY*=64;
     startDistance+=startOffsetX;
+    startDistance/=39.37;
 
-    frontLeft.set(startDistance/39.37);
-    frontRight.set(startDistance/39.37);
+    while(time<(startDistance*2)){
+    frontLeft.set(.5);
+    frontRight.set(.5);
     
 
     backLeft.follow(frontLeft);
     backRight.follow(frontRight);
-
+    time++;
+  }
     
   }
 
