@@ -16,16 +16,18 @@ import frc.robot.OI;
 
 
 
-public class SandstormCommandGroup extends Command {
-  public static final double startHeight = 1;
-  public static final double startPos = 1;
-  public static final double target = 0;
+public class SandStormCommandGroup extends Command{ 
+  public static final double startHeight = 1; //1 or 2
+  public static final double startPos = 1; //1, 2, or 3
+  public static final double targetSide = 0; //"R", "L", "FR", or "FL"
+  public static final double targetDepth = 0; //0 always and only for FR / FL || 1,2,3 for L and R
   public static final double autoSpeed = 20;
+
+  public double time = 0;
+  public double startDistance = 354.125;
 
   public static double startOffsetY = 0;
   public static double startOffsetX = 0;
-  
-  public static final double startDistance = 354.125;
 
   private WPI_TalonSRX frontLeft;
   private WPI_TalonSRX frontRight;
@@ -36,7 +38,7 @@ public class SandstormCommandGroup extends Command {
 
  
 
-  public SandstormCommandGroup() {
+  public SandStormCommandGroup() {
     frontLeft = new WPI_TalonSRX(RobotMap.MOTOR_FL);
   frontRight = new WPI_TalonSRX(RobotMap.MOTOR_FR);
   backLeft = new WPI_TalonSRX(RobotMap.MOTOR_BL);
@@ -74,17 +76,19 @@ public class SandstormCommandGroup extends Command {
         startOffsetY = 1;
       }
     }
-
     startOffsetY*=64;
     startDistance+=startOffsetX;
+    startDistance/=39.37;
 
-    frontLeft.set(0,100);
-    frontRight.set(0);
+    while(time<(startDistance*2)){
+    frontLeft.set(.5);
+    frontRight.set(.5);
     
 
     backLeft.follow(frontLeft);
     backRight.follow(frontRight);
-
+    time++;
+  }
     
   }
 
