@@ -34,45 +34,39 @@ public class SandStormCommandGroup extends Command{
   private WPI_TalonSRX backLeft;
   private WPI_TalonSRX backRight;
 
-   WPI_TalonSRX[] talons = {frontLeft, frontRight, backLeft, backRight};
+  WPI_TalonSRX[] talons = {frontLeft, frontRight, backLeft, backRight};
 
  
 
   public SandStormCommandGroup() {
     frontLeft = new WPI_TalonSRX(RobotMap.MOTOR_FL);
-  frontRight = new WPI_TalonSRX(RobotMap.MOTOR_FR);
-  backLeft = new WPI_TalonSRX(RobotMap.MOTOR_BL);
-  backRight = new WPI_TalonSRX(RobotMap.MOTOR_BR);
+    frontRight = new WPI_TalonSRX(RobotMap.MOTOR_FR);
+    backLeft = new WPI_TalonSRX(RobotMap.MOTOR_BL);
+    backRight = new WPI_TalonSRX(RobotMap.MOTOR_BR);
   }
 
   @Override
   protected void initialize() {
     if(startHeight == 1){
       startOffsetX = 0;
+
       if(startPos == 1){
         startOffsetY = -1;
-      }
-
-      if(startPos == 2){
+      } else if(startPos == 2){
         startOffsetY = 0;
-      }
-
-      if(startPos == 3){
+      } else if(startPos == 3){
         startOffsetY = 1;
       }
+
     }
 
     if(startHeight == 2){
       startOffsetX = 47.625;
       if(startPos == 1){
         startOffsetY = -1;
-      }
-
-      if(startPos == 2){
+      } else if(startPos == 2){
         startOffsetY = 0;
-      }
-
-      if(startPos == 3){
+      } else if(startPos == 3){
         startOffsetY = 1;
       }
     }
@@ -84,12 +78,10 @@ public class SandStormCommandGroup extends Command{
     frontLeft.set(.5);
     frontRight.set(.5);
     
-
     backLeft.follow(frontLeft);
     backRight.follow(frontRight);
     time++;
   }
-    
   }
 
   @Override

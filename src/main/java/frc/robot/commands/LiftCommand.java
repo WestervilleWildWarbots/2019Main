@@ -42,9 +42,11 @@ public LiftCommand() {
 
   @Override
   protected void end() {
+    liftSol.set(Value.kOff);
   }
 
   @Override
   protected void interrupted() {
+    liftSol.set(Value.kOff);
   }
 }
