@@ -27,7 +27,6 @@ public class Robot extends TimedRobot {
   public void robotInit() {
     oi = new OI();
     autonomousCommandDropdown.setDefaultOption("Default Auto", new DriveCommand());
-    // chooser.addOption("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", autonomousCommandDropdown);
 
     //set up subsystems
