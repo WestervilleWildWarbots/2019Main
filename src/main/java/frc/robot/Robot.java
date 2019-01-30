@@ -38,8 +38,6 @@ public class Robot extends TimedRobot {
     grabSubsystem = new GrabSubsystem();
     liftSubsystem = new LiftSubsystem();
 
-    //testing the drive
-    new DriveCommand().start();
   }
 
   @Override
