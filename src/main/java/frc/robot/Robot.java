@@ -10,7 +10,6 @@ import frc.robot.subsystems.ClimbSubsystem;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.GrabSubsystem;
 import frc.robot.subsystems.LiftSubsystem;
-import edu.wpi.first.wpilibj.CameraServer;
 
 public class Robot extends TimedRobot {
 
@@ -28,7 +27,6 @@ public class Robot extends TimedRobot {
   public void robotInit() {
     oi = new OI();
     autonomousCommandDropdown.setDefaultOption("Default Auto", new DriveCommand());
-    CameraServer.getInstance().startAutomaticCapture();
     // chooser.addOption("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", autonomousCommandDropdown);
 
