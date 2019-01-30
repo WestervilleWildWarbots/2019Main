@@ -21,16 +21,16 @@ public class Robot extends TimedRobot {
   public static LiftSubsystem liftSubsystem;
   public static OI oi;
 
-  Command m_autonomousCommand;
-  SendableChooser<Command> m_chooser = new SendableChooser<>();
+  Command autonomousCommand;
+  SendableChooser<Command> autonomousCommandDropdown = new SendableChooser<>();
 
   @Override
   public void robotInit() {
     oi = new OI();
-    m_chooser.setDefaultOption("Default Auto", new DriveCommand());
+    autonomousCommandDropdown.setDefaultOption("Default Auto", new DriveCommand());
     CameraServer.getInstance().startAutomaticCapture();
     // chooser.addOption("My Auto", new MyAutoCommand());
-    SmartDashboard.putData("Auto mode", m_chooser);
+    SmartDashboard.putData("Auto mode", autonomousCommandDropdown);
 
     //set up subsystems
     driveSubsystem = new DriveSubsystem();
@@ -57,11 +57,11 @@ public class Robot extends TimedRobot {
 
   @Override
   public void autonomousInit() {
-    m_autonomousCommand = m_chooser.getSelected();
+    autonomousCommand = autonomousCommandDropdown.getSelected();
 
     // schedule the autonomous command (example)
-    if (m_autonomousCommand != null) {
-    m_autonomousCommand.start();
+    if (autonomousCommand != null) {
+    autonomousCommand.start();
     }
   }
 
@@ -72,8 +72,8 @@ public class Robot extends TimedRobot {
 
   @Override
     public void teleopInit() {
-    if (m_autonomousCommand != null) {
-    m_autonomousCommand.cancel();
+    if (autonomousCommand != null) {
+    autonomousCommand.cancel();
     }
   }
 
