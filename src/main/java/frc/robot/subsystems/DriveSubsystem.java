@@ -71,13 +71,10 @@ public class DriveSubsystem extends Subsystem {
 
       if(OI.getJoystickAxis(RobotMap.DRIVE_STICK, Axis.X) < 0){
 
-<<<<<<< HEAD
-        frontLeft.set(OI.getJoystickAxis(RobotMap.DRIVE_STICK, Axis.X)*DriveCommand.speed);
-        frontRight.set(OI.getJoystickAxis(RobotMap.DRIVE_STICK, Axis.X)*-DriveCommand.speed);
-=======
+        frontLeft.set(OI.getJoystickAxis(RobotMap.DRIVE_STICK, Axis.X)*spd);
+        frontRight.set(OI.getJoystickAxis(RobotMap.DRIVE_STICK, Axis.X)*spd);
         frontLeft.set(OI.getJoystickAxis(RobotMap.DRIVE_STICK, Axis.X)*spd);
         frontRight.set(OI.getJoystickAxis(RobotMap.DRIVE_STICK, Axis.X)*-spd);
->>>>>>> ce556281057f0f241ec63906e0fd548a8e8c74ba
       }
 
 

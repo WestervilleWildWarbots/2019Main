@@ -25,11 +25,11 @@ public LiftCommand() {
 
   @Override
   protected void execute() {
-    if(OI.getJoystickAxis(RobotMap.XBOX_CONTROLLER, Axis.LeftY)>0){
+    if(OI.getJoystickAxis(RobotMap.XBOX_CONTROLLER, Axis.LeftY)<0){
         liftSol.set(Value.kForward);
     }
 
-    else if(OI.getJoystickAxis(RobotMap.XBOX_CONTROLLER, Axis.LeftY)<0){
+    else if(OI.getJoystickAxis(RobotMap.XBOX_CONTROLLER, Axis.LeftY)>0){
       liftSol.set(Value.kReverse);
       
     }else{liftSol.set(Value.kOff);}

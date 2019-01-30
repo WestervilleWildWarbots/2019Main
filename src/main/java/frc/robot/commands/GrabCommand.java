@@ -16,6 +16,7 @@ import edu.wpi.first.wpilibj.command.Command;
 public class GrabCommand extends Command {
   DoubleSolenoid grabSolR = new DoubleSolenoid(RobotMap.PNUM_RELEASER,RobotMap.PNUM_GRABR);
   DoubleSolenoid grabSolL = new DoubleSolenoid(RobotMap.PNUM_GRABL,RobotMap.PNUM_RELEASEL);
+  DoubleSolenoid outSol = new DoubleSolenoid(RobotMap.PNUM_OUT, RobotMap.PNUM_IN);
 
   public GrabCommand() {
   }
@@ -26,16 +27,28 @@ public class GrabCommand extends Command {
 
   @Override
   protected void execute() {
-    if(OI.getJoystickAxis(RobotMap.XBOX_CONTROLLER, Axis.RightY) != 0){
+    if(OI.getJoystickAxis(RobotMap.XBOX_CONTROLLER, Axis.RightY) < 0){
       grabSolL.set(Value.kForward);
       grabSolR.set(Value.kReverse);
   }
+  
+  else if(OI.getJoystickAxis(RobotMap.XBOX_CONTROLLER, Axis.RightY) > 0){
+    grabSolL.set(Value.kReverse);
+    grabSolR.set(Value.kForward);
+}
 
   else{
-    grabSolR.set(Value.kForward);
-    grabSolL.set(Value.kReverse);
+    grabSolR.set(Value.kOff);
+    grabSolL.set(Value.kOff);
     
 }
+
+if(OI.getJoystickAxis(RobotMap.XBOX_CONTROLLER, Axis.RightX)<0){
+  outSol.set(Value.kForward);
+
+}else if(OI.getJoystickAxis(RobotMap.XBOX_CONTROLLER, Axis.RightX)>0){
+  outSol.set(Value.kReverse);
+}else{outSol.set(Value.kOff);}
   }
 
   @Override
@@ -45,9 +58,15 @@ public class GrabCommand extends Command {
 
   @Override
   protected void end() {
+    outSol.set(Value.kOff);
+    grabSolR.set(Value.kOff);
+    grabSolL.set(Value.kOff);
   }
 
   @Override
   protected void interrupted() {
+    outSol.set(Value.kOff);
+    grabSolR.set(Value.kOff);
+    grabSolL.set(Value.kOff);
   }
 }

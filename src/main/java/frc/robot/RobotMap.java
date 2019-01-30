@@ -20,6 +20,8 @@ public class RobotMap {
   public static final int PNUM_RELEASEL = 14;
   public static final int PNUM_GRABR = 13;
   public static final int PNUM_RELEASER = 15;
+  public static final int PNUM_OUT = 16;
+  public static final int PNUM_IN = 17;
   
   public static final int MOTOR_FL = 2;
   public static final int MOTOR_FR = 3;
