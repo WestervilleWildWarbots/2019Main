@@ -1,21 +1,13 @@
 
 package frc.robot.subsystems;
 
-import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.drive.DifferentialDrive;
-import edu.wpi.first.wpilibj.AnalogInput;
-import edu.wpi.first.wpilibj.SpeedControllerGroup;
-import edu.wpi.first.wpilibj.AnalogGyro;
-import frc.robot.Robot;
-import frc.robot.RobotMap;
 import frc.robot.OI;
 import frc.robot.OI.Axis;
-import frc.robot.commands.DriveCommand;
+import frc.robot.RobotMap;
 
 public class DriveSubsystem extends Subsystem {
   private WPI_TalonSRX frontLeft;
