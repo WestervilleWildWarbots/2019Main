@@ -27,26 +27,20 @@ public class GrabCommand extends Command {
 
   @Override
   protected void execute() {
-    if(OI.getJoystickAxis(RobotMap.XBOX_CONTROLLER, Axis.RightY) < 0){
+    if(OI.getJoystickAxis(RobotMap.XBOX_CONTROLLER, Axis.RightTab) > 0){
       grabSolL.set(Value.kForward);
       grabSolR.set(Value.kReverse);
   }
   
-  else if(OI.getJoystickAxis(RobotMap.XBOX_CONTROLLER, Axis.RightY) > 0){
+  else{
     grabSolL.set(Value.kReverse);
     grabSolR.set(Value.kForward);
 }
 
-  else{
-    grabSolR.set(Value.kOff);
-    grabSolL.set(Value.kOff);
-    
-}
-
-if(OI.getJoystickAxis(RobotMap.XBOX_CONTROLLER, Axis.RightX)<0){
+if(OI.getJoystickAxis(RobotMap.XBOX_CONTROLLER, Axis.RightY)<0){
   outSol.set(Value.kForward);
 
-}else if(OI.getJoystickAxis(RobotMap.XBOX_CONTROLLER, Axis.RightX)>0){
+}else if(OI.getJoystickAxis(RobotMap.XBOX_CONTROLLER, Axis.RightY)>0){
   outSol.set(Value.kReverse);
 }else{outSol.set(Value.kOff);}
   }
