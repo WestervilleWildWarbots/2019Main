@@ -1,5 +1,11 @@
 # XBOX Contoller Map
 
+|Axes:|
+
+<- -X to +X ->
+
+Up = -Y Down = +Y
+
 Left Stick: X= Axis 0| Y = Axis 1
 
 Right Stick: X = Axis 4| Y = Axis 5
@@ -7,6 +13,8 @@ Right Stick: X = Axis 4| Y = Axis 5
 Left Tab = Axis 2 |0-1 (Out - In)
 
 Right Tab = Axis 3 |0-1 (Out - In)
+
+|Buttons:|
 
 A Button = Button 0
 
@@ -28,6 +36,6 @@ Push Left Stick = Button 8
 
 Push Right Stick = Button 9
 
-Directional Pad
+|Directional Pad|
 
 Value clockwise from 0 to 360 degrees (-1 in center)
