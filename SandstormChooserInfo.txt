@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 LeftT1Cargo
 LeftT2Cargo
 MiddleCargo
@@ -15,22 +14,4 @@ CrossLineT2
 We have 12 versions of the autonomous code, 2 for each starting location, one of which is for the cargoship and the other is for the rocket ship and two universal
 We will use the one that corresponds to our starting location and strategy based on our alliance
 There will be a collapsable dropdown menu on shuffleboard to be selected with the mouse, it will default to CrossLineT1
-=======
-LeftT1Cargo
-LeftT2Cargo
-MiddleCargo
-RightT1Cargo
-RightT2Cargo
-LeftT1Rocket
-LeftT2Rocket
-MiddleRocket
-RightT1Rocket
-RightT2Rocket
-CrossLineT1
-CrossLineT2
-
-We have 12 versions of the autonomous code, 2 for each starting location, one of which is for the cargoship and the other is for the rocket ship and two universal
-We will use the one that corresponds to our starting location and strategy based on our alliance
-There will be a collapsable dropdown menu on shuffleboard to be selected with the mouse, it will default to CrossLineT1
->>>>>>> 4ecdbd9709bf626b06acd5df532f13def4f95b39
 After autonomous the dropdown goes away and is replaced by a sensor
