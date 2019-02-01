@@ -7,7 +7,7 @@ import frc.robot.commands.LiftCommand;
 public class OI {
   // Makes the axis of the joystick exist
 
-  public static enum Axis {X, Y, Z, LeftY, RightY, THROTTLE, RightX};
+  public static enum Axis {X, Y, Z, LeftY, RightY, THROTTLE, RightTab};
 
   // Makes the joystick and xbox controller exist
 
@@ -43,8 +43,8 @@ public class OI {
           axisValue = joystick.getRawAxis(5); // 5 is supposed to be XBox id for right joystick
       } else if (axis == Axis.THROTTLE) {
           axisValue = joystick.getThrottle();
-      }else if (axis == Axis.RightY) {
-        axisValue = joystick.getRawAxis(4);
+      }else if (axis == Axis.RightTab) {
+        axisValue = joystick.getRawAxis(3);
     }
 
       // Creates dead zone
