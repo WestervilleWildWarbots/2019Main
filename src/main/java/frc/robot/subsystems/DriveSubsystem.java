@@ -72,23 +72,21 @@ public class DriveSubsystem extends Subsystem {
       if(OI.getJoystickAxis(RobotMap.DRIVE_STICK, Axis.X) < 0){
 
         frontLeft.set(OI.getJoystickAxis(RobotMap.DRIVE_STICK, Axis.X)*spd);
-        frontRight.set(OI.getJoystickAxis(RobotMap.DRIVE_STICK, Axis.X)*spd);
-        frontLeft.set(OI.getJoystickAxis(RobotMap.DRIVE_STICK, Axis.X)*spd);
         frontRight.set(OI.getJoystickAxis(RobotMap.DRIVE_STICK, Axis.X)*-spd);
       }
-
 
       if(OI.getJoystickAxis(RobotMap.DRIVE_STICK, Axis.X) > 0){
         frontLeft.set(OI.getJoystickAxis(RobotMap.DRIVE_STICK, Axis.X)*-spd);
         frontRight.set(OI.getJoystickAxis(RobotMap.DRIVE_STICK, Axis.X)*spd);
       }
+      
     }else if(OI.getJoystickAxis(RobotMap.DRIVE_STICK, Axis.Z)>0){
-      frontLeft.set(OI.getJoystickAxis(RobotMap.DRIVE_STICK, Axis.X)*-0.5*spd);
-      frontRight.set(OI.getJoystickAxis(RobotMap.DRIVE_STICK, Axis.X)*-0.5*spd);
+      frontLeft.set(OI.getJoystickAxis(RobotMap.DRIVE_STICK, Axis.Z)*-0.5*spd);
+      frontRight.set(OI.getJoystickAxis(RobotMap.DRIVE_STICK, Axis.Z)*-0.5*spd);
 
     }else if(OI.getJoystickAxis(RobotMap.DRIVE_STICK, Axis.Z)<0){
-      frontLeft.set(OI.getJoystickAxis(RobotMap.DRIVE_STICK, Axis.X)*0.5*spd);
-      frontRight.set(OI.getJoystickAxis(RobotMap.DRIVE_STICK, Axis.X)*0.5*spd);
+      frontLeft.set(OI.getJoystickAxis(RobotMap.DRIVE_STICK, Axis.Z)*0.5*spd);
+      frontRight.set(OI.getJoystickAxis(RobotMap.DRIVE_STICK, Axis.Z)*0.5*spd);
 
     }else{
     frontLeft.set(0);

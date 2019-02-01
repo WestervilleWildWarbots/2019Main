@@ -33,9 +33,11 @@ public class DriveCommand extends Command {
 
   @Override
   protected void end() {
+    drive.drive(0);
   }
 
   @Override
   protected void interrupted() {
+    drive.drive(0);
   }
 }
