@@ -1,52 +1,51 @@
 package frc.robot.commands;
-import  frc.robot.OI;
-import frc.robot.RobotMap;
+import frc.robot.OI;
 import frc.robot.OI.Axis;
-
-import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.FeedbackDevice;
-import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
-import edu.wpi.first.wpilibj.util.WPILibVersion;
-import edu.wpi.first.hal.can.*;
-import edu.wpi.first.wpilibj.DoubleSolenoid;
-import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
+import frc.robot.Robot;
+import frc.robot.RobotMap;
 import edu.wpi.first.wpilibj.command.Command;
-
+// Changes the arm position based on the XBox Controller
 public class LiftCommand extends Command {
-
-DoubleSolenoid liftSol = new DoubleSolenoid(RobotMap.PNUM_LIFTUP,RobotMap.PNUM_LIFTDOWN);
-  
-public LiftCommand() {
-  }
-
-  @Override
-  protected void initialize() {
-  }
-
-  @Override
-  protected void execute() {
-    if(OI.getJoystickAxis(RobotMap.XBOX_CONTROLLER, Axis.LeftY)<0){
-        liftSol.set(Value.kForward);
+	
+    public LiftCommand() {
+         
     }
 
-    else if(OI.getJoystickAxis(RobotMap.XBOX_CONTROLLER, Axis.LeftY)>0){
-      liftSol.set(Value.kReverse);
-      
-    }else{liftSol.set(Value.kOff);}
-  }
+    // Called just before this Command runs the first time
+    protected void initialize() {
+    }
 
-  @Override
-  protected boolean isFinished() {
-    return false;
-  }
+    // Called repeatedly when this Command is scheduled to run
+    // Changes the position of the Arm based on the Joystick's left joystick
+    protected void execute() {
+    	double leftY = OI.getJoystickAxis(RobotMap.XBOX_CONTROLLER, Axis.LeftY);
+    	if (leftY != 0) {
+    		if(RobotMap.setPoint <0 || (RobotMap.setPoint >= 0 && leftY < 0)) {
+    			RobotMap.setPoint += (int) leftY * 80;
+    			Robot.liftSubsystem.setPos(RobotMap.setPoint);
+    	} else {
+    		RobotMap.setPoint = 0;
+    		Robot.liftSubsystem.setPos(RobotMap.setPoint);
+    	}
+    } else {
+    	Robot.liftSubsystem.setPos(RobotMap.setPoint);
+    	}
+    }
+    
 
-  @Override
-  protected void end() {
-    liftSol.set(Value.kOff);
-  }
+    // Make this return true when this Command no longer needs to run execute()
+    protected boolean isFinished() {
+        return false;
+    }
 
-  @Override
-  protected void interrupted() {
-    liftSol.set(Value.kOff);
-  }
+    // Called once after isFinished returns true
+    protected void end() {
+    	Robot.liftSubsystem.set(0);
+    }
+
+    // Called when another command which requires one or more of the same
+    // subsystems is scheduled to run
+    protected void interrupted() {
+    	Robot.liftSubsystem.set(0);
+    }
 }

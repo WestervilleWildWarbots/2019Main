@@ -6,6 +6,7 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commands.DriveCommand;
+import frc.robot.commands.LiftCommand;
 import frc.robot.subsystems.ClimbSubsystem;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.GrabSubsystem;
@@ -21,6 +22,7 @@ public class Robot extends TimedRobot {
   public static LiftSubsystem liftSubsystem;
   public static OI oi;
 
+  public static LiftCommand liftCommand;
   Command m_autonomousCommand;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
 
@@ -37,6 +39,8 @@ public class Robot extends TimedRobot {
     climbSubsystem = new ClimbSubsystem();
     grabSubsystem = new GrabSubsystem();
     liftSubsystem = new LiftSubsystem();
+
+    liftCommand = new LiftCommand();
   }
 
   @Override
@@ -56,6 +60,8 @@ public class Robot extends TimedRobot {
   public void autonomousInit() {
     m_autonomousCommand = m_chooser.getSelected();
 
+    liftCommand.start();
+
     // schedule the autonomous command (example)
     if (m_autonomousCommand != null) {
     m_autonomousCommand.start();
@@ -69,7 +75,9 @@ public class Robot extends TimedRobot {
 
   @Override
     public void teleopInit() {
-    if (m_autonomousCommand != null) {
+      RobotMap.setPoint=0;
+      liftSubsystem.resetEncoder();
+      if (m_autonomousCommand != null) {
     m_autonomousCommand.cancel();
     }
   }
