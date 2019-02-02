@@ -1,6 +1,7 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+import frc.robot.Robot;
 import frc.robot.subsystems.DriveSubsystem;
 
 /**
@@ -9,6 +10,8 @@ import frc.robot.subsystems.DriveSubsystem;
 
 public class AutonomousSandstormCommand extends Command {
   private DriveSubsystem driveSubsystem;
+  private StartLocation startLocation;
+  private Task task;
 
   public enum StartLocation {
     leftTier1, rightTier1, middleTier1, leftTier2, rightTier2
@@ -19,26 +22,49 @@ public class AutonomousSandstormCommand extends Command {
   }
 
   public AutonomousSandstormCommand(StartLocation startLocation, Task task){
-    switch(startLocation){
-      case leftTier1:
-      //TODO fix speed
-      driveSubsystem.drive(.5);
-      break;
-      case rightTier1:
-      break;
-      case middleTier1:
-      case leftTier2:
-      case rightTier2:
-    }
-    
+    this.startLocation = startLocation;
+    this.task = task;
   }
 
   @Override
   protected void initialize() {
+    this.driveSubsystem = Robot.driveSubsystem;
   }
 
   @Override
   protected void execute() {
+     switch(task){
+      case crossline:
+        switch(startLocation){
+          case leftTier1:
+          //TODO fix speed
+          driveSubsystem.drive(1, 0.5);
+          break;
+          case rightTier1:
+          driveSubsystem.drive(1, 0.5);
+          break;
+          case middleTier1:
+          driveSubsystem.drive(1, 0.5);
+          break;
+          case leftTier2:
+          driveSubsystem.drive(1, 0.5);
+          break;
+          case rightTier2:
+          driveSubsystem.drive(1, 0.5);
+          break;
+          default:
+          System.out.println("That's not a starting location!");
+        }
+      break;
+      case rocket:
+      //TODO implement
+      break;
+      case cargo:
+      //TODO implement
+      break;
+      default:
+      System.out.println("That's not a task!");
+    }
   }
 
   @Override
