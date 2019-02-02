@@ -18,9 +18,7 @@ public class RobotMap {
   public static final int REAR_DISTANCE_SENSOR = 8;
   public static final int LINE_TRACKER = 6;
   public static final int ANALOG_GYRO = 9;
-  
-  public static final int PNUM_LIFTUP = 10;
-  public static final int PNUM_LIFTDOWN = 11;
+
   public static final int PNUM_GRABL = 12;
   public static final int PNUM_RELEASEL = 14;
   public static final int PNUM_GRABR = 13;
