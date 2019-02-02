@@ -5,19 +5,15 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.command.Subsystem;
-
-import frc.robot.RobotMap;
 import frc.robot.OI;
 import frc.robot.OI.Axis;
-
+import frc.robot.RobotMap;
 
 public class DriveSubsystem extends Subsystem {
   private WPI_TalonSRX frontLeft;
   private WPI_TalonSRX frontRight;
   private WPI_TalonSRX backLeft;
   private WPI_TalonSRX backRight;
-
-  private WPI_TalonSRX[] talons = {frontLeft, frontRight, backLeft, backRight};
 
   /*
    * NOTICE: Using the NetworkTable
@@ -57,8 +53,10 @@ public class DriveSubsystem extends Subsystem {
   }
 
   @Override
-  public void initDefaultCommand() {
+  public void initDefaultCommand(){
+
   }
+  
 
   public void drive(double spd) {
     if(OI.getJoystickAxis(RobotMap.DRIVE_STICK, Axis.Z) == 0){
@@ -68,7 +66,7 @@ public class DriveSubsystem extends Subsystem {
         frontLeft.set(OI.getJoystickAxis(RobotMap.DRIVE_STICK, Axis.X)*spd);
         frontRight.set(OI.getJoystickAxis(RobotMap.DRIVE_STICK, Axis.X)*-spd);
       }
-
+    
     }else if(OI.getJoystickAxis(RobotMap.DRIVE_STICK, Axis.Z)>0){
       frontLeft.set(OI.getJoystickAxis(RobotMap.DRIVE_STICK,Axis.Z)* -spd);
       frontRight.set(OI.getJoystickAxis(RobotMap.DRIVE_STICK, Axis.Z)*-spd);
@@ -81,8 +79,11 @@ public class DriveSubsystem extends Subsystem {
     frontLeft.set(0);
     frontRight.set(0);
     }
-
     backLeft.follow(frontLeft);
-    backRight.follow(frontRight);
+    backRight.follow(frontRight);  
   }
+
+
+
+
 }

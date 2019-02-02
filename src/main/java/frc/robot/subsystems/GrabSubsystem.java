@@ -51,6 +51,7 @@ public class GrabSubsystem extends Subsystem {
   @Override
   public void initDefaultCommand() {
   }
+  
   public void grab(boolean grabOff) {
 
   if(OI.getJoystickAxis(RobotMap.XBOX_CONTROLLER, Axis.RightTab) > 0){

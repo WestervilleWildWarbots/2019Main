@@ -2,6 +2,7 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import frc.robot.commands.LiftAdjustmentCommand;
 import frc.robot.commands.LiftCommand;
 
 public class OI {
@@ -60,8 +61,8 @@ public class OI {
     private static JoystickButton maxOut = new JoystickButton(xBoxController, 3);
   
   public OI(){
-    //armUp.whenPressed(LiftCommand(-500));
-    //armDown.whenPressed(new LiftCommand(500));
+    armUp.whenPressed(new LiftAdjustmentCommand(-500));
+	armDown.whenPressed(new LiftAdjustmentCommand(500));
     maxOut.whenPressed(new LiftCommand());
   }
 }

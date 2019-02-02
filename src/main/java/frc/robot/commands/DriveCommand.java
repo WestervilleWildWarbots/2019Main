@@ -1,8 +1,8 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
-import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.Robot;
+import frc.robot.subsystems.DriveSubsystem;
 
 public class DriveCommand extends Command {
   private DriveSubsystem drive = Robot.driveSubsystem;
