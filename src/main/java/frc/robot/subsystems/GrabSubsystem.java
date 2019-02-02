@@ -52,37 +52,29 @@ public class GrabSubsystem extends Subsystem {
   public void initDefaultCommand() {
   }
   
-  public void grab(boolean grabOff) {
+  public void grab() {
 
-  if(OI.getJoystickAxis(RobotMap.XBOX_CONTROLLER, Axis.RightTab) > 0){
     grabSolL.set(Value.kForward);
     grabSolR.set(Value.kReverse);
-}
 
-else{
+  }
+
+  public void release() {
   grabSolL.set(Value.kReverse);
   grabSolR.set(Value.kForward);
 }
 
-if(grabOff = true){
-  grabSolL.set(Value.kOff);
-  grabSolR.set(Value.kOff);
-}
+  public void grabOff() {
+    grabSolL.set(Value.kOff);
+    grabSolR.set(Value.kOff);
   }
-  public void extend(boolean extendOff) {
-if(OI.getJoystickAxis(RobotMap.XBOX_CONTROLLER, Axis.RightY)<0){
+
+  
+  public void extend() {
+
 outSol.set(Value.kForward);
-
-}else if(OI.getJoystickAxis(RobotMap.XBOX_CONTROLLER, Axis.RightY)>0){
-outSol.set(Value.kReverse);
-
-}else{
-  outSol.set(Value.kOff);
-
-} 
-
-if(extendOff= true){
-  outSol.set(Value.kOff);
 }
-  }
+public void extendOff(){
+  outSol.set(Value.kReverse);
+}
 }
