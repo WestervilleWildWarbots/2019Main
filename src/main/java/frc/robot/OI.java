@@ -8,7 +8,7 @@ import frc.robot.commands.LiftCommand;
 public class OI {
   // Makes the axis of the joystick exist
 
-  public static enum Axis {X, Y, Z, LeftY, RightY, THROTTLE, RightTab};
+  public static enum Axis {X, Y, Z, LeftY, RightY, THROTTLE};
 
   // Makes the joystick and xbox controller exist
 
@@ -44,9 +44,7 @@ public class OI {
           axisValue = joystick.getRawAxis(5); // 5 is supposed to be XBox id for right joystick
       } else if (axis == Axis.THROTTLE) {
           axisValue = joystick.getThrottle();
-      }else if (axis == Axis.RightTab) {
-        axisValue = joystick.getRawAxis(3);
-    }
+      }
 
       // Creates dead zone
 
@@ -56,13 +54,23 @@ public class OI {
 
       return axisValue;
   }
-    private static JoystickButton armUp = new JoystickButton(xBoxController, RobotMap.ARM_UP_BUTTON);
-	private static JoystickButton armDown = new JoystickButton(xBoxController, RobotMap.ARM_DOWN_BUTTON);
-    private static JoystickButton maxOut = new JoystickButton(xBoxController, 3);
-  
+    
+
+    public static JoystickButton AButton = new JoystickButton(xBoxController, 0);
+    public static JoystickButton BButton = new JoystickButton(xBoxController, 1);
+    public static JoystickButton XButton = new JoystickButton(xBoxController, 2);
+    public static JoystickButton YButton = new JoystickButton(xBoxController, 3);
+
+    public static JoystickButton leftBumper = new JoystickButton(xBoxController, 4);
+    public static JoystickButton rightBumper = new JoystickButton(xBoxController, 5);
+
+    public static JoystickButton backButton = new JoystickButton(xBoxController, 6);
+    public static JoystickButton startButton = new JoystickButton(xBoxController, 7);
+
+    public static JoystickButton pressLStick = new JoystickButton(xBoxController, 8);
+    public static JoystickButton pressRStick = new JoystickButton(xBoxController, 9);
+
   public OI(){
-    armUp.whenPressed(new LiftAdjustmentCommand(-500));
-	armDown.whenPressed(new LiftAdjustmentCommand(500));
-    maxOut.whenPressed(new LiftCommand());
+   
   }
 }

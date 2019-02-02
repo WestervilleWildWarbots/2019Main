@@ -3,9 +3,12 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 import frc.robot.subsystems.DriveSubsystem;
+import frc.robot.*;
 
 public class DriveCommand extends Command {
   private DriveSubsystem drive = Robot.driveSubsystem;
+
+  public double speed = OI.getJoystickAxis(RobotMap.XBOX_CONTROLLER,OI.Axis.THROTTLE);
 
   public DriveCommand() {
   }
@@ -16,7 +19,7 @@ public class DriveCommand extends Command {
 
   @Override
   protected void execute() {
-    drive.drive(.3);
+    drive.drive(speed);
   }
 
   @Override

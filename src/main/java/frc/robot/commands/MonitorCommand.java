@@ -8,20 +8,23 @@
 package frc.robot.commands;
 
 import java.util.Map;
-import java.util.Random;
 
 import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.interfaces.Gyro;
 import edu.wpi.first.wpilibj.shuffleboard.BuiltInWidgets;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import frc.robot.RobotMap;
 import edu.wpi.first.cameraserver.*;
 
+import edu.wpi.first.networktables.NetworkTableInstance;
+
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 public class MonitorCommand extends Command {
+  private NetworkTableInstance table;
 
   AnalogInput  FrontDist = new AnalogInput(RobotMap.FRONT_DISTANCE_SENSOR);
   AnalogInput  RearDist = new AnalogInput(RobotMap.REAR_DISTANCE_SENSOR);
@@ -51,6 +54,56 @@ public class MonitorCommand extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+
+        //update Gyro number
+        table.getEntry("gyro_angle").setValue(Gyro.getAngle());
+        SmartDashboard.getEntry("gyro_angle").getDouble(RobotMap.DEFAULT_VALUE);
+    
+        
+        //encoder updates
+        table.getEntry("encoder_valueFL").setValue(EncFl.get());
+        SmartDashboard.getEntry("encoder_valueFL").getDouble(RobotMap.DEFAULT_VALUE);
+    
+        table.getEntry("encoder_valueFR").setValue(EncFr.get());
+        SmartDashboard.getEntry("encoder_valueFR").getDouble(RobotMap.DEFAULT_VALUE);
+    
+        table.getEntry("encoder_valueBL").setValue(EncBl.get());
+        SmartDashboard.getEntry("encoder_valueBL").getDouble(RobotMap.DEFAULT_VALUE);
+    
+        table.getEntry("encoder_valueBR").setValue(EncBr.get());
+        SmartDashboard.getEntry("encoder_valueBR").getDouble(RobotMap.DEFAULT_VALUE);
+    
+        table.getEntry("encoder_valueLift").setValue(EncLift.get());
+        SmartDashboard.getEntry("encoder_valueLift").getDouble(RobotMap.DEFAULT_VALUE);
+    
+    
+        //distance sensor updates
+        table.getEntry("frontDist_value").setValue(FrontDist.getValue());
+        SmartDashboard.getEntry("frontDist_value").getDouble(RobotMap.DEFAULT_VALUE);
+    
+        table.getEntry("rearDist_value").setValue(RearDist.getValue());
+        SmartDashboard.getEntry("rearDist_value").getDouble(RobotMap.DEFAULT_VALUE);
+    
+        table.getEntry("leftDist_value").setValue(LeftDist.getValue());
+        SmartDashboard.getEntry("leftDist_value").getDouble(RobotMap.DEFAULT_VALUE);
+    
+        table.getEntry("rightDist_value").setValue(RightDist.getValue());
+        SmartDashboard.getEntry("rightDist_value").getDouble(RobotMap.DEFAULT_VALUE);
+    
+    
+        //limit switch updates
+        table.getEntry("top_limit").setBoolean(LimitTop.get());
+        SmartDashboard.getEntry("top_limit").getDouble(RobotMap.DEFAULT_VALUE);
+    
+        table.getEntry("base_limit").setBoolean(LimitBase.get());
+        SmartDashboard.getEntry("base_limit").getDouble(RobotMap.DEFAULT_VALUE);
+    
+    
+        //line tracker updates
+        table.getEntry("tape_read").setValue(TapeRead.get());
+        SmartDashboard.getEntry("tape_read").getDouble(RobotMap.DEFAULT_VALUE);
+
+
     //Shuffleboard.getTab("Tab 1").add("Camera 1", 14).withWidget(BuiltInWidgets.kCameraStream).withProperties(Map.of("min", 0, "max", 62));
 
     //distance sensors to shuffleboard
@@ -65,7 +118,7 @@ public class MonitorCommand extends Command {
     Shuffleboard.getTab("Tab 1").add("Encoder BL", EncBl.get()).withWidget(BuiltInWidgets.kDial).withProperties(Map.of("min", 0, "max", 360));
     Shuffleboard.getTab("Tab 1").add("Encoder BR", EncBr.get()).withWidget(BuiltInWidgets.kDial).withProperties(Map.of("min", 0, "max", 360));
 
-    //gyro to shuffleboard
+    //Gyro to shuffleboard
     Shuffleboard.getTab("Tab 1").add("Gyro Angle", Gyro.getAngle()).withWidget(BuiltInWidgets.kDial).withProperties(Map.of("min", 0, "max", 360));
 
     //limit switches to shuffleboard
