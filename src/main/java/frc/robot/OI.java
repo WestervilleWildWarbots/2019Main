@@ -1,11 +1,14 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import frc.robot.commands.LiftAdjustmentCommand;
+import frc.robot.commands.LiftCommand;
 
 public class OI {
   // Makes the axis of the joystick exist
 
-  public static enum Axis {X, Y, Z, LeftY, RightY, THROTTLE};
+  public static enum Axis {X, Y, Z, LeftY, RightY, THROTTLE, RightTab};
 
   // Makes the joystick and xbox controller exist
 
@@ -41,7 +44,9 @@ public class OI {
           axisValue = joystick.getRawAxis(5); // 5 is supposed to be XBox id for right joystick
       } else if (axis == Axis.THROTTLE) {
           axisValue = joystick.getThrottle();
-      }
+      }else if (axis == Axis.RightTab) {
+        axisValue = joystick.getRawAxis(3);
+    }
 
       // Creates dead zone
 
@@ -50,5 +55,14 @@ public class OI {
       }
 
       return axisValue;
+  }
+    private static JoystickButton armUp = new JoystickButton(xBoxController, RobotMap.ARM_UP_BUTTON);
+	private static JoystickButton armDown = new JoystickButton(xBoxController, RobotMap.ARM_DOWN_BUTTON);
+    private static JoystickButton maxOut = new JoystickButton(xBoxController, 3);
+  
+  public OI(){
+    armUp.whenPressed(new LiftAdjustmentCommand(-500));
+	armDown.whenPressed(new LiftAdjustmentCommand(500));
+    maxOut.whenPressed(new LiftCommand());
   }
 }
