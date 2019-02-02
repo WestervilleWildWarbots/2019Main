@@ -15,8 +15,6 @@ public class DriveSubsystem extends Subsystem {
   private WPI_TalonSRX backLeft;
   private WPI_TalonSRX backRight;
 
-  private WPI_TalonSRX[] talons = {frontLeft, frontRight, backLeft, backRight};
-
   /*
    * NOTICE: Using the NetworkTable
    * ==============================
@@ -55,39 +53,37 @@ public class DriveSubsystem extends Subsystem {
   }
 
   @Override
-  public void initDefaultCommand() {
+  public void initDefaultCommand(){
+
   }
+  
 
   public void drive(double spd) {
     if(OI.getJoystickAxis(RobotMap.DRIVE_STICK, Axis.Z) == 0){
 
-      if(OI.getJoystickAxis(RobotMap.DRIVE_STICK, Axis.X) < 0){
+      if(OI.getJoystickAxis(RobotMap.DRIVE_STICK, Axis.X) != 0){
 
-        frontLeft.set(OI.getJoystickAxis(RobotMap.DRIVE_STICK, Axis.X)*spd);
-        frontRight.set(OI.getJoystickAxis(RobotMap.DRIVE_STICK, Axis.X)*spd);
         frontLeft.set(OI.getJoystickAxis(RobotMap.DRIVE_STICK, Axis.X)*spd);
         frontRight.set(OI.getJoystickAxis(RobotMap.DRIVE_STICK, Axis.X)*-spd);
       }
-
-
-      if(OI.getJoystickAxis(RobotMap.DRIVE_STICK, Axis.X) > 0){
-        frontLeft.set(OI.getJoystickAxis(RobotMap.DRIVE_STICK, Axis.X)*-spd);
-        frontRight.set(OI.getJoystickAxis(RobotMap.DRIVE_STICK, Axis.X)*spd);
-      }
+    
     }else if(OI.getJoystickAxis(RobotMap.DRIVE_STICK, Axis.Z)>0){
-      frontLeft.set(OI.getJoystickAxis(RobotMap.DRIVE_STICK, Axis.X)*-0.5*spd);
-      frontRight.set(OI.getJoystickAxis(RobotMap.DRIVE_STICK, Axis.X)*-0.5*spd);
-
+      frontLeft.set(OI.getJoystickAxis(RobotMap.DRIVE_STICK,Axis.Z)* -spd);
+      frontRight.set(OI.getJoystickAxis(RobotMap.DRIVE_STICK, Axis.Z)*-spd);
+    
     }else if(OI.getJoystickAxis(RobotMap.DRIVE_STICK, Axis.Z)<0){
-      frontLeft.set(OI.getJoystickAxis(RobotMap.DRIVE_STICK, Axis.X)*0.5*spd);
-      frontRight.set(OI.getJoystickAxis(RobotMap.DRIVE_STICK, Axis.X)*0.5*spd);
+      frontLeft.set(OI.getJoystickAxis(RobotMap.DRIVE_STICK, Axis.Z)*spd);
+      frontRight.set(OI.getJoystickAxis(RobotMap.DRIVE_STICK, Axis.Z)*spd);
 
     }else{
     frontLeft.set(0);
     frontRight.set(0);
     }
-
     backLeft.follow(frontLeft);
-    backRight.follow(frontRight);
+    backRight.follow(frontRight);  
   }
+
+
+
+
 }
