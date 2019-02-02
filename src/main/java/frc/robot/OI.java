@@ -39,7 +39,7 @@ public class OI {
       } else if (axis == Axis.Z) {
           axisValue = joystick.getZ();
       } else if (axis == Axis.LeftY) {
-          axisValue = joystick.getRawAxis(1); // 2 is supposed to be XBox id for left joystick
+          axisValue = joystick.getRawAxis(1); // 1 is supposed to be XBox id for left joystick
       } else if (axis == Axis.RightY) {
           axisValue = joystick.getRawAxis(5); // 5 is supposed to be XBox id for right joystick
       } else if (axis == Axis.THROTTLE) {
