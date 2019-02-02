@@ -8,6 +8,7 @@
 package frc.robot.commands;
 
 import java.util.Map;
+import java.util.Random;
 
 import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.AnalogGyro;
@@ -37,8 +38,7 @@ public class MonitorCommand extends Command {
   DigitalInput  LimitBase = new DigitalInput(RobotMap.BOTTOM_LIMIT_SWITCH_ID);
 
    AnalogGyro Gyro = new AnalogGyro(RobotMap.ANALOG_GYRO);
-   
-
+   DigitalInput TapeRead = new DigitalInput(RobotMap.LINE_TRACKER);
   public MonitorCommand() {
     ShuffleboardTab tab1 = Shuffleboard.getTab("Tab 1");
   }
@@ -74,6 +74,9 @@ public class MonitorCommand extends Command {
 
     //Cameras to shuffleboard
     Shuffleboard.getTab("Tab 1").add("Front Camera", CameraServer.getInstance().getVideo()).withWidget(BuiltInWidgets.kDial).withProperties(Map.of("min", 0, "max", 256));
+
+    //Line Tracker to Shuffleboard
+    Shuffleboard.getTab("Tab 1").add("Tape Read", TapeRead.get()).withWidget(BuiltInWidgets.kDial).withProperties(Map.of("min", 0, "max", 1));
 
   }
 
