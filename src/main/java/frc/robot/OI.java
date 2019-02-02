@@ -2,8 +2,11 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import frc.robot.commands.ExtendCommand;
+import frc.robot.commands.GrabCommand;
 import frc.robot.commands.LiftAdjustmentCommand;
 import frc.robot.commands.LiftCommand;
+import frc.robot.commands.ReleaseCommand;
 
 public class OI {
   // Makes the axis of the joystick exist
@@ -71,6 +74,8 @@ public class OI {
     public static JoystickButton pressRStick = new JoystickButton(xBoxController, 9);
 
   public OI(){
-   
+   XButton.whileHeld(new ExtendCommand());
+   rightBumper.whileHeld(new GrabCommand());
+   leftBumper.whileHeld(new ReleaseCommand());
   }
 }
