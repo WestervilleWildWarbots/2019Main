@@ -2,9 +2,9 @@
 
 A = Rocket First Tier Hatch
 
-B = Rocket Second Tier Hatch
+B = Manual Extend Arm
 
-X = Manual Extend Arm
+X = Rocket Second Tier Hatch
 
 Y = Rocket Third Tier Hatch
 
@@ -32,6 +32,6 @@ D-Pad Up = Rocket Third Tier Cargo
 
 D-Pad Down = Rocket First Tier Cargo
 
-D-Pad Left = N/A
+D-Pad Left = Rocket Second Tier Cargo
 
-D-Pad Right = Rocket Second Tier Cargo
+D-Pad Right = N/A
