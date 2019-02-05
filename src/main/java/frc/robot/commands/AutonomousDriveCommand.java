@@ -23,7 +23,7 @@ public class AutonomousDriveCommand extends Command {
   @Override
   protected void execute() {
     if(x + amount > System.currentTimeMillis()) {
-      driveSubsystem.drive(.3);
+      driveSubsystem.drive(.2,.2);
     } else {
       isDone = true;
     }
@@ -37,11 +37,11 @@ public class AutonomousDriveCommand extends Command {
   @Override
   protected void end() {
     x = 0;
-    driveSubsystem.drive(0);
+    driveSubsystem.drive(0,0);
   }
 
   @Override
   protected void interrupted() {
-    driveSubsystem.drive(0);
+    driveSubsystem.drive(0,0);
   }
 }

@@ -9,6 +9,7 @@ import frc.robot.subsystems.GrabSubsystem;
 
 public class ReleaseCommand extends Command {
     public GrabSubsystem grab = Robot.grabSubsystem;
+    public boolean releaseDone = false;
   public ReleaseCommand() {
   }
 
@@ -25,7 +26,7 @@ public class ReleaseCommand extends Command {
 
   @Override
   protected boolean isFinished() {
-    return false;
+    return releaseDone;
   }
 
   @Override

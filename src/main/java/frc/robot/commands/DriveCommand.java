@@ -8,8 +8,6 @@ import frc.robot.*;
 public class DriveCommand extends Command {
   private DriveSubsystem drive = Robot.driveSubsystem;
 
-  public double speed = OI.getJoystickAxis(RobotMap.XBOX_CONTROLLER,OI.Axis.THROTTLE);
-
   public DriveCommand() {
   }
 
@@ -19,7 +17,8 @@ public class DriveCommand extends Command {
 
   @Override
   protected void execute() {
-    drive.drive(speed);
+    //if(OI.getJoystickAxis(RobotMap.DRIVE_STICK, Axis.Y){
+      drive.drive(.2,.2);
   }
 
   @Override
@@ -29,11 +28,11 @@ public class DriveCommand extends Command {
 
   @Override
   protected void end() {
-    drive.drive(0);
+    drive.drive(0,0);
   }
 
   @Override
   protected void interrupted() {
-    drive.drive(0);
+    drive.drive(0,0);
   }
 }

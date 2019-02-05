@@ -1,5 +1,6 @@
 package frc.robot;
 
+import frc.robot.RobotMap;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import frc.robot.commands.ExtendCommand;
@@ -7,6 +8,8 @@ import frc.robot.commands.GrabCommand;
 import frc.robot.commands.LiftAdjustmentCommand;
 import frc.robot.commands.LiftCommand;
 import frc.robot.commands.ReleaseCommand;
+import frc.robot.commands.ClimbCommand;
+import frc.robot.commands.PositionAdjustCommandGroup;
 
 public class OI {
   // Makes the axis of the joystick exist
@@ -51,10 +54,10 @@ public class OI {
 
       // Creates dead zone
 
-      if (Math.abs(axisValue) < .1) {
+      if (Math.abs(axisValue) < .2) {
           axisValue = 0;
       }
-
+ 
       return axisValue;
   }
     
@@ -73,9 +76,21 @@ public class OI {
     public static JoystickButton pressLStick = new JoystickButton(xBoxController, 8);
     public static JoystickButton pressRStick = new JoystickButton(xBoxController, 9);
 
+    public static JoystickButton trigger = new JoystickButton(driveStick, 1);
+    public static JoystickButton button2 = new JoystickButton(driveStick, 2);
+
   public OI(){
-   XButton.whileHeld(new ExtendCommand());
-   rightBumper.whileHeld(new GrabCommand());
-   leftBumper.whileHeld(new ReleaseCommand());
+    //XButton.whileHeld();
+    //XButton.whenReleased();
+
+    //leftBumper.whileHeld();
+    //leftBumper.whenReleased();
+   
+    //rightBumper.whileHeld();
+    //rightBumper.whenReleased();
+
+    trigger.whenPressed(new PositionAdjustCommandGroup());
+
+    button2.whenPressed(new ClimbCommand());
   }
 }
