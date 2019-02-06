@@ -3,7 +3,7 @@ package frc.robot.commands;
 import frc.robot.Robot;
 import frc.robot.OI;
 import java.awt.Button;
-
+import frc.robot.RobotMap;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.subsystems.GrabSubsystem;
 
@@ -14,6 +14,7 @@ public class GrabCommand extends Command {
 
   @Override
   protected void initialize() {
+    RobotMap.grabDone = false;
   }
 
   @Override
@@ -25,7 +26,7 @@ public class GrabCommand extends Command {
 
   @Override
   protected boolean isFinished() {
-    return false;
+    return RobotMap.grabDone;
   }
 
   @Override

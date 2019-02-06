@@ -53,7 +53,6 @@ public class GrabSubsystem extends Subsystem {
   }
   
   public void grab() {
-
     grabSolL.set(Value.kForward);
     grabSolR.set(Value.kReverse);
 

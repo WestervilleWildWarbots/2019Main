@@ -9,6 +9,7 @@ import frc.robot.subsystems.GrabSubsystem;
 
 public class ExtendCommand extends Command {
     public GrabSubsystem grab = Robot.grabSubsystem;
+   public boolean extendDone = false;
   public ExtendCommand() {
   }
 
@@ -25,7 +26,7 @@ public class ExtendCommand extends Command {
 
   @Override
   protected boolean isFinished() {
-    return false;
+    return extendDone;
   }
 
   @Override
