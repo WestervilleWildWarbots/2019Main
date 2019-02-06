@@ -3,6 +3,8 @@ Make sure that Shufleboard is easy to read and understand.
 Look at UI diagrame for sensors. Make sure they match. 
 
 Person A(Robert)(Sandstorm)Automation Driving
+Sandstorm arm: 
+Sandstorm Alingment:
 Person B(David)Pnumatics for Arm
 Person C(Ethan)Moving Arm up and down & Arm PID
 Person D(Ryan)Automation alinement
