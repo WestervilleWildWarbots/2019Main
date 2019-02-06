@@ -23,6 +23,7 @@ public class Robot extends TimedRobot {
   public static ReleaseCommand releaseCommand;
   public static ExtendCommand extendCommand;
   public static DriveCommand driveCommand;
+  public static MonitorCommand monitorCommand;
 
   Command autonomousCommand;
   SendableChooser<Command> autonomousCommandDropdown = new SendableChooser<>();
@@ -44,6 +45,7 @@ public class Robot extends TimedRobot {
     releaseCommand = new ReleaseCommand();
     extendCommand = new ExtendCommand();
     driveCommand = new DriveCommand();
+    monitorCommand = new MonitorCommand();
   }
 
   @Override
@@ -62,7 +64,7 @@ public class Robot extends TimedRobot {
   @Override
   public void autonomousInit() {
     autonomousCommand = autonomousCommandDropdown.getSelected();
-
+    monitorCommand.start();
     liftCommand.start();
 
     // schedule the autonomous command (example)

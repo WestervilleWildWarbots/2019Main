@@ -4,7 +4,8 @@ public class RobotMap {
   //Autonomous
   public static final double AUTONOMOUS_SPEED = .25;
 
-  
+  public static boolean releaseDone = false;
+  public static boolean extendDone = false;
   public static boolean grabDone = false;
 
   public static final boolean ALLOW_LIFT_PID = true; // Enables / disables Lift PID
