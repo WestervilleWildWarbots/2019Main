@@ -80,17 +80,6 @@ public class OI {
     public static JoystickButton button2 = new JoystickButton(driveStick, 2);
 
   public OI(){
-    //BButton.whileHeld();
-    //BButton.whenReleased();
 
-    //leftBumper.whileHeld();
-    //leftBumper.whenReleased();
-   
-    //rightBumper.whileHeld();
-    //rightBumper.whenReleased();
-
-    trigger.whenPressed(new PositionAdjustCommandGroup());
-
-    button2.whenPressed(new ClimbCommand());
-  }
+}
 }
