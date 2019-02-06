@@ -10,7 +10,13 @@ Person C(Ethan)Moving Arm up and down & Arm PID
 Person D(Ryan)Automation alinement
 Person E(MyQ+Max)Automation for Arm & Shufleboard Notifications
 
-Saturday:
+Saturday: 
+Refactor the code needs to be done 
+testing drive (with joystick) and sensors
+push all code to remote
+update talon IDs
+after sensor test edit shuffleboard
+
 1. Make sure all code to that point is in master and working
 2. Group code review
 3. Refactoring
