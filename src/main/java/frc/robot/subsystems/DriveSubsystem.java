@@ -63,6 +63,18 @@ public class DriveSubsystem extends Subsystem {
   }
   
 
+  /**
+   * This method should drive the given distance at the given speed directly forward.
+   * This is most useful for autonomous.
+   */
+  //TODO Actually implement.
+  public void drive(double distance, double spd){
+
+  }
+
+  public void drive(double spd) {
+    if(OI.getJoystickAxis(RobotMap.DRIVE_STICK, Axis.Z) == 0){
+
   public void drive(double left, double right) {
     /*if(OI.getJoystickAxis(RobotMap.DRIVE_STICK, Axis.Z) == 0){
 
