@@ -47,19 +47,16 @@ public class Robot extends TimedRobot {
     liftSubsystem = new LiftSubsystem();
 
     liftCommand = new LiftCommand();
-<<<<<<< HEAD
     grabCommand = new GrabCommand();
     releaseCommand = new ReleaseCommand();
     extendCommand = new ExtendCommand();
     driveCommand = new DriveCommand();
-=======
 
     //set up dropdown menu
     autonomousModeChooser = new AutonomousModeChooser(autonomousCommandDropdown);
     autonomousModeChooser.setup();
 
     SmartDashboard.putData("Auto mode", autonomousCommandDropdown);
->>>>>>> f8c1b67916471369e9b232d4542fe4cd0e1fbf6c
   }
 
   @Override
