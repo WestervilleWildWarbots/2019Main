@@ -38,19 +38,19 @@ public class AutonomousSandstormCommand extends Command {
         switch(startLocation){
           case leftTier1:
           //TODO fix speed
-          driveSubsystem.drive(1, 0.5);
+          driveSubsystem.drive(.5, 0.5);
           break;
           case rightTier1:
-          driveSubsystem.drive(1, 0.5);
+          driveSubsystem.drive(.5, 0.5);
           break;
           case middleTier1:
-          driveSubsystem.drive(1, 0.5);
+          driveSubsystem.drive(.5, 0.5);
           break;
           case leftTier2:
-          driveSubsystem.drive(1, 0.5);
+          driveSubsystem.drive(.5, 0.5);
           break;
           case rightTier2:
-          driveSubsystem.drive(1, 0.5);
+          driveSubsystem.drive(.5, 0.5);
           break;
           default:
           System.out.println("That's not a starting location!");
