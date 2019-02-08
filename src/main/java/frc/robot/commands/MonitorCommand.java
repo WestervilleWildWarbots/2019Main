@@ -113,23 +113,22 @@ public class MonitorCommand extends Command {
     Shuffleboard.getTab("Tab 1").add("Right Rear", RightDist.getValue()).withWidget(BuiltInWidgets.kDial).withProperties(Map.of("min", 0, "max", 62));
 
     //encoders to shuffleboard
-    Shuffleboard.getTab("Tab 1").add("Encoder FL", EncFl.get()).withWidget(BuiltInWidgets.kDial).withProperties(Map.of("min", 0, "max", 360));
-    Shuffleboard.getTab("Tab 1").add("Encoder FR", EncFr.get()).withWidget(BuiltInWidgets.kDial).withProperties(Map.of("min", 0, "max", 360));
-    Shuffleboard.getTab("Tab 1").add("Encoder BL", EncBl.get()).withWidget(BuiltInWidgets.kDial).withProperties(Map.of("min", 0, "max", 360));
-    Shuffleboard.getTab("Tab 1").add("Encoder BR", EncBr.get()).withWidget(BuiltInWidgets.kDial).withProperties(Map.of("min", 0, "max", 360));
+    Shuffleboard.getTab("Tab 1").add("Encoder FL", EncFl.get()).withWidget(BuiltInWidgets.kEncoder).withProperties(Map.of("min", 0, "max", 360));
+    Shuffleboard.getTab("Tab 1").add("Encoder FR", EncFr.get()).withWidget(BuiltInWidgets.kEncoder).withProperties(Map.of("min", 0, "max", 360));
+    Shuffleboard.getTab("Tab 1").add("Encoder BL", EncBl.get()).withWidget(BuiltInWidgets.kEncoder).withProperties(Map.of("min", 0, "max", 360));
+    Shuffleboard.getTab("Tab 1").add("Encoder BR", EncBr.get()).withWidget(BuiltInWidgets.kEncoder).withProperties(Map.of("min", 0, "max", 360));
 
     //Gyro to shuffleboard
-    Shuffleboard.getTab("Tab 1").add("Gyro Angle", Gyro.getAngle()).withWidget(BuiltInWidgets.kDial).withProperties(Map.of("min", 0, "max", 360));
+    Shuffleboard.getTab("Tab 1").add("Gyro Angle", Gyro.getAngle()).withWidget(BuiltInWidgets.kGyro);
 
     //limit switches to shuffleboard
-    Shuffleboard.getTab("Tab 1").add("Top Limit", LimitTop.get()).withWidget(BuiltInWidgets.kDial).withProperties(Map.of("min", 0, "max", 1));
-    Shuffleboard.getTab("Tab 1").add("Base Limit", LimitBase.get()).withWidget(BuiltInWidgets.kDial).withProperties(Map.of("min", 0, "max", 1));
+    Shuffleboard.getTab("Tab 1").add("Top Limit", LimitTop.get()).withWidget(BuiltInWidgets.kTextView);
+    Shuffleboard.getTab("Tab 1").add("Base Limit", LimitBase.get()).withWidget(BuiltInWidgets.kTextView);
 
     //Cameras to shuffleboard
-    Shuffleboard.getTab("Tab 1").add("Front Camera", CameraServer.getInstance().getVideo()).withWidget(BuiltInWidgets.kDial).withProperties(Map.of("min", 0, "max", 256));
-
+    Shuffleboard.getTab("Tab 1").add("Front Camera", CameraServer.getInstance().getVideo()).withWidget(BuiltInWidgets.kCameraStream);
     //Line Tracker to Shuffleboard
-    Shuffleboard.getTab("Tab 1").add("Tape Read", TapeRead.get()).withWidget(BuiltInWidgets.kDial).withProperties(Map.of("min", 0, "max", 1));
+    Shuffleboard.getTab("Tab 1").add("Tape Read", TapeRead.get()).withWidget(BuiltInWidgets.kTextView);
 
   }
 

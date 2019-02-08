@@ -1,6 +1,7 @@
 package frc.robot.commands;
 
 import frc.robot.Robot;
+import frc.robot.RobotMap;
 import frc.robot.OI;
 import java.awt.Button;
 
@@ -9,7 +10,6 @@ import frc.robot.subsystems.GrabSubsystem;
 
 public class ReleaseCommand extends Command {
     public GrabSubsystem grab = Robot.grabSubsystem;
-    public boolean releaseDone = false;
   public ReleaseCommand() {
   }
 
@@ -26,7 +26,7 @@ public class ReleaseCommand extends Command {
 
   @Override
   protected boolean isFinished() {
-    return releaseDone;
+    return RobotMap.releaseDone;
   }
 
   @Override

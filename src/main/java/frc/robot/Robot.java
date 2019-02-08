@@ -23,13 +23,14 @@ public class Robot extends TimedRobot {
   public static ClimbSubsystem climbSubsystem;
   public static GrabSubsystem grabSubsystem;
   public static LiftSubsystem liftSubsystem;
-  private static OI oi;
+  public static OI oi;
 
   public static LiftCommand liftCommand;
   public static GrabCommand grabCommand;
   public static ReleaseCommand releaseCommand;
   public static ExtendCommand extendCommand;
   public static DriveCommand driveCommand;
+  public static MonitorCommand monitorCommand;
 
   private static Command autonomousCommand;
   private static SendableChooser<Command> autonomousCommandDropdown;
@@ -58,6 +59,7 @@ public class Robot extends TimedRobot {
     autonomousModeChooser.setup();
 
     SmartDashboard.putData("Auto mode", autonomousCommandDropdown);
+    monitorCommand = new MonitorCommand();
   }
 
   @Override
@@ -77,7 +79,8 @@ public class Robot extends TimedRobot {
   public void autonomousInit() {
     autonomousCommand = autonomousCommandDropdown.getSelected();
 
-    //liftCommand.start();
+    liftCommand.start();
+    monitorCommand.start();
 
     // schedule the autonomous command (example)
     if (autonomousCommand != null) {

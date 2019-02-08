@@ -3,12 +3,20 @@ Make sure that Shufleboard is easy to read and understand.
 Look at UI diagrame for sensors. Make sure they match. 
 
 Person A(Robert)(Sandstorm)Automation Driving
+Sandstorm arm: 
+Sandstorm Alingment:
 Person B(David)Pnumatics for Arm
 Person C(Ethan)Moving Arm up and down & Arm PID
 Person D(Ryan)Automation alinement
 Person E(MyQ+Max)Automation for Arm & Shufleboard Notifications
 
-Saturday:
+Saturday: 
+Refactor the code needs to be done 
+testing drive (with joystick) and sensors
+push all code to remote
+update talon IDs
+after sensor test edit shuffleboard
+
 1. Make sure all code to that point is in master and working
 2. Group code review
 3. Refactoring
