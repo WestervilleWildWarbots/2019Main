@@ -1,5 +1,5 @@
 package frc.robot;
-	
+
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -8,6 +8,13 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commands.*;
 import frc.robot.subsystems.*;
 import edu.wpi.first.cameraserver.*;
+import frc.robot.commands.DriveCommand;
+import frc.robot.commands.LiftCommand;
+import frc.robot.commands.SandStormCommandGroup;
+import frc.robot.subsystems.ClimbSubsystem;
+import frc.robot.subsystems.DriveSubsystem;
+import frc.robot.subsystems.GrabSubsystem;
+import frc.robot.subsystems.LiftSubsystem;
 
 public class Robot extends TimedRobot {
 
@@ -25,14 +32,14 @@ public class Robot extends TimedRobot {
   public static DriveCommand driveCommand;
   public static MonitorCommand monitorCommand;
 
-  Command autonomousCommand;
-  SendableChooser<Command> autonomousCommandDropdown = new SendableChooser<>();
+  private static Command autonomousCommand;
+  private static SendableChooser<Command> autonomousCommandDropdown;
+
+  private static AutonomousModeChooser autonomousModeChooser;
 
   @Override
   public void robotInit() {
     oi = new OI();
-    autonomousCommandDropdown.setDefaultOption("Default Auto", new DriveCommand());
-    SmartDashboard.putData("Auto mode", autonomousCommandDropdown);
 
     //set up subsystems
     driveSubsystem = new DriveSubsystem();
@@ -45,6 +52,13 @@ public class Robot extends TimedRobot {
     releaseCommand = new ReleaseCommand();
     extendCommand = new ExtendCommand();
     driveCommand = new DriveCommand();
+
+    //set up dropdown menu
+    autonomousCommandDropdown = new SendableChooser<>();
+    autonomousModeChooser = new AutonomousModeChooser(autonomousCommandDropdown);
+    autonomousModeChooser.setup();
+
+    SmartDashboard.putData("Auto mode", autonomousCommandDropdown);
     monitorCommand = new MonitorCommand();
   }
 
@@ -64,8 +78,9 @@ public class Robot extends TimedRobot {
   @Override
   public void autonomousInit() {
     autonomousCommand = autonomousCommandDropdown.getSelected();
-    monitorCommand.start();
+
     liftCommand.start();
+    monitorCommand.start();
 
     // schedule the autonomous command (example)
     if (autonomousCommand != null) {
