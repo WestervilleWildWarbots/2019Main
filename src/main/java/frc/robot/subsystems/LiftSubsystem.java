@@ -57,7 +57,7 @@ public class LiftSubsystem extends Subsystem {
 		liftTalon.set(speed);
 	}
 	
-	public void set(double speed){
+	public void setArm(double speed){
 		if(RobotMap.ALLOW_LIFT_MOVEMENT){
 			//liftTalon.set(speed);
 		}
