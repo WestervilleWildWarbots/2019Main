@@ -50,6 +50,11 @@ public class DriveSubsystem extends Subsystem {
     backLeft = new WPI_TalonSRX(RobotMap.MOTOR_BL);
     backRight = new WPI_TalonSRX(RobotMap.MOTOR_BR);
 
+    frontRight.setInverted(true);
+    backRight.setInverted(true);
+    
+    backLeft.follow(frontLeft);
+    backRight.follow(frontRight); 
   }
 
   @Override
@@ -58,29 +63,29 @@ public class DriveSubsystem extends Subsystem {
   }
   
 
-  public void drive(double spd) {
-    if(OI.getJoystickAxis(RobotMap.DRIVE_STICK, Axis.Z) == 0){
+  public void drive(double left, double right) {
+    /*if(OI.getJoystickAxis(RobotMap.DRIVE_STICK, Axis.Z) == 0){
 
-      if(OI.getJoystickAxis(RobotMap.DRIVE_STICK, Axis.X) != 0){
+      if(OI.getJoystickAxis(RobotMap.DRIVE_STICK, Axis.Y) != 0){
 
-        frontLeft.set(OI.getJoystickAxis(RobotMap.DRIVE_STICK, Axis.X)*spd);
-        frontRight.set(OI.getJoystickAxis(RobotMap.DRIVE_STICK, Axis.X)*-spd);
+        frontLeft.set(OI.getJoystickAxis(RobotMap.DRIVE_STICK, Axis.Y)*spd);
+        frontRight.set(OI.getJoystickAxis(RobotMap.DRIVE_STICK, Axis.Y)*spd);
       }
     
     }else if(OI.getJoystickAxis(RobotMap.DRIVE_STICK, Axis.Z)>0){
       frontLeft.set(OI.getJoystickAxis(RobotMap.DRIVE_STICK,Axis.Z)* -spd);
-      frontRight.set(OI.getJoystickAxis(RobotMap.DRIVE_STICK, Axis.Z)*-spd);
+      frontRight.set(OI.getJoystickAxis(RobotMap.DRIVE_STICK, Axis.Z)*spd);
     
     }else if(OI.getJoystickAxis(RobotMap.DRIVE_STICK, Axis.Z)<0){
       frontLeft.set(OI.getJoystickAxis(RobotMap.DRIVE_STICK, Axis.Z)*spd);
-      frontRight.set(OI.getJoystickAxis(RobotMap.DRIVE_STICK, Axis.Z)*spd);
+      frontRight.set(OI.getJoystickAxis(RobotMap.DRIVE_STICK, Axis.Z)*-spd);
 
     }else{
     frontLeft.set(0);
     frontRight.set(0);
-    }
-    backLeft.follow(frontLeft);
-    backRight.follow(frontRight);  
+    }*/
+     frontLeft.set(left);
+     frontRight.set(right);
   }
 
 
