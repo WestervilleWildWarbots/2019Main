@@ -46,10 +46,6 @@ public class RobotMap {
   public static int ENCODER_BR = 23;
   public static int ENCODER_LIFT = 24;
 
-
-  //the default value to pass to getDouble() calls for NetworkTable
-  public static final double DEFAULT_VALUE=0;
-
   //Sensors
   public static final int TOP_LIMIT_SWITCH_ID = 0;
 	public static final int BOTTOM_LIMIT_SWITCH_ID = 1;

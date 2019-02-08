@@ -48,51 +48,51 @@ public class MonitorCommand extends Command {
 
         //update Gyro number
         table.getEntry("gyro_angle").setValue(Gyro.getAngle());
-        SmartDashboard.getEntry("gyro_angle").getDouble(RobotMap.DEFAULT_VALUE);
+        SmartDashboard.getEntry("gyro_angle").getDouble(0);
     
         
         //encoder updates
         table.getEntry("encoder_valueFL").setValue(EncFl.get());
-        SmartDashboard.getEntry("encoder_valueFL").getDouble(RobotMap.DEFAULT_VALUE);
+        SmartDashboard.getEntry("encoder_valueFL").getDouble(0);
     
         table.getEntry("encoder_valueFR").setValue(EncFr.get());
-        SmartDashboard.getEntry("encoder_valueFR").getDouble(RobotMap.DEFAULT_VALUE);
+        SmartDashboard.getEntry("encoder_valueFR").getDouble(0);
     
         table.getEntry("encoder_valueBL").setValue(EncBl.get());
-        SmartDashboard.getEntry("encoder_valueBL").getDouble(RobotMap.DEFAULT_VALUE);
+        SmartDashboard.getEntry("encoder_valueBL").getDouble(0);
     
         table.getEntry("encoder_valueBR").setValue(EncBr.get());
-        SmartDashboard.getEntry("encoder_valueBR").getDouble(RobotMap.DEFAULT_VALUE);
+        SmartDashboard.getEntry("encoder_valueBR").getDouble(0);
     
         table.getEntry("encoder_valueLift").setValue(EncLift.get());
-        SmartDashboard.getEntry("encoder_valueLift").getDouble(RobotMap.DEFAULT_VALUE);
+        SmartDashboard.getEntry("encoder_valueLift").getDouble(0);
     
     
         //distance sensor updates
         table.getEntry("frontDist_value").setValue(FrontDist.getValue());
-        SmartDashboard.getEntry("frontDist_value").getDouble(RobotMap.DEFAULT_VALUE);
+        SmartDashboard.getEntry("frontDist_value").getDouble(0);
     
         table.getEntry("rearDist_value").setValue(RearDist.getValue());
-        SmartDashboard.getEntry("rearDist_value").getDouble(RobotMap.DEFAULT_VALUE);
+        SmartDashboard.getEntry("rearDist_value").getDouble(0);
     
         table.getEntry("leftDist_value").setValue(LeftDist.getValue());
-        SmartDashboard.getEntry("leftDist_value").getDouble(RobotMap.DEFAULT_VALUE);
+        SmartDashboard.getEntry("leftDist_value").getDouble(0);
     
         table.getEntry("rightDist_value").setValue(RightDist.getValue());
-        SmartDashboard.getEntry("rightDist_value").getDouble(RobotMap.DEFAULT_VALUE);
+        SmartDashboard.getEntry("rightDist_value").getDouble(0);
     
     
         //limit switch updates
         table.getEntry("top_limit").setBoolean(LimitTop.get());
-        SmartDashboard.getEntry("top_limit").getDouble(RobotMap.DEFAULT_VALUE);
+        SmartDashboard.getEntry("top_limit").getDouble(0);
     
         table.getEntry("base_limit").setBoolean(LimitBase.get());
-        SmartDashboard.getEntry("base_limit").getDouble(RobotMap.DEFAULT_VALUE);
+        SmartDashboard.getEntry("base_limit").getDouble(0);
     
     
         //line tracker updates
         table.getEntry("tape_read").setValue(TapeRead.get());
-        SmartDashboard.getEntry("tape_read").getDouble(RobotMap.DEFAULT_VALUE);
+        SmartDashboard.getEntry("tape_read").getDouble(0);
 
 
     //Shuffleboard.getTab("Tab 1").add("Camera 1", 14).withWidget(BuiltInWidgets.kCameraStream).withProperties(Map.of("min", 0, "max", 62));
