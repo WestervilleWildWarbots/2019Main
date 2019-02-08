@@ -29,13 +29,13 @@ public class DriveCommand extends Command {
     if(zVal !=0){
     left*=zVal;
     
-    if(yVal != 0){left +=yVal/2;}else{left -=zVal/2;}
+    if(yVal != 0){left +=yVal/2;}else{left +=zVal/2;}
   }
     
     right = yVal/4;
     if(zVal !=0){
     right*=-zVal;
-    if(yVal != 0){right +=yVal/2;}else{right +=yVal/2;}
+    if(yVal != 0){right +=yVal/2;}else{right +=zVal/2;}
   }
 
     drive.drive(left, right);
