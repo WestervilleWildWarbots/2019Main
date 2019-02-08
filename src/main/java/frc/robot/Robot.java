@@ -53,6 +53,7 @@ public class Robot extends TimedRobot {
     driveCommand = new DriveCommand();
 
     //set up dropdown menu
+    autonomousCommandDropdown = new SendableChooser<>();
     autonomousModeChooser = new AutonomousModeChooser(autonomousCommandDropdown);
     autonomousModeChooser.setup();
 
@@ -76,7 +77,7 @@ public class Robot extends TimedRobot {
   public void autonomousInit() {
     autonomousCommand = autonomousCommandDropdown.getSelected();
 
-    liftCommand.start();
+    //liftCommand.start();
 
     // schedule the autonomous command (example)
     if (autonomousCommand != null) {
