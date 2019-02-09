@@ -80,8 +80,8 @@ public class OI {
     public static JoystickButton button2 = new JoystickButton(driveStick, 2);
 
   public OI(){
-    BButton.toggleWhenPressed(new ExtendCommand());
-
+    BButton.whileHeld(new ExtendCommand("out"));
+    BButton.whenReleased(new ExtendCommand("in"));
     leftBumper.whileHeld(new ReleaseCommand());
    
     rightBumper.whileHeld(new GrabCommand());

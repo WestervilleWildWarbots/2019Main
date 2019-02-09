@@ -10,7 +10,6 @@ import frc.robot.subsystems.*;
 import edu.wpi.first.cameraserver.*;
 import frc.robot.commands.DriveCommand;
 import frc.robot.commands.LiftCommand;
-import frc.robot.commands.SandStormCommandGroup;
 import frc.robot.subsystems.ClimbSubsystem;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.GrabSubsystem;
@@ -23,6 +22,7 @@ public class Robot extends TimedRobot {
   public static ClimbSubsystem climbSubsystem;
   public static GrabSubsystem grabSubsystem;
   public static LiftSubsystem liftSubsystem;
+
   public static OI oi;
 
   public static LiftCommand liftCommand;
@@ -31,6 +31,7 @@ public class Robot extends TimedRobot {
   public static ExtendCommand extendCommand;
   public static DriveCommand driveCommand;
   public static MonitorCommand monitorCommand;
+  public static AutonomousSandstormCommand sandstormCommand;
 
   private static Command autonomousCommand;
   private static SendableChooser<Command> autonomousCommandDropdown;
@@ -50,7 +51,7 @@ public class Robot extends TimedRobot {
     liftCommand = new LiftCommand();
     grabCommand = new GrabCommand();
     releaseCommand = new ReleaseCommand();
-    extendCommand = new ExtendCommand();
+    extendCommand = new ExtendCommand("in");
     driveCommand = new DriveCommand();
 
     //set up dropdown menu

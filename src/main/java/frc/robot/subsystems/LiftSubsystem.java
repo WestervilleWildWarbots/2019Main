@@ -22,7 +22,6 @@ public class LiftSubsystem extends Subsystem {
     private double p = .5;
     private double i = 0;
     private double d = 0;
-    private double f = 0;
     private int iZone = 1000;
     private double rampRate = 0;
     private int timeoutMs = 100;
@@ -52,13 +51,7 @@ public class LiftSubsystem extends Subsystem {
 	}
 	
 	public void setPos(double goTo) {
-		if(RobotMap.armPos > RobotMap.setPoint){
-            liftTalon.set(.1);
-        }
-
-        if(RobotMap.armPos < RobotMap.setPoint){
-            liftTalon.set(-.1);
-        }
+		liftTalon.set(ControlMode.Position, goTo);
 	}
 	
 	public void moveArm(double speed) {
