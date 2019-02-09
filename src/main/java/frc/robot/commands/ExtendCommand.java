@@ -7,7 +7,10 @@ import frc.robot.subsystems.GrabSubsystem;
 
 public class ExtendCommand extends Command {
     public GrabSubsystem grab = Robot.grabSubsystem;
-  public ExtendCommand() {
+    private String extendir = "out";
+    private String Direction;
+  public ExtendCommand(String Direction) {
+    extendir=this.Direction;
   }
 
   @Override
@@ -16,7 +19,10 @@ public class ExtendCommand extends Command {
 
   @Override
   protected void execute() {
+    if(extendir=="out"){
+    RobotMap.extendDone = false;
     grab.extend();
+  }else{RobotMap.extendDone = true;}
   }
 
  
