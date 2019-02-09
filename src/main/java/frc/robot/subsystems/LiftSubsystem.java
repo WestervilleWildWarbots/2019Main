@@ -1,6 +1,8 @@
 package frc.robot.subsystems;
 import frc.robot.Robot;
 import frc.robot.RobotMap;
+import frc.robot.commands.LiftCommand;
+
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
@@ -50,7 +52,13 @@ public class LiftSubsystem extends Subsystem {
 	}
 	
 	public void setPos(double goTo) {
-		liftTalon.set(ControlMode.Position, goTo);
+		if(RobotMap.armPos > RobotMap.setPoint){
+            liftTalon.set(.1);
+        }
+
+        if(RobotMap.armPos < RobotMap.setPoint){
+            liftTalon.set(-.1);
+        }
 	}
 	
 	public void moveArm(double speed) {

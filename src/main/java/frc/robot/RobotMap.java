@@ -13,7 +13,8 @@ public class RobotMap {
 
   // Cargo/hatch lifter
 	public static final int LIFT_TALON = 41;
-	public static double setPoint = 0;
+  public static double setPoint = 0;
+  public static double armPos = 0;
 
   //Posible drive methods
   public static final int DRIVE_STICK = 0; 
