@@ -1,23 +1,16 @@
 package frc.robot.subsystems;
-import frc.robot.Robot;
 import frc.robot.RobotMap;
 import frc.robot.commands.LiftCommand;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
-import edu.wpi.first.wpilibj.Encoder;
-import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
-/**
- *
- */
 public class LiftSubsystem extends Subsystem {
 
     WPI_TalonSRX liftTalon;
     
-    //Sets PID variables for arm
     private int slot = 0;
     private double p = .5;
     private double i = 0;
@@ -81,7 +74,5 @@ public class LiftSubsystem extends Subsystem {
 	}
 
     public void initDefaultCommand() {
-        // Set the default command for a subsystem here.
-        //setDefaultCommand(new MySpecialCommand());
     }
 }

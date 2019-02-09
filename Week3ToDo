@@ -1,13 +1,13 @@
-Make sure that Shufleboard is easy to read and understand.
+Make sure that Shuffleboard is easy to read and understand.
 
-Look at UI diagrame for sensors. Make sure they match. 
+Look at UI diagram for sensors. Make sure they match. 
 
 Person A(Robert)(Sandstorm)Automation Driving
 Sandstorm arm: 
-Sandstorm Alingment:
-Person B(David)Pnumatics for Arm
+Sandstorm Alignment:
+Person B(David)Pnuematics for Arm
 Person C(Ethan)Moving Arm up and down & Arm PID
-Person D(Ryan)Automation alinement
+Person D(Ryan)Automation alignment
 Person E(MyQ+Max)Automation for Arm & Shufleboard Notifications
 
 Saturday: 
@@ -20,8 +20,8 @@ after sensor test edit shuffleboard
 1. Make sure all code to that point is in master and working
 2. Group code review
 3. Refactoring
-4. New assinements and anything not done from previous week
-5. Meeting to go over robot decitions
+4. New assignments and anything not done from previous week
+5. Meeting to go over robot decisions
 
 Link to Shufleboard info
 https://wpilib.screenstepslive.com/s/currentCS/m/shuffleboard/l/814689-tour-of-shuffleboard

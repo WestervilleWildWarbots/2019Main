@@ -5,25 +5,18 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import frc.robot.commands.ExtendCommand;
 import frc.robot.commands.GrabCommand;
-import frc.robot.commands.LiftAdjustmentCommand;
-import frc.robot.commands.LiftCommand;
 import frc.robot.commands.ReleaseCommand;
 import frc.robot.commands.ClimbCommand;
 import frc.robot.commands.PositionAdjustCommandGroup;
 
 public class OI {
-  // Makes the axis of the joystick exist
 
   public static enum Axis {X, Y, Z, LeftY, RightY, THROTTLE};
-
-  // Makes the joystick and xbox controller exist
 
   private static Joystick driveStick = new Joystick(RobotMap.DRIVE_STICK);
   private static Joystick xBoxController = new Joystick(RobotMap.XBOX_CONTROLLER);
 
   public static double getJoystickAxis(int joystickID, Axis axis) {
-
-      // Establishes the joystick and its axes
 
       Joystick joystick;
 
@@ -45,14 +38,12 @@ public class OI {
       } else if (axis == Axis.Z) {
           axisValue = joystick.getZ();
       } else if (axis == Axis.LeftY) {
-          axisValue = joystick.getRawAxis(1); // 1 is supposed to be XBox id for left joystick
+          axisValue = joystick.getRawAxis(1);
       } else if (axis == Axis.RightY) {
-          axisValue = joystick.getRawAxis(5); // 5 is supposed to be XBox id for right joystick
+          axisValue = joystick.getRawAxis(5);
       } else if (axis == Axis.THROTTLE) {
           axisValue = joystick.getThrottle();
       }
-
-      // Creates dead zone
 
       if (Math.abs(axisValue) < .2) {
           axisValue = 0;
