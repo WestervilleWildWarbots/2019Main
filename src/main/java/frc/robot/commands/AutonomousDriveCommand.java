@@ -5,9 +5,9 @@ import frc.robot.Robot;
 import frc.robot.subsystems.DriveSubsystem;
 
 public class AutonomousDriveCommand extends Command {
-  private long x = 2500; // How long to move for
-  private boolean isDone = false; // After the time has passed
-  private int amount; // The starting amount of time
+  private long x = 2500;
+  private boolean isDone = false;
+  private int amount;
   private DriveSubsystem driveSubsystem = Robot.driveSubsystem;
   
   public AutonomousDriveCommand(int ticks) {

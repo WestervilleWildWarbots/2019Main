@@ -29,8 +29,6 @@ public class ClimbSubsystem extends Subsystem {
    * If you want to use a custom data object (don't do this unless you know what
    * you're doing), call getValue().getValue() and cast to the appropriate type.
    */
-
-  //initialize the NetworkTable and store a reference to it in table
   private NetworkTableInstance table;
 
   public ClimbSubsystem() {

@@ -37,7 +37,7 @@ public class AutonomousSandstormCommand extends Command {
       case crossline:
         switch(startLocation){
           case leftTier1:
-          //TODO fix speed
+
           driveSubsystem.drive(0.5, 0.5);
           break;
           case rightTier1:
@@ -57,10 +57,8 @@ public class AutonomousSandstormCommand extends Command {
         }
       break;
       case rocket:
-      //TODO implement
       break;
       case cargo:
-      //TODO implement
       break;
       default:
       System.out.println("That's not a task!");

@@ -8,10 +8,10 @@ import frc.robot.RobotMap;
 
 
 public class SandStormCommandGroup extends Command{ 
-  public static double startHeight = 1; //1 or 2
-  public static double startPos = 1; //1, 2, or 3
-  public static double targetSide = 0; //"R", "L", "FR", or "FL"
-  public static double targetDepth = 0; //0 always and only for FR / FL || 1,2,3 for L and R
+  public static double startHeight = 1;
+  public static double startPos = 1;
+  public static double targetSide = 0;
+  public static double targetDepth = 0;
   public static final double autoSpeed = 20;
 
   public double time = 0;
