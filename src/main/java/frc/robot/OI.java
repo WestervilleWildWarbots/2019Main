@@ -3,8 +3,10 @@ package frc.robot;
 import frc.robot.RobotMap;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import edu.wpi.first.wpilibj.buttons.POVButton;
 import frc.robot.commands.ExtendCommand;
 import frc.robot.commands.GrabCommand;
+import frc.robot.commands.LiftCommand;
 import frc.robot.commands.ReleaseCommand;
 import frc.robot.commands.ClimbCommand;
 import frc.robot.commands.PositionAdjustCommandGroup;
@@ -69,16 +71,35 @@ public class OI {
 
     public static JoystickButton trigger = new JoystickButton(driveStick, 1);
     public static JoystickButton button2 = new JoystickButton(driveStick, 2);
+    
+    public static POVButton dPadUp = new POVButton(xBoxController,0);
+    public static POVButton dPadRight = new POVButton(xBoxController,90);
+    public static POVButton dPadDown = new POVButton(xBoxController,180);
+    public static POVButton dPadLeft = new POVButton(xBoxController,270);
 
-  public OI(){
+
+    public OI(){
     BButton.whileHeld(new ExtendCommand("out"));
     BButton.whenReleased(new ExtendCommand("in"));
+
     leftBumper.whileHeld(new ReleaseCommand());
    
     rightBumper.whileHeld(new GrabCommand());
-
+////
     trigger.whenPressed(new PositionAdjustCommandGroup());
 
     button2.whenPressed(new ClimbCommand());
+////
+    AButton.whenPressed(new LiftCommand(0));
+
+    XButton.whenPressed(new LiftCommand(0));
+
+    YButton.whenPressed(new LiftCommand(0));
+//  
+    dPadDown.whenPressed(new LiftCommand(0));
+
+    dPadLeft.whenPressed(new LiftCommand(0));
+
+    dPadUp.whenPressed(new LiftCommand(0));
   }
 }
