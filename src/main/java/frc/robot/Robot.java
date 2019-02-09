@@ -43,7 +43,7 @@ public class Robot extends TimedRobot {
     grabSubsystem = new GrabSubsystem();
     liftSubsystem = new LiftSubsystem();
 
-    liftCommand = new LiftCommand();
+    liftCommand = new LiftCommand(0);
     grabCommand = new GrabCommand();
     releaseCommand = new ReleaseCommand();
     extendCommand = new ExtendCommand("in");
