@@ -34,11 +34,11 @@ public class RobotMap {
   public static final int PNUM_OUT = 8;
   public static final int PNUM_IN = 8;
   
-  public static final int MOTOR_FL = 2;
-  public static final int MOTOR_FR = 3;
-  public static final int MOTOR_BL = 4;
-  public static final int MOTOR_BR = 5;
-  public static final int MOTOR_LIFT = 6;
+  public static final int MOTOR_FL = 11;
+  public static final int MOTOR_FR = 12;
+  public static final int MOTOR_BL = 21;
+  public static final int MOTOR_BR = 22;
+  public static final int MOTOR_LIFT = 32;
 
   public static int ENCODER_FL = 20;
   public static int ENCODER_FR = 21;

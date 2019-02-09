@@ -6,19 +6,14 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commands.*;
-import frc.robot.subsystems.*;
-import edu.wpi.first.cameraserver.*;
 import frc.robot.commands.DriveCommand;
 import frc.robot.commands.LiftCommand;
-import frc.robot.commands.SandStormCommandGroup;
 import frc.robot.subsystems.ClimbSubsystem;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.GrabSubsystem;
 import frc.robot.subsystems.LiftSubsystem;
 
 public class Robot extends TimedRobot {
-
-  //subsystems
   public static DriveSubsystem driveSubsystem;
   public static ClimbSubsystem climbSubsystem;
   public static GrabSubsystem grabSubsystem;
@@ -41,7 +36,6 @@ public class Robot extends TimedRobot {
   public void robotInit() {
     oi = new OI();
 
-    //set up subsystems
     driveSubsystem = new DriveSubsystem();
     climbSubsystem = new ClimbSubsystem();
     grabSubsystem = new GrabSubsystem();
@@ -53,7 +47,6 @@ public class Robot extends TimedRobot {
     extendCommand = new ExtendCommand();
     driveCommand = new DriveCommand();
 
-    //set up dropdown menu
     autonomousCommandDropdown = new SendableChooser<>();
     autonomousModeChooser = new AutonomousModeChooser(autonomousCommandDropdown);
     autonomousModeChooser.setup();
@@ -82,7 +75,6 @@ public class Robot extends TimedRobot {
     liftCommand.start();
     monitorCommand.start();
 
-    // schedule the autonomous command (example)
     if (autonomousCommand != null) {
     autonomousCommand.start();
     }
