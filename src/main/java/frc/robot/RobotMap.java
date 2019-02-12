@@ -42,10 +42,8 @@ public class RobotMap {
   public static final int MOTOR_BR = 22;
   public static final int MOTOR_LIFT = 32;
 
-  public static int ENCODER_FL = 20;
-  public static int ENCODER_FR = 21;
-  public static int ENCODER_BL = 22;
-  public static int ENCODER_BR = 23;
+  public static int ENCODER_L = 20;
+  public static int ENCODER_R = 21;
   public static int ENCODER_LIFT = 24;
 
 
