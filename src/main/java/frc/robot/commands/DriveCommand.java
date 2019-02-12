@@ -22,7 +22,7 @@ public class DriveCommand extends Command {
     double yVal = OI.getJoystickAxis(RobotMap.DRIVE_STICK, OI.Axis.Y); 
     double zVal = OI.getJoystickAxis(RobotMap.DRIVE_STICK, OI.Axis.Z); 
 
-    RobotMap.isAligned = false;
+   
     if(zVal < 0){zVal = -1;}
     if(zVal > 0){zVal = 1;}
 
@@ -49,13 +49,13 @@ public class DriveCommand extends Command {
 
   @Override
   protected void end() {
-    RobotMap.isAligned = true;
+
     drive.drive(0,0);
   }
 
   @Override
   protected void interrupted() {
-    RobotMap.isAligned = true;
+
     drive.drive(0,0);
   }
 }
