@@ -24,10 +24,9 @@ public class MonitorCommand extends Command {
   AnalogInput  LeftDist = new AnalogInput(RobotMap.LEFT_DISTANCE_SENSOR);
   AnalogInput  RightDist = new AnalogInput(RobotMap.RIGHT_DISTANCE_SENSOR);
 
-  DigitalInput  EncFl = new DigitalInput(RobotMap.ENCODER_FL);
-  DigitalInput  EncFr = new DigitalInput(RobotMap.ENCODER_FR);
-  DigitalInput  EncBl = new DigitalInput(RobotMap.ENCODER_BL);
-  DigitalInput  EncBr = new DigitalInput(RobotMap.ENCODER_BR);
+  DigitalInput  EncL = new DigitalInput(RobotMap.ENCODER_L);
+  DigitalInput  EncR = new DigitalInput(RobotMap.ENCODER_R);
+
   DigitalInput  EncLift = new DigitalInput(RobotMap.ENCODER_LIFT);
 
   DigitalInput  LimitTop = new DigitalInput(RobotMap.TOP_LIMIT_SWITCH_ID);
@@ -55,17 +54,11 @@ public class MonitorCommand extends Command {
     
         
         //encoder updates
-        table.getEntry("encoder_valueFL").setValue(EncFl.get());
-        SmartDashboard.getEntry("encoder_valueFL").getDouble(DEFAULT_VALUE);
+        table.getEntry("encoder_valueL").setValue(EncL.get());
+        SmartDashboard.getEntry("encoder_valueL").getDouble(DEFAULT_VALUE);
     
-        table.getEntry("encoder_valueFR").setValue(EncFr.get());
+        table.getEntry("encoder_valueFR").setValue(EncR.get());
         SmartDashboard.getEntry("encoder_valueFR").getDouble(DEFAULT_VALUE);
-    
-        table.getEntry("encoder_valueBL").setValue(EncBl.get());
-        SmartDashboard.getEntry("encoder_valueBL").getDouble(DEFAULT_VALUE);
-    
-        table.getEntry("encoder_valueBR").setValue(EncBr.get());
-        SmartDashboard.getEntry("encoder_valueBR").getDouble(DEFAULT_VALUE);
     
         table.getEntry("encoder_valueLift").setValue(EncLift.get());
         SmartDashboard.getEntry("encoder_valueLift").getDouble(DEFAULT_VALUE);
@@ -107,10 +100,10 @@ public class MonitorCommand extends Command {
     Shuffleboard.getTab("Tab 1").add("Right Rear", RightDist.getValue()).withWidget(BuiltInWidgets.kDial).withProperties(Map.of("min", 0, "max", 62));
 
     //encoders to shuffleboard
-    Shuffleboard.getTab("Tab 1").add("Encoder FL", EncFl.get()).withWidget(BuiltInWidgets.kEncoder).withProperties(Map.of("min", 0, "max", 360));
-    Shuffleboard.getTab("Tab 1").add("Encoder FR", EncFr.get()).withWidget(BuiltInWidgets.kEncoder).withProperties(Map.of("min", 0, "max", 360));
-    Shuffleboard.getTab("Tab 1").add("Encoder BL", EncBl.get()).withWidget(BuiltInWidgets.kEncoder).withProperties(Map.of("min", 0, "max", 360));
-    Shuffleboard.getTab("Tab 1").add("Encoder BR", EncBr.get()).withWidget(BuiltInWidgets.kEncoder).withProperties(Map.of("min", 0, "max", 360));
+    Shuffleboard.getTab("Tab 1").add("Encoder L", EncL.get()).withWidget(BuiltInWidgets.kEncoder).withProperties(Map.of("min", 0, "max", 360));
+    Shuffleboard.getTab("Tab 1").add("Encoder R", EncR.get()).withWidget(BuiltInWidgets.kEncoder).withProperties(Map.of("min", 0, "max", 360));
+    Shuffleboard.getTab("Tab 1").add("Encoder Lift", EncLift.get()).withWidget(BuiltInWidgets.kEncoder).withProperties(Map.of("min", 0, "max", 360));
+
 
     //Gyro to shuffleboard
     Shuffleboard.getTab("Tab 1").add("Gyro Angle", Gyro.getAngle()).withWidget(BuiltInWidgets.kGyro);
