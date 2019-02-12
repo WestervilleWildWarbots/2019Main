@@ -18,6 +18,7 @@ public class Robot extends TimedRobot {
   public static ClimbSubsystem climbSubsystem;
   public static GrabSubsystem grabSubsystem;
   public static LiftSubsystem liftSubsystem;
+
   public static OI oi;
 
   public static LiftCommand liftCommand;
@@ -26,6 +27,7 @@ public class Robot extends TimedRobot {
   public static ExtendCommand extendCommand;
   public static DriveCommand driveCommand;
   public static MonitorCommand monitorCommand;
+  public static AutonomousSandstormCommand sandstormCommand;
 
   private static Command autonomousCommand;
   private static SendableChooser<Command> autonomousCommandDropdown;
@@ -41,10 +43,10 @@ public class Robot extends TimedRobot {
     grabSubsystem = new GrabSubsystem();
     liftSubsystem = new LiftSubsystem();
 
-    liftCommand = new LiftCommand();
+    liftCommand = new LiftCommand(0);
     grabCommand = new GrabCommand();
     releaseCommand = new ReleaseCommand();
-    extendCommand = new ExtendCommand();
+    extendCommand = new ExtendCommand("in");
     driveCommand = new DriveCommand();
 
     autonomousCommandDropdown = new SendableChooser<>();

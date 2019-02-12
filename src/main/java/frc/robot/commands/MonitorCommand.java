@@ -121,9 +121,12 @@ public class MonitorCommand extends Command {
 
     //Cameras to shuffleboard
     Shuffleboard.getTab("Tab 1").add("Front Camera", CameraServer.getInstance().getVideo()).withWidget(BuiltInWidgets.kCameraStream);
+    
     //Line Tracker to Shuffleboard
     Shuffleboard.getTab("Tab 1").add("Tape Read", TapeRead.get()).withWidget(BuiltInWidgets.kTextView);
 
+    //Alignment Notification
+      Shuffleboard.getTab("Tab 1").add("Alignment",RobotMap.isAligned).withWidget(BuiltInWidgets.kBooleanBox);
   }
 
   @Override

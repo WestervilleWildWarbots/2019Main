@@ -6,8 +6,10 @@ import frc.robot.RobotMap;
 import edu.wpi.first.wpilibj.command.Command;
 public class LiftCommand extends Command {
 	
-    public LiftCommand() {
-         
+    private double Position;
+
+    public LiftCommand(int Position) {
+         RobotMap.setPoint=this.Position;
     }
 
     protected void initialize() {
