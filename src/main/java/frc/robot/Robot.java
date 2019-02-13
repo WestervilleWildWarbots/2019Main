@@ -28,6 +28,7 @@ public class Robot extends TimedRobot {
   public static DriveCommand driveCommand;
   public static MonitorCommand monitorCommand;
   public static AutonomousSandstormCommand sandstormCommand;
+  public static ClimbCommand climbCommand;
 
   private static Command autonomousCommand;
   private static SendableChooser<Command> autonomousCommandDropdown;
@@ -48,6 +49,7 @@ public class Robot extends TimedRobot {
     releaseCommand = new ReleaseCommand();
     extendCommand = new ExtendCommand("in");
     driveCommand = new DriveCommand();
+    climbCommand = new ClimbCommand();
 
     autonomousCommandDropdown = new SendableChooser<>();
     autonomousModeChooser = new AutonomousModeChooser(autonomousCommandDropdown);
@@ -92,6 +94,7 @@ public class Robot extends TimedRobot {
     RobotMap.setPoint=0;
     liftSubsystem.resetEncoder();
     driveCommand.start();
+    climbCommand.start();
     if (autonomousCommand != null) {
     autonomousCommand.cancel();
     }
@@ -105,4 +108,8 @@ public class Robot extends TimedRobot {
   @Override
   public void testPeriodic() {
   }
+
+public static ClimbSubsystem climbSubsystem() {
+	return null;
+}
 }
