@@ -22,6 +22,7 @@ public class DriveCommand extends Command {
     double yVal = OI.getJoystickAxis(RobotMap.DRIVE_STICK, OI.Axis.Y); 
     double zVal = OI.getJoystickAxis(RobotMap.DRIVE_STICK, OI.Axis.Z); 
 
+   
     if(zVal < 0){zVal = -1;}
     if(zVal > 0){zVal = 1;}
 
@@ -48,11 +49,13 @@ public class DriveCommand extends Command {
 
   @Override
   protected void end() {
+
     drive.drive(0,0);
   }
 
   @Override
   protected void interrupted() {
+
     drive.drive(0,0);
   }
 }

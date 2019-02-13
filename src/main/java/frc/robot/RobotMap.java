@@ -42,15 +42,9 @@ public class RobotMap {
   public static final int MOTOR_BR = 22;
   public static final int MOTOR_LIFT = 32;
 
-  public static int ENCODER_FL = 20;
-  public static int ENCODER_FR = 21;
-  public static int ENCODER_BL = 22;
-  public static int ENCODER_BR = 23;
+  public static int ENCODER_L = 20;
+  public static int ENCODER_R = 21;
   public static int ENCODER_LIFT = 24;
-
-
-  //the default value to pass to getDouble() calls for NetworkTable
-  public static final double DEFAULT_VALUE=0;
 
   //Sensors
   public static final int TOP_LIMIT_SWITCH_ID = 0;
