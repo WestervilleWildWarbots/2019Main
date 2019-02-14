@@ -6,6 +6,7 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
+import frc.robot.Logger;
 
 public class DriveSubsystem extends Subsystem {
   private WPI_TalonSRX frontLeft;
@@ -38,13 +39,14 @@ public class DriveSubsystem extends Subsystem {
    * This method should drive the given distance at the given speed directly forward.
    * This is most useful for autonomous.
    */
-  public void autoDrive(double distance, double spd){
+  public void autoDrive(double spd){
+    Logger.Log("Drive Subsystem setting motor sides");
     frontLeft.set(spd);
     frontRight.set(spd);
-
   }
 
   public void drive(double left, double right) {
+    Logger.Log("Driveing with joystick");
     /*if(OI.getJoystickAxis(RobotMap.DRIVE_STICK, Axis.Z) == 0){
 
       if(OI.getJoystickAxis(RobotMap.DRIVE_STICK, Axis.Y) != 0){

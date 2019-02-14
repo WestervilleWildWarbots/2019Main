@@ -2,6 +2,7 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import frc.robot.Logger;
 
 public class ClimbSubsystem extends Subsystem {
 
@@ -33,6 +34,7 @@ public class ClimbSubsystem extends Subsystem {
 
   public ClimbSubsystem() {
     table = NetworkTableInstance.getDefault();
+    Logger.Log("Climb Subsystem Constructed");
   }
 
   @Override
