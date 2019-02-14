@@ -85,17 +85,17 @@ public class OI {
     leftBumper.whileHeld(new ReleaseCommand());
    
     rightBumper.whileHeld(new GrabCommand());
-////
+
     trigger.whenPressed(new PositionAdjustCommandGroup());
 
     button2.whenPressed(new ClimbCommand());
-////
+
     AButton.whenPressed(new LiftCommand(0));
 
     XButton.whenPressed(new LiftCommand(0));
 
     YButton.whenPressed(new LiftCommand(0));
-//  
+ 
     dPadDown.whenPressed(new LiftCommand(0));
 
     dPadLeft.whenPressed(new LiftCommand(0));
