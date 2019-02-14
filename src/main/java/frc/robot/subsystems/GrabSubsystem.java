@@ -6,6 +6,7 @@ import frc.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
+import frc.robot.Logger;
 
 
 public class GrabSubsystem extends Subsystem {
@@ -15,7 +16,8 @@ public class GrabSubsystem extends Subsystem {
   private NetworkTableInstance table;
 
   public GrabSubsystem() {
-	  table = NetworkTableInstance.getDefault();
+    table = NetworkTableInstance.getDefault();
+    Logger.Log("Grab Sybsystem constructed");
   }
 
   @Override
@@ -25,25 +27,29 @@ public class GrabSubsystem extends Subsystem {
   public void grab() {
     grabSolL.set(Value.kForward);
     grabSolR.set(Value.kReverse);
-
+    Logger.Log("Grab Sybsystem grabed");
   }
 
   public void release() {
   grabSolL.set(Value.kReverse);
   grabSolR.set(Value.kForward);
+  Logger.Log("Grab Sybsystem released");
 }
 
   public void grabOff() {
     grabSolL.set(Value.kOff);
     grabSolR.set(Value.kOff);
+    Logger.Log("Grab Sybsystem grab turned off");
   }
 
   
   public void extend() {
 
 outSol.set(Value.kForward);
+Logger.Log("Grab Sybsystem extended");
 }
 public void extendOff(){
   outSol.set(Value.kReverse);
+  Logger.Log("Grab Sybsystem extend turned off");
 }
 }
