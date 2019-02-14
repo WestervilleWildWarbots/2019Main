@@ -5,6 +5,7 @@ import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.RobotMap;
+import frc.robot.Logger;
 
 public class ClimbSubsystem extends Subsystem {
   DoubleSolenoid climbSol = new DoubleSolenoid(RobotMap.PNUM_CLIMB,RobotMap.PNUM_UNCLIMB);
@@ -15,6 +16,7 @@ public class ClimbSubsystem extends Subsystem {
 
   public ClimbSubsystem() {
     table = NetworkTableInstance.getDefault();
+    Logger.Log("Climb Subsystem Constructed");
   }
 
   @Override
