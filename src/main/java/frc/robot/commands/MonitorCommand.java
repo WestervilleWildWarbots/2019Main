@@ -43,15 +43,17 @@ public class MonitorCommand extends Command {
 
   @Override
   protected void initialize() {
+    Logger.Log("Monitor INIT");
   }
 
   @Override
   protected void execute() {
+    Logger.Log("Monitor EXECUTING");
 
         //update Gyro number
         table.getEntry("gyro_angle").setValue(Gyro.getAngle());
         SmartDashboard.getEntry("gyro_angle").getDouble(DEFAULT_VALUE);
-    
+        Logger.Log("gyro networked");
         
         //encoder updates
         table.getEntry("encoder_valueL").setValue(EncL.get());
@@ -62,7 +64,7 @@ public class MonitorCommand extends Command {
     
         table.getEntry("encoder_valueLift").setValue(EncLift.get());
         SmartDashboard.getEntry("encoder_valueLift").getDouble(DEFAULT_VALUE);
-    
+        Logger.Log("encoders networked");
     
         //distance sensor updates
         table.getEntry("frontDist_value").setValue(FrontDist.getValue());
@@ -76,7 +78,7 @@ public class MonitorCommand extends Command {
     
         table.getEntry("rightDist_value").setValue(RightDist.getValue());
         SmartDashboard.getEntry("rightDist_value").getDouble(DEFAULT_VALUE);
-    
+        Logger.Log("distance sensors networked");
     
         //limit switch updates
         table.getEntry("top_limit").setBoolean(LimitTop.get());
@@ -84,12 +86,12 @@ public class MonitorCommand extends Command {
     
         table.getEntry("base_limit").setBoolean(LimitBase.get());
         SmartDashboard.getEntry("base_limit").getDouble(DEFAULT_VALUE);
-    
+        Logger.Log("limit switches networked");
     
         //line tracker updates
         table.getEntry("tape_read").setValue(TapeRead.get());
         SmartDashboard.getEntry("tape_read").getDouble(DEFAULT_VALUE);
-
+        Logger.Log("line tracker networked");
 
     //Shuffleboard.getTab("Tab 1").add("Camera 1", 14).withWidget(BuiltInWidgets.kCameraStream).withProperties(Map.of("min", 0, "max", 62));
 
@@ -98,40 +100,49 @@ public class MonitorCommand extends Command {
     Shuffleboard.getTab("Tab 1").add("Dist Rear", RearDist.getValue()).withWidget(BuiltInWidgets.kDial).withProperties(Map.of("min", 0, "max", 62));
     Shuffleboard.getTab("Tab 1").add("Left Front", LeftDist.getValue()).withWidget(BuiltInWidgets.kDial).withProperties(Map.of("min", 0, "max", 62));
     Shuffleboard.getTab("Tab 1").add("Right Rear", RightDist.getValue()).withWidget(BuiltInWidgets.kDial).withProperties(Map.of("min", 0, "max", 62));
+    Logger.Log("distance sensors shuffleboarded");
 
     //encoders to shuffleboard
     Shuffleboard.getTab("Tab 1").add("Encoder L", EncL.get()).withWidget(BuiltInWidgets.kEncoder).withProperties(Map.of("min", 0, "max", 360));
     Shuffleboard.getTab("Tab 1").add("Encoder R", EncR.get()).withWidget(BuiltInWidgets.kEncoder).withProperties(Map.of("min", 0, "max", 360));
     Shuffleboard.getTab("Tab 1").add("Encoder Lift", EncLift.get()).withWidget(BuiltInWidgets.kEncoder).withProperties(Map.of("min", 0, "max", 360));
-
+    Logger.Log("encoders shuffleboarded");
 
     //Gyro to shuffleboard
     Shuffleboard.getTab("Tab 1").add("Gyro Angle", Gyro.getAngle()).withWidget(BuiltInWidgets.kGyro);
+    Logger.Log("gyro shuffleboarded");
 
     //limit switches to shuffleboard
     Shuffleboard.getTab("Tab 1").add("Top Limit", LimitTop.get()).withWidget(BuiltInWidgets.kTextView);
     Shuffleboard.getTab("Tab 1").add("Base Limit", LimitBase.get()).withWidget(BuiltInWidgets.kTextView);
+    Logger.Log("limit switches shuffleboarded");
 
     //Cameras to shuffleboard
     Shuffleboard.getTab("Tab 1").add("Front Camera", CameraServer.getInstance().getVideo()).withWidget(BuiltInWidgets.kCameraStream);
-    
+    Logger.Log("cameras shuffleboarded");
+
     //Line Tracker to Shuffleboard
     Shuffleboard.getTab("Tab 1").add("Tape Read", TapeRead.get()).withWidget(BuiltInWidgets.kTextView);
+    Logger.Log("line tracker shuffleboarded");
 
     //Alignment Notification
       Shuffleboard.getTab("Tab 1").add("Alignment",RobotMap.isAligned).withWidget(BuiltInWidgets.kBooleanBox);
+      Logger.Log("align var shuffleboarded");
   }
 
   @Override
   protected boolean isFinished() {
+    Logger.Log("Monitor FINISHED");
     return false;
   }
 
   @Override
   protected void end() {
+    Logger.Log("Monitor END!");
   }
 
   @Override
   protected void interrupted() {
+    Logger.Log("Monitor INTERRUPTED");
   }
 }
