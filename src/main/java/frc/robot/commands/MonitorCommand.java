@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import frc.robot.RobotMap;
 import edu.wpi.first.cameraserver.*;
+import frc.robot.Logger;
 
 import edu.wpi.first.networktables.NetworkTableInstance;
 

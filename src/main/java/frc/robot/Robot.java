@@ -82,9 +82,6 @@ public class Robot extends TimedRobot {
     liftSubsystem.resetEncoder();
     Logger.Log("encoders reset");
 
-    AutonomousSandstormCommand.start();
-    Logger.Log("sandComm activated");
-
     liftCommand.start();
     Logger.Log("liftComm activated");
 
