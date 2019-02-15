@@ -1,41 +1,58 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.networktables.NetworkTableInstance;
+import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import frc.robot.RobotMap;
+import frc.robot.Logger;
 
 public class ClimbSubsystem extends Subsystem {
-
-  /* 
-   * NOTICE: Using the NetworkTable
-   * ==============================
-   *
-   * If you want to store data in the NetworkTable, you need to use a
-   * NetworkTableEntry. These objects work like key-pair values. To get an
-   * entry, call table.getEntry(String key).setValue(Object obj). The key
-   * should be the name of the information being stored. The obj in setValue()
-   * can be any object or primitive variable.
-   *
-   * Ex: table.getEntry("speed").setValue(42);
-   *
-   * To later retrieve this value (in any subsystem!), use
-   * table.getEntry.getDouble() or the appropriate type method eg
-   * getBoolean(). Note: you must pass a default value that will be returned
-   * in case the key doesn't exist or other errors occur. I recommend passing
-   * 0 when in doubt.
-   *
-   * Ex: double myVelocity = table.getDefault("speed").getDouble(0);
-   *
-   * The above gets the stored value and stores it into myVelocity.
-   * If you want to use a custom data object (don't do this unless you know what
-   * you're doing), call getValue().getValue() and cast to the appropriate type.
-   */
+  DoubleSolenoid climbSol = new DoubleSolenoid(RobotMap.PNUM_CLIMB,RobotMap.PNUM_UNCLIMB);
+  DoubleSolenoid climbSolR = new DoubleSolenoid(RobotMap.PNUM_CLIMBEXL,RobotMap.PNUM_UNCLIMBEXL);
+  DoubleSolenoid climbSolL = new DoubleSolenoid(RobotMap.PNUM_CLIMBEXR,RobotMap.PNUM_UNCLIMBEXR);
+  
   private NetworkTableInstance table;
 
   public ClimbSubsystem() {
     table = NetworkTableInstance.getDefault();
+    Logger.Log("Climb Subsystem Constructed");
   }
 
   @Override
   public void initDefaultCommand() {
+  }
+
+  public void climbVert(String dir){
+    if(dir == "up"){
+    climbSol.set(Value.kForward);
+  }
+
+  if(dir == "down"){
+    climbSol.set(Value.kReverse);
+  }
+
+  if(dir == "off" || dir == "undefined"){
+      climbSol.set(Value.kOff);
+  }
+  }
+
+  public void climbOut(String dir){
+
+    if(dir == "out"){
+      climbSolL.set(Value.kForward);
+      climbSolR.set(Value.kForward);
+    }
+  
+    if(dir == "in"){
+      climbSolL.set(Value.kReverse);
+      climbSolR.set(Value.kReverse);
+    }
+  
+    if(dir == "off" || dir == "undefined"){
+      climbSolL.set(Value.kOff);
+      climbSolR.set(Value.kOff);
+    }
+
   }
 }

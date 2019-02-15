@@ -12,6 +12,7 @@ import frc.robot.subsystems.ClimbSubsystem;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.GrabSubsystem;
 import frc.robot.subsystems.LiftSubsystem;
+import frc.robot.Logger;
 
 public class Robot extends TimedRobot {
   public static DriveSubsystem driveSubsystem;
@@ -28,6 +29,7 @@ public class Robot extends TimedRobot {
   public static DriveCommand driveCommand;
   public static MonitorCommand monitorCommand;
   public static AutonomousSandstormCommand sandstormCommand;
+  public static ClimbCommand climbCommand;
 
   private static Command autonomousCommand;
   private static SendableChooser<Command> autonomousCommandDropdown;
@@ -48,6 +50,7 @@ public class Robot extends TimedRobot {
     releaseCommand = new ReleaseCommand();
     extendCommand = new ExtendCommand("in");
     driveCommand = new DriveCommand();
+    climbCommand = new ClimbCommand();
 
     autonomousCommandDropdown = new SendableChooser<>();
     autonomousModeChooser = new AutonomousModeChooser(autonomousCommandDropdown);
@@ -72,10 +75,25 @@ public class Robot extends TimedRobot {
 
   @Override
   public void autonomousInit() {
+    Logger.Log("autonomous initiated");
     autonomousCommand = autonomousCommandDropdown.getSelected();
+    Logger.Log("command selected");
+
+    liftSubsystem.resetEncoder();
+    Logger.Log("encoders reset");
 
     liftCommand.start();
+    Logger.Log("liftComm activated");
+
+    grabCommand.start();
+    releaseCommand.start();
+    Logger.Log("grabComms activated");
+
+    extendCommand.start();
+    Logger.Log("exComm activated");
+
     monitorCommand.start();
+    Logger.Log("monitorComm activated");
 
     if (autonomousCommand != null) {
     autonomousCommand.start();
@@ -89,11 +107,21 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopInit() {
+    Logger.Log("teleop initiated");
     RobotMap.setPoint=0;
+    
     liftSubsystem.resetEncoder();
+    Logger.Log("encoders reset");
+
     driveCommand.start();
+    Logger.Log("driveComm activated");
+    
+    climbCommand.start();
+    Logger.Log("climbComm activated");
+    
     if (autonomousCommand != null) {
     autonomousCommand.cancel();
+    Logger.Log("Auton nULL");
     }
   }
 
@@ -105,4 +133,8 @@ public class Robot extends TimedRobot {
   @Override
   public void testPeriodic() {
   }
+
+public static ClimbSubsystem climbSubsystem() {
+	return null;
+}
 }

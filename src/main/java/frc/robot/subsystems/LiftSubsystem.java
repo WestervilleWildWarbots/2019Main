@@ -6,6 +6,7 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import frc.robot.Logger;
 
 public class LiftSubsystem extends Subsystem {
 
@@ -21,6 +22,7 @@ public class LiftSubsystem extends Subsystem {
     
 	
 	public LiftSubsystem(){
+		Logger.Log("Lift Subsystem constructed");
 		liftTalon = new WPI_TalonSRX(RobotMap.LIFT_TALON);
 		resetEncoder();
 		
@@ -44,32 +46,39 @@ public class LiftSubsystem extends Subsystem {
 	}
 	
 	public void setPos(double goTo) {
+		Logger.Log("Lift Subsystem set lift position");
 		liftTalon.set(ControlMode.Position, goTo);
 	}
 	
 	public void moveArm(double speed) {
+		Logger.Log("Lift Subsystem move lift");
 		liftTalon.set(speed);
 	}
 	
 	public void setArm(double speed){
+		Logger.Log("Lift Subsystem set lift speed");
 		if(RobotMap.ALLOW_LIFT_MOVEMENT){
 			//liftTalon.set(speed);
 		}
 	}
 	
 	public double getEncoderVelocity(){
+		Logger.Log("Lift Subsystem got encoder velocity");
 		return liftTalon.getSensorCollection().getQuadratureVelocity();
 	}
 	
 	public double getEncoderPosition(){
+		Logger.Log("Lift Subsystem got encoder position");
 		return liftTalon.getSensorCollection().getQuadraturePosition();
 	}
 	
 	public void resetEncoder(){
+		Logger.Log("Lift Subsystem reset encoder");
 		liftTalon.getSensorCollection().setQuadraturePosition(0, 0);
 	}
 	
 	public double getCurrent(){
+		Logger.Log("Lift Subsystem got current");
 		return liftTalon.getOutputCurrent();
 	}
 
