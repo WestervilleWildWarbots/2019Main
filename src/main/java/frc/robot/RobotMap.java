@@ -35,6 +35,13 @@ public class RobotMap {
   public static final int PNUM_RELEASER = 8;
   public static final int PNUM_OUT = 8;
   public static final int PNUM_IN = 8;
+
+  public static final int PNUM_CLIMB = 31;
+  public static final int PNUM_UNCLIMB = 32;
+  public static final int PNUM_CLIMBEXL = 33;
+  public static final int PNUM_UNCLIMBEXL = 34;
+  public static final int PNUM_CLIMBEXR = 35;
+  public static final int PNUM_UNCLIMBEXR = 36;
   
   public static final int MOTOR_FL = 11;
   public static final int MOTOR_FR = 12;
