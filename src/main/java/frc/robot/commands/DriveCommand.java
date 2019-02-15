@@ -8,10 +8,12 @@ public class DriveCommand extends Command {
   private DriveSubsystem drive = Robot.driveSubsystem;
 
   public DriveCommand() {
+    Logger.Log("Drive constructed.");
   }
 
   @Override
   protected void initialize() {
+    Logger.Log("Drive initialized.");
   }
 
   @Override
@@ -28,34 +30,36 @@ public class DriveCommand extends Command {
 
     left = yVal/4;
     if(zVal !=0){
-    left*=zVal;
+      left*=zVal;
     
-    if(yVal != 0){left +=yVal/2;}else{left +=zVal/2;}
-  }
+      if(yVal != 0){left +=yVal/2;}else{left +=zVal/2;}
+    }
     
     right = yVal/4;
     if(zVal !=0){
-    right*=-zVal;
-    if(yVal != 0){right +=yVal/2;}else{right +=zVal/2;}
-  }
+      right*=-zVal;
+      if(yVal != 0){right +=yVal/2;}else{right +=zVal/2;}
+    }
 
     drive.drive(left, right);
+    Logger.Log("Drive executed.");
   }
 
   @Override
   protected boolean isFinished() {
+    Logger.Log("Drive finished.");
     return false;
   }
 
   @Override
   protected void end() {
-
     drive.drive(0,0);
+    Logger.Log("Drive ended.");
   }
 
   @Override
   protected void interrupted() {
-
     drive.drive(0,0);
+    Logger.Log("Drive interrupted.");
   }
 }

@@ -1,6 +1,7 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+import frc.robot.Logger;
 import frc.robot.Robot;
 import frc.robot.subsystems.DriveSubsystem;
 
@@ -13,11 +14,13 @@ public class AutonomousDriveCommand extends Command {
   public AutonomousDriveCommand(int ticks) {
     amount = ticks;
     x = System.currentTimeMillis();
+    Logger.Log("Autonomous drive constructed.");
   }
 
   @Override
   protected void initialize() {
     x = System.currentTimeMillis();
+    Logger.Log("Autonomous drive initialized.");
   }
 
   @Override
@@ -27,10 +30,12 @@ public class AutonomousDriveCommand extends Command {
     } else {
       isDone = true;
     }
+    Logger.Log("Autonomous drive executed.");
   }
 
   @Override
   protected boolean isFinished() {
+    Logger.Log("Autonomous drive finished.");
     return isDone;
   }
 
@@ -38,10 +43,12 @@ public class AutonomousDriveCommand extends Command {
   protected void end() {
     x = 0;
     driveSubsystem.drive(0,0);
+    Logger.Log("Autonomous drive ended.");
   }
 
   @Override
   protected void interrupted() {
     driveSubsystem.drive(0,0);
+    Logger.Log("Autonomous drive interupted.");
   }
 }
