@@ -97,37 +97,37 @@ public class MonitorCommand extends Command {
     //Shuffleboard.getTab("Tab 1").add("Camera 1", 14).withWidget(BuiltInWidgets.kCameraStream).withProperties(Map.of("min", 0, "max", 62));
 
     //distance sensors to shuffleboard
-    Shuffleboard.getTab("Tab 1").add("Dist Front", FrontDist.getValue()).withWidget(BuiltInWidgets.kDial).withProperties(Map.of("min", 0, "max", 62));
-    Shuffleboard.getTab("Tab 1").add("Dist Rear", RearDist.getValue()).withWidget(BuiltInWidgets.kDial).withProperties(Map.of("min", 0, "max", 62));
-    Shuffleboard.getTab("Tab 1").add("Left Front", LeftDist.getValue()).withWidget(BuiltInWidgets.kDial).withProperties(Map.of("min", 0, "max", 62));
-    Shuffleboard.getTab("Tab 1").add("Right Rear", RightDist.getValue()).withWidget(BuiltInWidgets.kDial).withProperties(Map.of("min", 0, "max", 62));
+    Shuffleboard.getTab("Tab 1").add("Dist Front", FrontDist.getValue()).withWidget(BuiltInWidgets.kDial).withProperties(Map.of("min", 0, "max", 62)).withPosition(0,20).withSize(4,4);
+    Shuffleboard.getTab("Tab 1").add("Dist Rear", RearDist.getValue()).withWidget(BuiltInWidgets.kDial).withProperties(Map.of("min", 0, "max", 62)).withPosition(8,20).withSize(4,4);
+    Shuffleboard.getTab("Tab 1").add("Left Front", LeftDist.getValue()).withWidget(BuiltInWidgets.kDial).withProperties(Map.of("min", 0, "max", 62)).withPosition(16,20).withSize(4,4);
+    Shuffleboard.getTab("Tab 1").add("Right Rear", RightDist.getValue()).withWidget(BuiltInWidgets.kDial).withProperties(Map.of("min", 0, "max", 62)).withPosition(24,20).withSize(4,4);
     Logger.Log("distance sensors shuffleboarded");
 
     //encoders to shuffleboard
-    Shuffleboard.getTab("Tab 1").add("Encoder L", EncL.get()).withWidget(BuiltInWidgets.kEncoder).withProperties(Map.of("min", 0, "max", 360));
-    Shuffleboard.getTab("Tab 1").add("Encoder R", EncR.get()).withWidget(BuiltInWidgets.kEncoder).withProperties(Map.of("min", 0, "max", 360));
-    Shuffleboard.getTab("Tab 1").add("Encoder Lift", EncLift.get()).withWidget(BuiltInWidgets.kEncoder).withProperties(Map.of("min", 0, "max", 360));
+    Shuffleboard.getTab("Tab 1").add("Encoder L", EncL.get()).withWidget(BuiltInWidgets.kEncoder).withProperties(Map.of("min", 0, "max", 360)).withPosition(0,10).withSize(8,8);
+    Shuffleboard.getTab("Tab 1").add("Encoder R", EncR.get()).withWidget(BuiltInWidgets.kEncoder).withProperties(Map.of("min", 0, "max", 360)).withPosition(12,10).withSize(8,8);;
+    Shuffleboard.getTab("Tab 1").add("Encoder Lift", EncLift.get()).withWidget(BuiltInWidgets.kEncoder).withProperties(Map.of("min", 0, "max", 360)).withPosition(24,10).withSize(8,8);;
     Logger.Log("encoders shuffleboarded");
 
     //Gyro to shuffleboard
-    Shuffleboard.getTab("Tab 1").add("Gyro Angle", Gyro.getAngle()).withWidget(BuiltInWidgets.kGyro);
+    Shuffleboard.getTab("Tab 1").add("Gyro Angle", Gyro.getAngle()).withWidget(BuiltInWidgets.kGyro).withPosition(44,4).withSize(4,4);
     Logger.Log("gyro shuffleboarded");
 
     //limit switches to shuffleboard
-    Shuffleboard.getTab("Tab 1").add("Top Limit", LimitTop.get()).withWidget(BuiltInWidgets.kTextView);
-    Shuffleboard.getTab("Tab 1").add("Base Limit", LimitBase.get()).withWidget(BuiltInWidgets.kTextView);
+    Shuffleboard.getTab("Tab 1").add("Top Limit", LimitTop.get()).withWidget(BuiltInWidgets.kTextView).withPosition(36,4).withSize(4,4);
+    Shuffleboard.getTab("Tab 1").add("Base Limit", LimitBase.get()).withWidget(BuiltInWidgets.kTextView).withPosition(36,0).withSize(4,4);
     Logger.Log("limit switches shuffleboarded");
 
     //Cameras to shuffleboard
-    Shuffleboard.getTab("Tab 1").add("Front Camera", CameraServer.getInstance().getVideo()).withWidget(BuiltInWidgets.kCameraStream);
+    Shuffleboard.getTab("Tab 1").add("Front Camera", CameraServer.getInstance().getVideo()).withWidget(BuiltInWidgets.kCameraStream).withPosition(0,0).withSize(8,8);
     Logger.Log("cameras shuffleboarded");
 
     //Line Tracker to Shuffleboard
-    Shuffleboard.getTab("Tab 1").add("Tape Read", TapeRead.get()).withWidget(BuiltInWidgets.kTextView);
+    Shuffleboard.getTab("Tab 1").add("Tape Read", TapeRead.get()).withWidget(BuiltInWidgets.kTextView).withPosition(44,0).withSize(4,4);
     Logger.Log("line tracker shuffleboarded");
 
     //Alignment Notification
-      Shuffleboard.getTab("Tab 1").add("Alignment",RobotMap.isAligned).withWidget(BuiltInWidgets.kBooleanBox);
+      Shuffleboard.getTab("Tab 1").add("Alignment",RobotMap.isAligned).withWidget(BuiltInWidgets.kBooleanBox).withPosition(32,20).withSize(4,4);
       Logger.Log("align var shuffleboarded");
   }
 
