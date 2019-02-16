@@ -12,10 +12,12 @@ import frc.robot.subsystems.ClimbSubsystem;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.GrabSubsystem;
 import frc.robot.subsystems.LiftSubsystem;
+import frc.robot.subsystems.NotDriveSubsystem;
 import frc.robot.Logger;
 
 public class Robot extends TimedRobot {
   public static DriveSubsystem driveSubsystem;
+  public static NotDriveSubsystem notDriveSubsystem;
   public static ClimbSubsystem climbSubsystem;
   public static GrabSubsystem grabSubsystem;
   public static LiftSubsystem liftSubsystem;
@@ -27,6 +29,7 @@ public class Robot extends TimedRobot {
   public static ReleaseCommand releaseCommand;
   public static ExtendCommand extendCommand;
   public static DriveCommand driveCommand;
+  public static NotDriveCommand notDriveCommand;
   public static MonitorCommand monitorCommand;
   public static AutonomousSandstormCommand sandstormCommand;
   public static ClimbCommand climbCommand;
@@ -41,6 +44,7 @@ public class Robot extends TimedRobot {
     oi = new OI();
 
     driveSubsystem = new DriveSubsystem();
+    notDriveSubsystem = new NotDriveSubsystem();
     climbSubsystem = new ClimbSubsystem();
     grabSubsystem = new GrabSubsystem();
     liftSubsystem = new LiftSubsystem();

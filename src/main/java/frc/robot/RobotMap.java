@@ -8,6 +8,8 @@ public class RobotMap {
   public static boolean extendDone = false;
   public static boolean grabDone = false;
 
+  public static final boolean TESTING_PID_VALUES = true; // Adds p, i, d, and f to the SmartDashboard to make it
+  public static final boolean ALLOW_PID = true; // Enables / disables PID
   public static final boolean ALLOW_LIFT_PID = true; // Enables / disables Lift PID
   public static final boolean ALLOW_LIFT_MOVEMENT = true; // Enable / disable the lift from moving up and down
 
@@ -47,7 +49,13 @@ public class RobotMap {
   public static final int MOTOR_FR = 12;
   public static final int MOTOR_BL = 21;
   public static final int MOTOR_BR = 22;
-  public static final int MOTOR_LIFT = 32;
+  public static final int MOTOR_LIFT = 31;
+
+  public static final double p = 0.1;
+	public static final double i = 0;
+	public static final double d = 0;
+	public static final double f = 0;
+	public static final double RAMP_RATE = .5;
 
   public static int ENCODER_L = 20;
   public static int ENCODER_R = 21;
