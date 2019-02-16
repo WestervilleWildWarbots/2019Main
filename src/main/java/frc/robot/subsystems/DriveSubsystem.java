@@ -1,77 +1,36 @@
-
 package frc.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
-import edu.wpi.first.networktables.NetworkTableInstance;
+import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import frc.robot.RobotMap;
-import frc.robot.Logger;
 
 public class DriveSubsystem extends Subsystem {
   private WPI_TalonSRX frontLeft;
-  private WPI_TalonSRX frontRight;
-  private WPI_TalonSRX backLeft;
+	private WPI_TalonSRX frontRight;
+	private WPI_TalonSRX backLeft;
   private WPI_TalonSRX backRight;
-  private NetworkTableInstance table;
+  private SpeedControllerGroup left = new SpeedControllerGroup(frontLeft, backLeft);
+  private SpeedControllerGroup right = new SpeedControllerGroup(frontRight, backRight);
+  private DifferentialDrive drive = new DifferentialDrive(left, right);
 
-  public DriveSubsystem() {
-    table = NetworkTableInstance.getDefault();
+  public DriveSubsystem(){
     frontLeft = new WPI_TalonSRX(RobotMap.MOTOR_FL);
-    frontRight = new WPI_TalonSRX(RobotMap.MOTOR_FR);
-    backLeft = new WPI_TalonSRX(RobotMap.MOTOR_BL);
-    backRight = new WPI_TalonSRX(RobotMap.MOTOR_BR);
-
-    frontRight.setInverted(true);
-    backRight.setInverted(true);
-    
-    backLeft.follow(frontLeft);
-    backRight.follow(frontRight); 
+		frontRight = new WPI_TalonSRX(RobotMap.MOTOR_FR);
+		backLeft = new WPI_TalonSRX(RobotMap.MOTOR_BL);
+		backRight = new WPI_TalonSRX(RobotMap.MOTOR_BR);
   }
+
+  public void drive(double leftSpeed, double rightSpeed) {
+		drive.tankDrive(leftSpeed, rightSpeed);
+	}
 
   @Override
-  public void initDefaultCommand(){
-
+  public void initDefaultCommand() {
+    // Set the default command for a subsystem here.
+    // setDefaultCommand(new MySpecialCommand());
   }
-  
-
-  /**
-   * This method should drive the given distance at the given speed directly forward.
-   * This is most useful for autonomous.
-   */
-  public void autoDrive(double spd){
-    Logger.Log("Drive Subsystem setting motor sides");
-    frontLeft.set(spd);
-    frontRight.set(spd);
-  }
-
-  public void drive(double left, double right) {
-    Logger.Log("Driveing with joystick");
-    /*if(OI.getJoystickAxis(RobotMap.DRIVE_STICK, Axis.Z) == 0){
-
-      if(OI.getJoystickAxis(RobotMap.DRIVE_STICK, Axis.Y) != 0){
-
-        frontLeft.set(OI.getJoystickAxis(RobotMap.DRIVE_STICK, Axis.Y)*spd);
-        frontRight.set(OI.getJoystickAxis(RobotMap.DRIVE_STICK, Axis.Y)*spd);
-      }
-    
-    }else if(OI.getJoystickAxis(RobotMap.DRIVE_STICK, Axis.Z)>0){
-      frontLeft.set(OI.getJoystickAxis(RobotMap.DRIVE_STICK,Axis.Z)* -spd);
-      frontRight.set(OI.getJoystickAxis(RobotMap.DRIVE_STICK, Axis.Z)*spd);
-    
-    }else if(OI.getJoystickAxis(RobotMap.DRIVE_STICK, Axis.Z)<0){
-      frontLeft.set(OI.getJoystickAxis(RobotMap.DRIVE_STICK, Axis.Z)*spd);
-      frontRight.set(OI.getJoystickAxis(RobotMap.DRIVE_STICK, Axis.Z)*-spd);
-
-    }else{
-    frontLeft.set(0);
-    frontRight.set(0);
-    }*/
-     frontLeft.set(left);
-     frontRight.set(right);
-  }
-
-
-
-
 }
