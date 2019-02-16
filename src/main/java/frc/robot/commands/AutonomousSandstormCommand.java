@@ -1,6 +1,7 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+import frc.robot.Logger;
 import frc.robot.Robot;
 import frc.robot.subsystems.DriveSubsystem;
 
@@ -24,11 +25,13 @@ public class AutonomousSandstormCommand extends Command {
   public AutonomousSandstormCommand(StartLocation startLocation, Task task){
     this.startLocation = startLocation;
     this.task = task;
+    Logger.Log("Autonomous sandstorm cunstructed.");
   }
 
   @Override
   protected void initialize() {
     this.driveSubsystem = Robot.driveSubsystem;
+    Logger.Log("Autonomous sandstorm initialized.");
   }
 
   @Override
@@ -62,19 +65,23 @@ public class AutonomousSandstormCommand extends Command {
       break;
       default:
       System.out.println("That's not a task!");
+      Logger.Log("Autonomous sandstorm executed.");
     }
   }
 
   @Override
   protected boolean isFinished() {
+    Logger.Log("Autonomous sandstorm finished.");
     return false;
   }
 
   @Override
   protected void end() {
+    Logger.Log("Autonomous sandstorm ended.");
   }
 
   @Override
   protected void interrupted() {
+    Logger.Log("Autonomous sandstorm interupted.");
   }
 }

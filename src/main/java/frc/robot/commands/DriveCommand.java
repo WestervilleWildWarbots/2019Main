@@ -8,6 +8,7 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+import frc.robot.Logger;
 import frc.robot.OI;
 import frc.robot.Robot;
 import frc.robot.RobotMap;
@@ -15,13 +16,13 @@ import frc.robot.OI.Axis;
 
 public class DriveCommand extends Command {
   public DriveCommand() {
-    // Use requires() here to declare subsystem dependencies
-    // eg. requires(chassis);
+    Logger.Log("Drive constructed.");
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+    Logger.Log("Drive initialized.");
   }
 
   // Called repeatedly when this Command is scheduled to run
@@ -41,11 +42,13 @@ public class DriveCommand extends Command {
     right = y + z;
     //Uses the previously defined variables to have to robot drive using the left and right side motors
     Robot.driveSubsystem.drive(left, right);
+    Logger.Log("Drive executed.");
   }
 
   // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
+    Logger.Log("Drive finished.");
     return false;
   }
 
@@ -53,6 +56,7 @@ public class DriveCommand extends Command {
   @Override
   protected void end() {
     Robot.driveSubsystem.drive(0, 0);
+    Logger.Log("Drive ended.");
   }
 
   // Called when another command which requires one or more of the same
@@ -60,5 +64,6 @@ public class DriveCommand extends Command {
   @Override
   protected void interrupted() {
     Robot.driveSubsystem.drive(0, 0);
+    Logger.Log("Drive interrupted.");
   }
 }
