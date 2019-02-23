@@ -18,7 +18,10 @@ import frc.robot.Logger;
  */
 public class LiftSubsystem extends Subsystem {
 
-    WPI_TalonSRX liftTalon;
+	private static WPI_TalonSRX liftTalon;
+	private static DigitalInput  LimitTop = new DigitalInput(RobotMap.TOP_LIMIT_SWITCH_ID);
+	private static DigitalInput  LimitBase = new DigitalInput(RobotMap.BOTTOM_LIMIT_SWITCH_ID);
+
 	private NetworkTableInstance table;
 	
     //Sets PID variables for arm
@@ -62,8 +65,16 @@ public class LiftSubsystem extends Subsystem {
 		liftTalon.set(ControlMode.Position, 0);
 	}
 	
-	public double getLiftEnc(){
+	public static int getLiftEnc(){
 		return liftTalon.getSensorCollection().getQuadraturePosition();
+	}
+
+	public static boolean getBaseLimit() {
+		return LimitBase.get();
+	}
+
+	public static boolean getTopLimit() {
+		return LimitTop.get();
 	}
 
 	public boolean getLimits(int id) {

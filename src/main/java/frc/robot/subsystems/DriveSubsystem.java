@@ -4,6 +4,7 @@ package frc.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
+import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.networktables.NetworkTableInstance;
@@ -18,7 +19,14 @@ public class DriveSubsystem extends Subsystem {
   private static WPI_TalonSRX frontRight;
   private static WPI_TalonSRX backLeft;
   private static WPI_TalonSRX backRight;
-  
+
+ private static AnalogInput  FrontDist = new AnalogInput(RobotMap.FRONT_DISTANCE_SENSOR);
+ private static AnalogInput  RearDist = new AnalogInput(RobotMap.REAR_DISTANCE_SENSOR);
+ private static  AnalogInput  LeftDist = new AnalogInput(RobotMap.LEFT_DISTANCE_SENSOR);
+ private static AnalogInput  RightDist = new AnalogInput(RobotMap.RIGHT_DISTANCE_SENSOR);
+
+private static AnalogGyro Gyro = new AnalogGyro(RobotMap.ANALOG_GYRO);
+
   /*
    * NOTICE: Using the NetworkTable
    * ==============================
@@ -77,6 +85,26 @@ public class DriveSubsystem extends Subsystem {
   public static int getRightEnc() { //test method
     Logger.Log("DriveSubsystem got right encoder");
     return frontRight.getSensorCollection().getQuadraturePosition();
+  }
+
+  public static int getFrontDist() {
+    return FrontDist.getValue();
+  }
+
+  public static int getRearDist() {
+    return RearDist.getValue();
+  }
+
+  public static int getLeftDist() {
+    return LeftDist.getValue();
+  }
+
+  public static int getRightDist() {
+    return RightDist.getValue();
+  }
+
+  public static double getGyro(){
+      return Gyro.getAngle();
   }
 
   public void drive(double leftSpeed, double rightSpeed) {
