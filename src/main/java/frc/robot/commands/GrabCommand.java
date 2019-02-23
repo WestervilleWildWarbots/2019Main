@@ -1,5 +1,6 @@
 package frc.robot.commands;
 
+import frc.robot.Logger;
 import frc.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
@@ -16,6 +17,7 @@ public class GrabCommand extends Command {
 
   @Override
   protected void execute() {
+    Logger.Log("GrabCommand Executed");
     grab.grab(false);
     grab.extend(false);
   

@@ -8,14 +8,14 @@ import java.util.Date;
 
 public class Logger {
 
-    public static void Log(String logMessage)
+    public static void Log(String logMessage, double... value)
 	{
 		File file = new File("LoggerFile.txt");
 		try 
 		{
             PrintWriter log = new PrintWriter(new FileWriter(file, true)); 
             Date now = new Date();
-            log.append(now.toString() + " " + logMessage + " ");
+            log.append(now.toString() + " " + logMessage + value + " ");
 	        log.println();
 			log.close();
 		}

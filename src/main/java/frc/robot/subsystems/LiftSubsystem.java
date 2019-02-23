@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.Logger;
 
 /**
  *
@@ -19,7 +20,7 @@ public class LiftSubsystem extends Subsystem {
 
     WPI_TalonSRX liftTalon;
 	private NetworkTableInstance table;
-
+	
     //Sets PID variables for arm
     private int slot = 0;
     private double p = .5;
@@ -31,13 +32,13 @@ public class LiftSubsystem extends Subsystem {
 	private int timeoutMs = 100;
 	
 	private DigitalInput limitBase;	
-	private DigitalInput limitTop;	
-
+	private DigitalInput limitTop;
 
 	public LiftSubsystem(){
-		
+		Logger.Log("LiftSubsystem PID p", p);
+		Logger.Log("LiftSubsystem PID i", i);
+		Logger.Log("LiftSubsystem PID d", d);
 		//table.getEntry("toplimit").setValue(LimitBase.get());
-	
 		liftTalon = new WPI_TalonSRX(RobotMap.LIFT_TALON);
 		resetEncoder();
 		limitBase = new DigitalInput(2);
@@ -66,17 +67,19 @@ public class LiftSubsystem extends Subsystem {
 	}
 
 	public boolean getLimits(int id) {
+		Logger.Log("LiftSubsystem got limits");
 		if (id == 1) {
 			return limitBase.get();
 		} else if (id == 2) {
 			return limitTop.get();
 		} else {
-			System.out.println("INVALID LIMIT SWITCH");
+			Logger.Log("INVALID LIMIT SWITCH");
 			return false;
 		}
 	}
 
 	public void setPos(double goTo) {
+		Logger.Log("LiftSubsystem set position");
 		if(getLiftEnc() >= 0){
 			liftTalon.set(0);
 		}else{
@@ -85,24 +88,29 @@ public class LiftSubsystem extends Subsystem {
 	}
 	
 	public void moveArm(double speed) {
+		Logger.Log("LiftSubsystem moved arm");
 		liftTalon.set(speed);
 	}
 	
 	public void set(double speed){
+		Logger.Log("LiftSubsystem set motor speed");
 		if(RobotMap.ALLOW_LIFT_MOVEMENT){
 			//liftTalon.set(speed);
 		}
 	}
 	
 	public double getEncoderVelocity(){
+		Logger.Log("LiftSubsystem got encoder velocity");
 		return liftTalon.getSensorCollection().getQuadratureVelocity();
 	}
 	
 	public void resetEncoder(){
+		Logger.Log("LiftSubsystem reset encoder");
 		liftTalon.getSensorCollection().setQuadraturePosition(0, 0);
 	}
 	
 	public double getCurrent(){
+		Logger.Log("LiftSubsystem got current");
 		return liftTalon.getOutputCurrent();
 	}
 

@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.shuffleboard.BuiltInWidgets;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
+import frc.robot.Logger;
 import frc.robot.RobotMap;
 import edu.wpi.first.cameraserver.*;
 
@@ -47,6 +48,7 @@ public class MonitorCommand extends Command {
 
   @Override
   protected void execute() {
+    Logger.Log("MonitorCommand Executed");
         table.getEntry("encoder_valueLift").setValue(EncLift.get());
         SmartDashboard.getEntry("encoder_valueLift").getDouble(DEFAULT_VALUE);
     

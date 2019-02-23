@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import frc.robot.Logger;
 import frc.robot.OI;
 import frc.robot.OI.Axis;
 import frc.robot.RobotMap;
@@ -69,14 +70,17 @@ public class DriveSubsystem extends Subsystem {
   }
   
   public static int getLeftEnc() { //test method
+    Logger.Log("DriveSubsystem got left encoder");
     return frontLeft.getSensorCollection().getQuadraturePosition();
   }
 
   public static int getRightEnc() { //test method
+    Logger.Log("DriveSubsystem got right encoder");
     return frontRight.getSensorCollection().getQuadraturePosition();
   }
 
   public void drive(double leftSpeed, double rightSpeed) {
+    Logger.Log("DriveSubsystem drived");
     frontLeft.set(leftSpeed);
     frontRight.set(-rightSpeed);
   }

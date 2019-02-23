@@ -1,6 +1,7 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+import frc.robot.Logger;
 
 public class PositionAdjustCommandGroup extends Command {
   public PositionAdjustCommandGroup() {
@@ -12,6 +13,7 @@ public class PositionAdjustCommandGroup extends Command {
 
   @Override
   protected void execute() {
+    Logger.Log("PositionAdjustCommandGroup Executed");
   }
 
   @Override
