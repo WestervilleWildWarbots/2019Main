@@ -11,7 +11,6 @@ import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import frc.robot.RobotMap;
 import edu.wpi.first.cameraserver.*;
-import frc.robot.Logger;
 
 import edu.wpi.first.networktables.NetworkTableInstance;
 
@@ -44,106 +43,26 @@ public class MonitorCommand extends Command {
 
   @Override
   protected void initialize() {
-    Logger.Log("Monitor INIT");
   }
 
   @Override
   protected void execute() {
-    Logger.Log("Monitor EXECUTING");
-
-        //update Gyro number
-        table.getEntry("gyro_angle").setValue(Gyro.getAngle());
-        SmartDashboard.getEntry("gyro_angle").getDouble(DEFAULT_VALUE);
-        Logger.Log("gyro networked");
-        
-        //encoder updates
-        table.getEntry("encoder_valueL").setValue(EncL.get());
-        SmartDashboard.getEntry("encoder_valueL").getDouble(DEFAULT_VALUE);
-    
-        table.getEntry("encoder_valueFR").setValue(EncR.get());
-        SmartDashboard.getEntry("encoder_valueFR").getDouble(DEFAULT_VALUE);
-    
         table.getEntry("encoder_valueLift").setValue(EncLift.get());
         SmartDashboard.getEntry("encoder_valueLift").getDouble(DEFAULT_VALUE);
-        Logger.Log("encoders networked");
     
-        //distance sensor updates
-        table.getEntry("frontDist_value").setValue(FrontDist.getValue());
-        SmartDashboard.getEntry("frontDist_value").getDouble(DEFAULT_VALUE);
-    
-        table.getEntry("rearDist_value").setValue(RearDist.getValue());
-        SmartDashboard.getEntry("rearDist_value").getDouble(DEFAULT_VALUE);
-    
-        table.getEntry("leftDist_value").setValue(LeftDist.getValue());
-        SmartDashboard.getEntry("leftDist_value").getDouble(DEFAULT_VALUE);
-    
-        table.getEntry("rightDist_value").setValue(RightDist.getValue());
-        SmartDashboard.getEntry("rightDist_value").getDouble(DEFAULT_VALUE);
-        Logger.Log("distance sensors networked");
-    
-        //limit switch updates
-        table.getEntry("top_limit").setBoolean(LimitTop.get());
-        SmartDashboard.getEntry("top_limit").getDouble(DEFAULT_VALUE);
-    
-        table.getEntry("base_limit").setBoolean(LimitBase.get());
-        SmartDashboard.getEntry("base_limit").getDouble(DEFAULT_VALUE);
-        Logger.Log("limit switches networked");
-    
-        //line tracker updates
-        table.getEntry("tape_read").setValue(TapeRead.get());
-        SmartDashboard.getEntry("tape_read").getDouble(DEFAULT_VALUE);
-        Logger.Log("line tracker networked");
-
-    //Shuffleboard.getTab("Tab 1").add("Camera 1", 14).withWidget(BuiltInWidgets.kCameraStream).withProperties(Map.of("min", 0, "max", 62));
-
-    //distance sensors to shuffleboard
-    Shuffleboard.getTab("Tab 1").add("Dist Front", FrontDist.getValue()).withWidget(BuiltInWidgets.kDial).withProperties(Map.of("min", 0, "max", 62)).withPosition(0,20).withSize(4,4);
-    Shuffleboard.getTab("Tab 1").add("Dist Rear", RearDist.getValue()).withWidget(BuiltInWidgets.kDial).withProperties(Map.of("min", 0, "max", 62)).withPosition(8,20).withSize(4,4);
-    Shuffleboard.getTab("Tab 1").add("Left Front", LeftDist.getValue()).withWidget(BuiltInWidgets.kDial).withProperties(Map.of("min", 0, "max", 62)).withPosition(16,20).withSize(4,4);
-    Shuffleboard.getTab("Tab 1").add("Right Rear", RightDist.getValue()).withWidget(BuiltInWidgets.kDial).withProperties(Map.of("min", 0, "max", 62)).withPosition(24,20).withSize(4,4);
-    Logger.Log("distance sensors shuffleboarded");
-
-    //encoders to shuffleboard
-    Shuffleboard.getTab("Tab 1").add("Encoder L", EncL.get()).withWidget(BuiltInWidgets.kEncoder).withProperties(Map.of("min", 0, "max", 360)).withPosition(0,10).withSize(8,8);
-    Shuffleboard.getTab("Tab 1").add("Encoder R", EncR.get()).withWidget(BuiltInWidgets.kEncoder).withProperties(Map.of("min", 0, "max", 360)).withPosition(12,10).withSize(8,8);;
-    Shuffleboard.getTab("Tab 1").add("Encoder Lift", EncLift.get()).withWidget(BuiltInWidgets.kEncoder).withProperties(Map.of("min", 0, "max", 360)).withPosition(24,10).withSize(8,8);;
-    Logger.Log("encoders shuffleboarded");
-
-    //Gyro to shuffleboard
-    Shuffleboard.getTab("Tab 1").add("Gyro Angle", Gyro.getAngle()).withWidget(BuiltInWidgets.kGyro).withPosition(44,4).withSize(4,4);
-    Logger.Log("gyro shuffleboarded");
-
-    //limit switches to shuffleboard
-    Shuffleboard.getTab("Tab 1").add("Top Limit", LimitTop.get()).withWidget(BuiltInWidgets.kTextView).withPosition(36,4).withSize(4,4);
-    Shuffleboard.getTab("Tab 1").add("Base Limit", LimitBase.get()).withWidget(BuiltInWidgets.kTextView).withPosition(36,0).withSize(4,4);
-    Logger.Log("limit switches shuffleboarded");
-
-    //Cameras to shuffleboard
-    Shuffleboard.getTab("Tab 1").add("Front Camera", CameraServer.getInstance().getVideo()).withWidget(BuiltInWidgets.kCameraStream).withPosition(0,0).withSize(8,8);
-    Logger.Log("cameras shuffleboarded");
-
-    //Line Tracker to Shuffleboard
-    Shuffleboard.getTab("Tab 1").add("Tape Read", TapeRead.get()).withWidget(BuiltInWidgets.kTextView).withPosition(44,0).withSize(4,4);
-    Logger.Log("line tracker shuffleboarded");
-
-    //Alignment Notification
-      Shuffleboard.getTab("Tab 1").add("Alignment",RobotMap.isAligned).withWidget(BuiltInWidgets.kBooleanBox).withPosition(32,20).withSize(4,4);
-      Logger.Log("align var shuffleboarded");
+    Shuffleboard.getTab("Tab 1").add("Encoder Lift", EncLift.get()).withWidget(BuiltInWidgets.kEncoder).withProperties(Map.of("min", 0, "max", 360));
   }
-
+  //anus
   @Override
   protected boolean isFinished() {
-    Logger.Log("Monitor FINISHED");
     return false;
   }
-
+  
   @Override
   protected void end() {
-    Logger.Log("Monitor END!");
   }
-
+  
   @Override
   protected void interrupted() {
-    Logger.Log("Monitor INTERRUPTED");
   }
 }

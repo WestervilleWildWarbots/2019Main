@@ -1,33 +1,35 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
-import frc.robot.Logger;
 import frc.robot.Robot;
 
 public class ResetEncoders extends Command {
     public ResetEncoders() {
-        Logger.Log("Release encoders constructed");
+        // Use requires() here to declare subsystem dependencies
+        // eg. requires(chassis);
     }
 
+    // Called just before this Command runs the first time
     protected void initialize() {
-        Logger.Log("Release encoders initialized.");
     }
 
+    // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        Robot.liftSubsystem.resetEncoder();
-        Logger.Log("Release encoders executed.");
+    	//Reset the arm an drive encoders to 0
+    	Robot.liftSubsystem.resetEncoder();
     }
 
+    // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        Logger.Log("Release encoders finished.");
         return true;
     }
 
+    // Called once after isFinished returns true
     protected void end() {
-        Logger.Log("Release encoders ended.");
     }
 
+    // Called when another command which requires one or more of the same
+    // subsystems is scheduled to run
     protected void interrupted() {
-        Logger.Log("Release encoders interrupted.");
     }
 }

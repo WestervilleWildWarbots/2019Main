@@ -1,69 +1,52 @@
-/*----------------------------------------------------------------------------*/
-/* Copyright (c) 2018 FIRST. All Rights Reserved.                             */
-/* Open Source Software - may be modified and shared by FRC teams. The code   */
-/* must be accompanied by the FIRST BSD license file in the root directory of */
-/* the project.                                                               */
-/*----------------------------------------------------------------------------*/
-
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
-import frc.robot.Logger;
-import frc.robot.OI;
+import frc.robot.OI.Axis;
 import frc.robot.Robot;
 import frc.robot.RobotMap;
-import frc.robot.OI.Axis;
 
 public class DriveCommand extends Command {
+  //private DriveSubsystem drive = Robot.driveSubsystem;
+
   public DriveCommand() {
-    Logger.Log("Drive constructed.");
   }
 
-  // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    Logger.Log("Drive initialized.");
   }
 
-  // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    //Defining the left/right motors to arbitrary numbers
-    double left = 0;
-    double right = 0;
+    double y = Robot.oi.getJoystickAxis(RobotMap.DRIVE_STICK, Axis.Y);
+    double z = Robot.oi.getJoystickAxis(RobotMap.DRIVE_STICK, Axis.Z);
+    if (z < 0) {
+      z = -z*z;
+    } else {
+      z = z*z;
+    }
+    double throttle = ((Robot.oi.getJoystickAxis(RobotMap.DRIVE_STICK, Axis.THROTTLE) + 1))/2;
+
+    double leftSpeed = (y-z)*throttle;
+    double rightSpeed= (y+z)*throttle;
+
+    Robot.driveSubsystem.drive(leftSpeed, rightSpeed);
     
-    // Controlling the Robot with a single joystick
-    double z = OI.getJoystickAxis(RobotMap.DRIVE_STICK, Axis.Z)*.6;
-    double y = OI.getJoystickAxis(RobotMap.DRIVE_STICK, Axis.Y);
-    z *= Math.abs(z);
-    z *= -(OI.getJoystickAxis(RobotMap.DRIVE_STICK, Axis.THROTTLE) + 1) / 2;
-    y *= -(OI.getJoystickAxis(RobotMap.DRIVE_STICK, Axis.THROTTLE) + 1) / 2;
-    left = y - z;
-    right = y + z;
-    //Uses the previously defined variables to have to robot drive using the left and right side motors
-    Robot.driveSubsystem.drive(left, right);
-    Logger.Log("Drive executed.");
+    Robot.liftSubsystem.moveArm(-Robot.oi.getJoystickAxis(RobotMap.XBOX_CONTROLLER, Axis.LeftY));
+
   }
 
-  // Make this return true when this Command no longer needs to run execute()
   @Override
   protected boolean isFinished() {
-    Logger.Log("Drive finished.");
     return false;
   }
 
-  // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.driveSubsystem.drive(0, 0);
-    Logger.Log("Drive ended.");
+    Robot.driveSubsystem.drive(0,0);
   }
 
-  // Called when another command which requires one or more of the same
-  // subsystems is scheduled to run
   @Override
   protected void interrupted() {
-    Robot.driveSubsystem.drive(0, 0);
-    Logger.Log("Drive interrupted.");
+    Robot.driveSubsystem.drive(0,0);
   }
 }
