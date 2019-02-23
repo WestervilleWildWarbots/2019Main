@@ -3,7 +3,8 @@ package frc.robot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import frc.robot.commands.LiftAdjustmentCommand;
-import frc.robot.commands.LiftCommand;
+import frc.robot.commands.*;
+import frc.robot.commands.GrabCommand;
 
 public class OI {
   // Makes the axis of the joystick exist
@@ -59,10 +60,18 @@ public class OI {
     private static JoystickButton armUp = new JoystickButton(xBoxController, RobotMap.ARM_UP_BUTTON);
 	private static JoystickButton armDown = new JoystickButton(xBoxController, RobotMap.ARM_DOWN_BUTTON);
     private static JoystickButton maxOut = new JoystickButton(xBoxController, 3);
+    
+    private static JoystickButton grabButton = new JoystickButton(xBoxController, 5);
+    private static JoystickButton releaseButton = new JoystickButton(xBoxController, 4);
 
     public OI(){
     armUp.whenPressed(new LiftAdjustmentCommand(-100));
 	armDown.whenPressed(new LiftAdjustmentCommand(100));
     maxOut.whenPressed(new LiftCommand());
+
+    grabButton.whileHeld(new GrabCommand("grab"));
+    releaseButton.whileHeld(new GrabCommand("release"));
+    grabButton.whenInactive(new GrabCommand("grabOff"));
+    releaseButton.whenInactive(new GrabCommand("relOff"));
   }
 }
