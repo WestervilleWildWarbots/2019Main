@@ -2,7 +2,7 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.command.Subsystem;
-
+import frc.robot.Logger;
 import frc.robot.OI;
 import frc.robot.RobotMap;
 import frc.robot.OI.Axis;
@@ -53,7 +53,7 @@ public class GrabSubsystem extends Subsystem {
   }
   
   public void grab(boolean grabOff) {
-
+  Logger.Log("GrabSubsystem Grabed");
   if(OI.getJoystickAxis(RobotMap.XBOX_CONTROLLER, Axis.RightTab) > 0){
     grabSolL.set(Value.kForward);
     grabSolR.set(Value.kReverse);
