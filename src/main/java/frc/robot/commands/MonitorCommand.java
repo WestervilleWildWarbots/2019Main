@@ -2,6 +2,9 @@ package frc.robot.commands;
 
 import java.util.Map;
 
+import frc.robot.commands.*;
+import frc.robot.subsystems.*;
+import frc.robot.Robot;
 import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.DigitalInput;
@@ -9,9 +12,10 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.shuffleboard.BuiltInWidgets;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.RobotMap;
 import edu.wpi.first.cameraserver.*;
-import frc.robot.Logger;
+//import frc.robot.Logger;
 
 import edu.wpi.first.networktables.NetworkTableInstance;
 
@@ -20,7 +24,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class MonitorCommand extends Command {
   private NetworkTableInstance table;
 
-  AnalogInput  FrontDist = new AnalogInput(RobotMap.FRONT_DISTANCE_SENSOR);
+  /*AnalogInput  FrontDist = new AnalogInput(RobotMap.FRONT_DISTANCE_SENSOR);
   AnalogInput  RearDist = new AnalogInput(RobotMap.REAR_DISTANCE_SENSOR);
   AnalogInput  LeftDist = new AnalogInput(RobotMap.LEFT_DISTANCE_SENSOR);
   AnalogInput  RightDist = new AnalogInput(RobotMap.RIGHT_DISTANCE_SENSOR);
@@ -35,29 +39,42 @@ public class MonitorCommand extends Command {
 
   AnalogGyro Gyro = new AnalogGyro(RobotMap.ANALOG_GYRO);
   DigitalInput TapeRead = new DigitalInput(RobotMap.LINE_TRACKER);
-  
+  */
+  ShuffleboardTab tab1;
+
   public static double DEFAULT_VALUE=0;
 
   public MonitorCommand() {
-    ShuffleboardTab tab1 = Shuffleboard.getTab("Tab 1");
+    tab1 = Shuffleboard.getTab("Tab 1");
   }
 
   @Override
   protected void initialize() {
-    Logger.Log("Monitor INIT");
+    //Logger.Log("Monitor INIT");
+    Shuffleboard.getTab("Tab 1").add("Left Encoder", Robot.driveSubsystem.getLeftEnc());
   }
 
   @Override
   protected void execute() {
-    Logger.Log("Monitor EXECUTING");
+    //Logger.Log("Monitor EXECUTING");
+    SmartDashboard.putBoolean("Top Limit", Robot.liftSubsystem.getLimits(1));
+    SmartDashboard.putBoolean("Base Limit", Robot.liftSubsystem.getLimits(2));
+
+    SmartDashboard.putNumber("Left Encoder", Robot.driveSubsystem.getLeftEnc()); 
+    SmartDashboard.putNumber("Right Encoder", Robot.driveSubsystem.getRightEnc());
+    SmartDashboard.putNumber("Lift Encoder", Robot.liftSubsystem.getLiftEnc());
+
+    //SmartDashboard.putNumber("Front Distance", DriveSubsystem.)
+    
+
 
         //update Gyro number
-        table.getEntry("gyro_angle").setValue(Gyro.getAngle());
-        SmartDashboard.getEntry("gyro_angle").getDouble(DEFAULT_VALUE);
-        Logger.Log("gyro networked");
-        
+        //table.getEntry("gyro_angle").setValue(Gyro.getAngle());
+        //SmartDashboard.getEntry("gyro_angle").getDouble(DEFAULT_VALUE);
+        //Logger.Log("gyro networked");
+        /*
         //encoder updates
-        table.getEntry("encoder_valueL").setValue(EncL.get());
+        table.getEntry("encoder_valueL").setValue(DriveSubsystem.getLeftEnc());
         SmartDashboard.getEntry("encoder_valueL").getDouble(DEFAULT_VALUE);
     
         table.getEntry("encoder_valueFR").setValue(EncR.get());
@@ -65,7 +82,7 @@ public class MonitorCommand extends Command {
     
         table.getEntry("encoder_valueLift").setValue(EncLift.get());
         SmartDashboard.getEntry("encoder_valueLift").getDouble(DEFAULT_VALUE);
-        Logger.Log("encoders networked");
+        //Logger.Log("encoders networked");
     
         //distance sensor updates
         table.getEntry("frontDist_value").setValue(FrontDist.getValue());
@@ -79,7 +96,7 @@ public class MonitorCommand extends Command {
     
         table.getEntry("rightDist_value").setValue(RightDist.getValue());
         SmartDashboard.getEntry("rightDist_value").getDouble(DEFAULT_VALUE);
-        Logger.Log("distance sensors networked");
+        //Logger.Log("distance sensors networked");
     
         //limit switch updates
         table.getEntry("top_limit").setBoolean(LimitTop.get());
@@ -87,12 +104,12 @@ public class MonitorCommand extends Command {
     
         table.getEntry("base_limit").setBoolean(LimitBase.get());
         SmartDashboard.getEntry("base_limit").getDouble(DEFAULT_VALUE);
-        Logger.Log("limit switches networked");
+        //Logger.Log("limit switches networked");
     
         //line tracker updates
         table.getEntry("tape_read").setValue(TapeRead.get());
         SmartDashboard.getEntry("tape_read").getDouble(DEFAULT_VALUE);
-        Logger.Log("line tracker networked");
+        //Logger.Log("line tracker networked");
 
     //Shuffleboard.getTab("Tab 1").add("Camera 1", 14).withWidget(BuiltInWidgets.kCameraStream).withProperties(Map.of("min", 0, "max", 62));
 
@@ -101,49 +118,50 @@ public class MonitorCommand extends Command {
     Shuffleboard.getTab("Tab 1").add("Dist Rear", RearDist.getValue()).withWidget(BuiltInWidgets.kDial).withProperties(Map.of("min", 0, "max", 62)).withPosition(8,20).withSize(4,4);
     Shuffleboard.getTab("Tab 1").add("Left Front", LeftDist.getValue()).withWidget(BuiltInWidgets.kDial).withProperties(Map.of("min", 0, "max", 62)).withPosition(16,20).withSize(4,4);
     Shuffleboard.getTab("Tab 1").add("Right Rear", RightDist.getValue()).withWidget(BuiltInWidgets.kDial).withProperties(Map.of("min", 0, "max", 62)).withPosition(24,20).withSize(4,4);
-    Logger.Log("distance sensors shuffleboarded");
+    //Logger.Log("distance sensors shuffleboarded");
 
-    //encoders to shuffleboard
-    Shuffleboard.getTab("Tab 1").add("Encoder L", EncL.get()).withWidget(BuiltInWidgets.kEncoder).withProperties(Map.of("min", 0, "max", 360)).withPosition(0,10).withSize(8,8);
-    Shuffleboard.getTab("Tab 1").add("Encoder R", EncR.get()).withWidget(BuiltInWidgets.kEncoder).withProperties(Map.of("min", 0, "max", 360)).withPosition(12,10).withSize(8,8);;
+    //encoders to shuffleboard */
+    //Shuffleboard.getTab("Tab 1"); 
+    //Shuffleboard.getTab("Tab 1").add("Encoder L", DriveSubsystem.getLeftEnc()).withWidget(BuiltInWidgets.kEncoder).withProperties(Map.of("min", 0, "max", 360)).withPosition(0,10).withSize(8,8);
+    /*Shuffleboard.getTab("Tab 1").add("Encoder R", EncR.get()).withWidget(BuiltInWidgets.kEncoder).withProperties(Map.of("min", 0, "max", 360)).withPosition(12,10).withSize(8,8);;
     Shuffleboard.getTab("Tab 1").add("Encoder Lift", EncLift.get()).withWidget(BuiltInWidgets.kEncoder).withProperties(Map.of("min", 0, "max", 360)).withPosition(24,10).withSize(8,8);;
-    Logger.Log("encoders shuffleboarded");
+    //Logger.Log("encoders shuffleboarded");
 
     //Gyro to shuffleboard
     Shuffleboard.getTab("Tab 1").add("Gyro Angle", Gyro.getAngle()).withWidget(BuiltInWidgets.kGyro).withPosition(44,4).withSize(4,4);
-    Logger.Log("gyro shuffleboarded");
+    //Logger.Log("gyro shuffleboarded");
 
     //limit switches to shuffleboard
     Shuffleboard.getTab("Tab 1").add("Top Limit", LimitTop.get()).withWidget(BuiltInWidgets.kTextView).withPosition(36,4).withSize(4,4);
     Shuffleboard.getTab("Tab 1").add("Base Limit", LimitBase.get()).withWidget(BuiltInWidgets.kTextView).withPosition(36,0).withSize(4,4);
-    Logger.Log("limit switches shuffleboarded");
+    //Logger.Log("limit switches shuffleboarded");
 
     //Cameras to shuffleboard
     Shuffleboard.getTab("Tab 1").add("Front Camera", CameraServer.getInstance().getVideo()).withWidget(BuiltInWidgets.kCameraStream).withPosition(0,0).withSize(8,8);
-    Logger.Log("cameras shuffleboarded");
+    //Logger.Log("cameras shuffleboarded");
 
     //Line Tracker to Shuffleboard
     Shuffleboard.getTab("Tab 1").add("Tape Read", TapeRead.get()).withWidget(BuiltInWidgets.kTextView).withPosition(44,0).withSize(4,4);
-    Logger.Log("line tracker shuffleboarded");
+    //Logger.Log("line tracker shuffleboarded");
 
     //Alignment Notification
       Shuffleboard.getTab("Tab 1").add("Alignment",RobotMap.isAligned).withWidget(BuiltInWidgets.kBooleanBox).withPosition(32,20).withSize(4,4);
-      Logger.Log("align var shuffleboarded");
+      //Logger.Log("align var shuffleboarded"); */
   }
 
   @Override
   protected boolean isFinished() {
-    Logger.Log("Monitor FINISHED");
+    //Logger.Log("Monitor FINISHED");
     return false;
   }
 
   @Override
   protected void end() {
-    Logger.Log("Monitor END!");
+    //Logger.Log("Monitor END!");
   }
 
   @Override
   protected void interrupted() {
-    Logger.Log("Monitor INTERRUPTED");
+    //Logger.Log("Monitor INTERRUPTED");
   }
 }

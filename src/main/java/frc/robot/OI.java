@@ -1,24 +1,23 @@
 package frc.robot;
 
-import frc.robot.RobotMap;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import edu.wpi.first.wpilibj.buttons.POVButton;
-import frc.robot.commands.ExtendCommand;
-import frc.robot.commands.GrabCommand;
+import frc.robot.commands.LiftAdjustmentCommand;
 import frc.robot.commands.LiftCommand;
-import frc.robot.commands.ReleaseCommand;
-import frc.robot.commands.ClimbCommand;
-import frc.robot.commands.PositionAdjustCommandGroup;
 
 public class OI {
+  // Makes the axis of the joystick exist
 
-  public static enum Axis {X, Y, Z, LeftY, RightY, THROTTLE};
+  public static enum Axis {X, Y, Z, LeftY, RightY, THROTTLE, RightTab};
+
+  // Makes the joystick and xbox controller exist
 
   private static Joystick driveStick = new Joystick(RobotMap.DRIVE_STICK);
   private static Joystick xBoxController = new Joystick(RobotMap.XBOX_CONTROLLER);
 
   public static double getJoystickAxis(int joystickID, Axis axis) {
+
+      // Establishes the joystick and its axes
 
       Joystick joystick;
 
@@ -27,9 +26,9 @@ public class OI {
       if (joystickID == RobotMap.DRIVE_STICK) {
           joystick = driveStick;
       } else if (joystickID == RobotMap.XBOX_CONTROLLER) {
-          joystick = xBoxController;
+        joystick = xBoxController;
       } else {
-          System.out.println("Wrong id");
+          System.out.println("Wrong joystick id");
           return 0;
       }
 
@@ -40,66 +39,30 @@ public class OI {
       } else if (axis == Axis.Z) {
           axisValue = joystick.getZ();
       } else if (axis == Axis.LeftY) {
-          axisValue = joystick.getRawAxis(1);
+          axisValue = joystick.getRawAxis(1); // 1 is supposed to be XBox id for left joystick
       } else if (axis == Axis.RightY) {
-          axisValue = joystick.getRawAxis(5);
+          axisValue = joystick.getRawAxis(5); // 5 is supposed to be XBox id for right joystick
       } else if (axis == Axis.THROTTLE) {
           axisValue = joystick.getThrottle();
-      }
+      }else if (axis == Axis.RightTab) {
+        axisValue = joystick.getRawAxis(3);
+    }
 
-      if (Math.abs(axisValue) < .2) {
+      // Creates dead zone
+
+      if (Math.abs(axisValue) < .1) {
           axisValue = 0;
       }
- 
+
       return axisValue;
   }
-    
-
-    public static JoystickButton AButton = new JoystickButton(xBoxController, 0);
-    public static JoystickButton BButton = new JoystickButton(xBoxController, 1);
-    public static JoystickButton XButton = new JoystickButton(xBoxController, 2);
-    public static JoystickButton YButton = new JoystickButton(xBoxController, 3);
-
-    public static JoystickButton leftBumper = new JoystickButton(xBoxController, 4);
-    public static JoystickButton rightBumper = new JoystickButton(xBoxController, 5);
-
-    public static JoystickButton backButton = new JoystickButton(xBoxController, 6);
-    public static JoystickButton startButton = new JoystickButton(xBoxController, 7);
-
-    public static JoystickButton pressLStick = new JoystickButton(xBoxController, 8);
-    public static JoystickButton pressRStick = new JoystickButton(xBoxController, 9);
-
-    public static JoystickButton trigger = new JoystickButton(driveStick, 1);
-    public static JoystickButton button2 = new JoystickButton(driveStick, 2);
-    
-    public static POVButton dPadUp = new POVButton(xBoxController,0);
-    public static POVButton dPadRight = new POVButton(xBoxController,90);
-    public static POVButton dPadDown = new POVButton(xBoxController,180);
-    public static POVButton dPadLeft = new POVButton(xBoxController,270);
-
+    private static JoystickButton armUp = new JoystickButton(xBoxController, RobotMap.ARM_UP_BUTTON);
+	private static JoystickButton armDown = new JoystickButton(xBoxController, RobotMap.ARM_DOWN_BUTTON);
+    private static JoystickButton maxOut = new JoystickButton(xBoxController, 3);
 
     public OI(){
-    BButton.whileHeld(new ExtendCommand("out"));
-    BButton.whenReleased(new ExtendCommand("in"));
-
-    leftBumper.whileHeld(new ReleaseCommand());
-   
-    rightBumper.whileHeld(new GrabCommand());
-
-    trigger.whenPressed(new PositionAdjustCommandGroup());
-
-    button2.whenPressed(new ClimbCommand());
-
-    AButton.whenPressed(new LiftCommand(0));
-
-    XButton.whenPressed(new LiftCommand(0));
-
-    YButton.whenPressed(new LiftCommand(0));
- 
-    dPadDown.whenPressed(new LiftCommand(0));
-
-    dPadLeft.whenPressed(new LiftCommand(0));
-
-    dPadUp.whenPressed(new LiftCommand(0));
+    armUp.whenPressed(new LiftAdjustmentCommand(-100));
+	armDown.whenPressed(new LiftAdjustmentCommand(100));
+    maxOut.whenPressed(new LiftCommand());
   }
 }

@@ -1,67 +1,44 @@
 package frc.robot;
-
+	
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commands.*;
-import frc.robot.commands.DriveCommand;
-import frc.robot.commands.LiftCommand;
-import frc.robot.subsystems.ClimbSubsystem;
-import frc.robot.subsystems.DriveSubsystem;
-import frc.robot.subsystems.GrabSubsystem;
-import frc.robot.subsystems.LiftSubsystem;
-import frc.robot.subsystems.NotDriveSubsystem;
-import frc.robot.Logger;
+import frc.robot.subsystems.*;
+import edu.wpi.first.cameraserver.*;
 
 public class Robot extends TimedRobot {
+
+  //subsystems
   public static DriveSubsystem driveSubsystem;
-  public static NotDriveSubsystem notDriveSubsystem;
   public static ClimbSubsystem climbSubsystem;
   public static GrabSubsystem grabSubsystem;
   public static LiftSubsystem liftSubsystem;
-
   public static OI oi;
 
   public static LiftCommand liftCommand;
-  public static GrabCommand grabCommand;
-  public static ReleaseCommand releaseCommand;
-  public static ExtendCommand extendCommand;
-  public static DriveCommand driveCommand;
-  public static NotDriveCommand notDriveCommand;
-  public static MonitorCommand monitorCommand;
-  public static AutonomousSandstormCommand sandstormCommand;
-  public static ClimbCommand climbCommand;
-
-  private static Command autonomousCommand;
-  private static SendableChooser<Command> autonomousCommandDropdown;
-
-  private static AutonomousModeChooser autonomousModeChooser;
+  Command driveCommand;
+  Command monitorCommand;
+  Command autonomousCommand;
+  SendableChooser<Command> autonomousCommandDropdown = new SendableChooser<>();
 
   @Override
   public void robotInit() {
+    CameraServer.getInstance().startAutomaticCapture(0);
     oi = new OI();
+    autonomousCommandDropdown.setDefaultOption("Default Auto", new DriveCommand());
+    SmartDashboard.putData("Auto mode", autonomousCommandDropdown);
 
+    //set up subsystems
     driveSubsystem = new DriveSubsystem();
-    notDriveSubsystem = new NotDriveSubsystem();
     climbSubsystem = new ClimbSubsystem();
     grabSubsystem = new GrabSubsystem();
     liftSubsystem = new LiftSubsystem();
-
-    liftCommand = new LiftCommand(0);
-    grabCommand = new GrabCommand();
-    releaseCommand = new ReleaseCommand();
-    extendCommand = new ExtendCommand("in");
     driveCommand = new DriveCommand();
-    climbCommand = new ClimbCommand();
-
-    autonomousCommandDropdown = new SendableChooser<>();
-    autonomousModeChooser = new AutonomousModeChooser(autonomousCommandDropdown);
-    autonomousModeChooser.setup();
-
-    SmartDashboard.putData("Auto mode", autonomousCommandDropdown);
     monitorCommand = new MonitorCommand();
+    liftCommand = new LiftCommand();
   }
 
   @Override
@@ -79,26 +56,11 @@ public class Robot extends TimedRobot {
 
   @Override
   public void autonomousInit() {
-    Logger.Log("autonomous initiated");
     autonomousCommand = autonomousCommandDropdown.getSelected();
-    Logger.Log("command selected");
-
-    liftSubsystem.resetEncoder();
-    Logger.Log("encoders reset");
 
     liftCommand.start();
-    Logger.Log("liftComm activated");
 
-    grabCommand.start();
-    releaseCommand.start();
-    Logger.Log("grabComms activated");
-
-    extendCommand.start();
-    Logger.Log("exComm activated");
-
-    monitorCommand.start();
-    Logger.Log("monitorComm activated");
-
+    // schedule the autonomous command (example)
     if (autonomousCommand != null) {
     autonomousCommand.start();
     }
@@ -111,21 +73,12 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopInit() {
-    Logger.Log("teleop initiated");
-    RobotMap.setPoint=0;
-    
-    liftSubsystem.resetEncoder();
-    Logger.Log("encoders reset");
-
+    RobotMap.liftSetPoint=0;
     driveCommand.start();
-    Logger.Log("driveComm activated");
-    
-    climbCommand.start();
-    Logger.Log("climbComm activated");
-    
+    monitorCommand.start();
+    liftSubsystem.resetEncoder();
     if (autonomousCommand != null) {
     autonomousCommand.cancel();
-    Logger.Log("Auton nULL");
     }
   }
 
@@ -137,8 +90,4 @@ public class Robot extends TimedRobot {
   @Override
   public void testPeriodic() {
   }
-
-public static ClimbSubsystem climbSubsystem() {
-	return null;
-}
 }
