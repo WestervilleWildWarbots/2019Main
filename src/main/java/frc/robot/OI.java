@@ -4,6 +4,12 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import frc.robot.commands.LiftAdjustmentCommand;
 import frc.robot.commands.LiftCommand;
+<<<<<<< HEAD
+=======
+import frc.robot.commands.ReleaseCommand;
+
+import frc.robot.commands.PositionAdjustCommandGroup;
+>>>>>>> master
 
 public class OI {
   // Makes the axis of the joystick exist
@@ -61,8 +67,33 @@ public class OI {
     private static JoystickButton maxOut = new JoystickButton(xBoxController, 3);
 
     public OI(){
+<<<<<<< HEAD
     armUp.whenPressed(new LiftAdjustmentCommand(-100));
 	armDown.whenPressed(new LiftAdjustmentCommand(100));
     maxOut.whenPressed(new LiftCommand());
+=======
+    BButton.whileHeld(new ExtendCommand("out"));
+    BButton.whenReleased(new ExtendCommand("in"));
+
+    leftBumper.whileHeld(new ReleaseCommand());
+   
+    rightBumper.whileHeld(new GrabCommand());
+
+    trigger.whenPressed(new PositionAdjustCommandGroup());
+
+   
+
+    AButton.whenPressed(new LiftCommand(0));
+
+    XButton.whenPressed(new LiftCommand(0));
+
+    YButton.whenPressed(new LiftCommand(0));
+ 
+    dPadDown.whenPressed(new LiftCommand(0));
+
+    dPadLeft.whenPressed(new LiftCommand(0));
+
+    dPadUp.whenPressed(new LiftCommand(0));
+>>>>>>> master
   }
 }
