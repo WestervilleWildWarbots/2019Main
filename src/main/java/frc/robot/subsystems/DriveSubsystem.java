@@ -1,4 +1,3 @@
-
 package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
@@ -17,7 +16,7 @@ public class DriveSubsystem extends Subsystem {
   private static WPI_TalonSRX frontRight;
   private static WPI_TalonSRX backLeft;
   private static WPI_TalonSRX backRight;
-  
+
   /*
    * NOTICE: Using the NetworkTable
    * ==============================
@@ -65,15 +64,36 @@ public class DriveSubsystem extends Subsystem {
 
   @Override
   public void initDefaultCommand(){
-    
+
   }
-  
-  public static int getLeftEnc() { //test method
+
+  /**
+   * Gets number of ticks for left motor.
+   *
+   * @return number of ticks
+   */
+  public static int getLeftTicks() {
     return frontLeft.getSensorCollection().getQuadraturePosition();
   }
 
-  public static int getRightEnc() { //test method
+  /**
+   * Gets number of ticks for left motor.
+   *
+   * @return number of ticks
+   */
+  public static int getRightTicks() {
     return frontRight.getSensorCollection().getQuadraturePosition();
+  }
+
+  /**
+   * Converts feet to ticks.
+   * NOTE: This doesn't work yet.
+   *
+   * @return the number of ticks
+   */
+  public static int distanceToTicks(double distanceInFeet){
+    //TODO implement
+    return 100;
   }
 
   public void drive(double leftSpeed, double rightSpeed) {
@@ -90,11 +110,11 @@ public class DriveSubsystem extends Subsystem {
         frontLeft.set(OI.getJoystickAxis(RobotMap.DRIVE_STICK, Axis.X)*spd);
         frontRight.set(OI.getJoystickAxis(RobotMap.DRIVE_STICK, Axis.X)*-spd);
       }
-    
+
     }else if(OI.getJoystickAxis(RobotMap.DRIVE_STICK, Axis.Z)>0){
       frontLeft.set(OI.getJoystickAxis(RobotMap.DRIVE_STICK,Axis.Z)* -spd);
       frontRight.set(OI.getJoystickAxis(RobotMap.DRIVE_STICK, Axis.Z)*-spd);
-    
+
     }else if(OI.getJoystickAxis(RobotMap.DRIVE_STICK, Axis.Z)<0){
       frontLeft.set(OI.getJoystickAxis(RobotMap.DRIVE_STICK, Axis.Z)*spd);
       frontRight.set(OI.getJoystickAxis(RobotMap.DRIVE_STICK, Axis.Z)*spd);
@@ -104,10 +124,7 @@ public class DriveSubsystem extends Subsystem {
     frontRight.set(0);
     }
     backLeft.follow(frontLeft);
-    backRight.follow(frontRight);  
+    backRight.follow(frontRight);
   }
 */
-
-
-
 }
