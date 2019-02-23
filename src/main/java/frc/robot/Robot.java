@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commands.*;
 import frc.robot.commands.DriveCommand;
 import frc.robot.commands.LiftCommand;
-import frc.robot.subsystems.ClimbSubsystem;
+
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.GrabSubsystem;
 import frc.robot.subsystems.LiftSubsystem;
@@ -18,7 +18,7 @@ import frc.robot.Logger;
 public class Robot extends TimedRobot {
   public static DriveSubsystem driveSubsystem;
   public static NotDriveSubsystem notDriveSubsystem;
-  public static ClimbSubsystem climbSubsystem;
+
   public static GrabSubsystem grabSubsystem;
   public static LiftSubsystem liftSubsystem;
 
@@ -32,7 +32,7 @@ public class Robot extends TimedRobot {
   public static NotDriveCommand notDriveCommand;
   public static MonitorCommand monitorCommand;
   public static AutonomousSandstormCommand sandstormCommand;
-  public static ClimbCommand climbCommand;
+
 
   private static Command autonomousCommand;
   private static SendableChooser<Command> autonomousCommandDropdown;
@@ -45,7 +45,7 @@ public class Robot extends TimedRobot {
 
     driveSubsystem = new DriveSubsystem();
     notDriveSubsystem = new NotDriveSubsystem();
-    climbSubsystem = new ClimbSubsystem();
+
     grabSubsystem = new GrabSubsystem();
     liftSubsystem = new LiftSubsystem();
 
@@ -54,7 +54,7 @@ public class Robot extends TimedRobot {
     releaseCommand = new ReleaseCommand();
     extendCommand = new ExtendCommand("in");
     driveCommand = new DriveCommand();
-    climbCommand = new ClimbCommand();
+
 
     autonomousCommandDropdown = new SendableChooser<>();
     autonomousModeChooser = new AutonomousModeChooser(autonomousCommandDropdown);
@@ -120,8 +120,7 @@ public class Robot extends TimedRobot {
     driveCommand.start();
     Logger.Log("driveComm activated");
     
-    climbCommand.start();
-    Logger.Log("climbComm activated");
+   
     
     if (autonomousCommand != null) {
     autonomousCommand.cancel();
@@ -138,7 +137,5 @@ public class Robot extends TimedRobot {
   public void testPeriodic() {
   }
 
-public static ClimbSubsystem climbSubsystem() {
-	return null;
-}
+
 }

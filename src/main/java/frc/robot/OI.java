@@ -8,7 +8,7 @@ import frc.robot.commands.ExtendCommand;
 import frc.robot.commands.GrabCommand;
 import frc.robot.commands.LiftCommand;
 import frc.robot.commands.ReleaseCommand;
-import frc.robot.commands.ClimbCommand;
+
 import frc.robot.commands.PositionAdjustCommandGroup;
 
 public class OI {
@@ -88,7 +88,7 @@ public class OI {
 
     trigger.whenPressed(new PositionAdjustCommandGroup());
 
-    button2.whenPressed(new ClimbCommand());
+   
 
     AButton.whenPressed(new LiftCommand(0));
 
