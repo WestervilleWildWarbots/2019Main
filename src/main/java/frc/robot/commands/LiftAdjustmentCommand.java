@@ -1,6 +1,7 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+import frc.robot.Logger;
 import frc.robot.RobotMap;
 
 public class LiftAdjustmentCommand extends Command {
@@ -20,6 +21,7 @@ public class LiftAdjustmentCommand extends Command {
     // Called repeatedly when this Command is scheduled to run
     // Changes the position the arm stays at and makes it so the liftSetPoint can't be below the bottom limit
     protected void execute() {
+        Logger.Log("LiftAdjustmentCommand Executed");
     	if(move < 0 || RobotMap.liftSetPoint < 0) {
     		RobotMap.liftSetPoint += move;
     	} else {

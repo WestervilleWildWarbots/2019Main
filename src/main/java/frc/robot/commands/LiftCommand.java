@@ -1,4 +1,6 @@
 package frc.robot.commands;
+
+import frc.robot.Logger;
 import frc.robot.OI;
 import frc.robot.OI.Axis;
 import frc.robot.Robot;
@@ -18,6 +20,7 @@ public class LiftCommand extends Command {
     // Called repeatedly when this Command is scheduled to run
     // Changes the position of the Arm based on the Joystick's left joystick
     protected void execute() {
+        Logger.Log("LiftCommand Execued");
     	double leftY = OI.getJoystickAxis(RobotMap.XBOX_CONTROLLER, Axis.LeftY);
     	if (leftY != 0) {
     		if(RobotMap.liftSetPoint <0 || (RobotMap.liftSetPoint >= 0 && leftY < 0)) {

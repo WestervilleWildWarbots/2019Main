@@ -1,6 +1,7 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+import frc.robot.Logger;
 import frc.robot.Robot;
 import frc.robot.subsystems.DriveSubsystem;
 
@@ -22,6 +23,7 @@ public class AutonomousDriveCommand extends Command {
 
   @Override
   protected void execute() {
+    Logger.Log("AutonomousDriveCommand Executed");
     if(x + amount > System.currentTimeMillis()) {
       driveSubsystem.drive(.3,.3);
     } else {

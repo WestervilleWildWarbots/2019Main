@@ -2,6 +2,7 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.OI.Axis;
+import frc.robot.Logger;
 import frc.robot.Robot;
 import frc.robot.RobotMap;
 
@@ -17,6 +18,7 @@ public class DriveCommand extends Command {
 
   @Override
   protected void execute() {
+    Logger.Log("DriveCommand Executed");
     double y = Robot.oi.getJoystickAxis(RobotMap.DRIVE_STICK, Axis.Y);
     double z = Robot.oi.getJoystickAxis(RobotMap.DRIVE_STICK, Axis.Z);
     if (z < 0) {

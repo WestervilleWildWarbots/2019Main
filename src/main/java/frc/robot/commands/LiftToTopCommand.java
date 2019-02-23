@@ -1,6 +1,7 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+import frc.robot.Logger;
 import frc.robot.RobotMap;
 
 // Sets the arm to the very top
@@ -18,6 +19,7 @@ public class LiftToTopCommand extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+        Logger.Log("LiftToTopCommand Executed");
     	RobotMap.liftSetPoint = -3600; // The integer position of the top of the robot
     }
 
