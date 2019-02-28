@@ -8,7 +8,10 @@ import frc.robot.subsystems.GrabSubsystem;
 
 public class GrabCommand extends Command {
   private GrabSubsystem grab = Robot.grabSubsystem;
-  public GrabCommand() {
+
+  String dirr;
+
+  public GrabCommand(String dirr) {
   }
 
   @Override
@@ -17,10 +20,8 @@ public class GrabCommand extends Command {
 
   @Override
   protected void execute() {
-    Logger.Log("GrabCommand Executed");
-    grab.grab(false);
+    grab.grab(dirr);
     grab.extend(false);
-  
   }
 
   @Override
@@ -30,14 +31,13 @@ public class GrabCommand extends Command {
 
   @Override
   protected void end() {
-    grab.grab(true);
+    grab.grab("off");
     grab.extend(true);
-  
   }
 
   @Override
   protected void interrupted() {
-    grab.grab(true);
+    grab.grab("off");
     grab.extend(true);
 
   }
