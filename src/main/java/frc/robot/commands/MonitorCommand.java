@@ -1,18 +1,11 @@
 package frc.robot.commands;
-
-import java.util.Map;
-
-import edu.wpi.first.wpilibj.AnalogInput;
-import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.shuffleboard.BuiltInWidgets;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import frc.robot.Logger;
 import frc.robot.RobotMap;
 import frc.robot.subsystems.*;
-import edu.wpi.first.cameraserver.*;
 
 import edu.wpi.first.networktables.NetworkTableInstance;
 
@@ -35,6 +28,7 @@ public class MonitorCommand extends Command {
 
   @Override
   protected void execute() {
+        Logger.Log("monitoring");
         //Encoders to SmartDashboard
         table.getEntry("encoder_valueLift").setValue(LiftSubsystem.getLiftEnc());
         SmartDashboard.putNumber("Lift Encoder", LiftSubsystem.getLiftEnc());
@@ -72,14 +66,17 @@ public class MonitorCommand extends Command {
   }
   @Override
   protected boolean isFinished() {
+    Logger.Log("Monitor Command Finished");
     return false;
   }
   
   @Override
   protected void end() {
+    Logger.Log("Monitor Command Ended");
   }
   
   @Override
   protected void interrupted() {
+    Logger.Log("Monitor Command INTERRUPTED");
   }
 }

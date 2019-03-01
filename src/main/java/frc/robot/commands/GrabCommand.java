@@ -20,23 +20,27 @@ public class GrabCommand extends Command {
 
   @Override
   protected void execute() {
+    Logger.Log("GrabCommand Executed");
     grab.grab(dirr);
     grab.extend(false);
   }
 
   @Override
   protected boolean isFinished() {
+    Logger.Log("Grab Command Finished");
     return false;
   }
 
   @Override
   protected void end() {
+    Logger.Log("Grab Command End");
     grab.grab("off");
     grab.extend(true);
   }
 
   @Override
   protected void interrupted() {
+    Logger.Log("Grab Command INTERRUPTED");
     grab.grab("off");
     grab.extend(true);
 

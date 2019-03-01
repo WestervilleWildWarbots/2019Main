@@ -2,14 +2,13 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Logger;
-import frc.robot.Robot;
+import java.lang.System;
 import frc.robot.subsystems.DriveSubsystem;
 
 public class AutonomousDriveCommand extends Command {
   private long x = 2500; // How long to move for
   private boolean isDone = false; // After the time has passed
   private int amount; // The starting amount of time
-  private DriveSubsystem driveSubsystem = Robot.driveSubsystem;
   
   public AutonomousDriveCommand(int ticks) {
     amount = ticks;
@@ -25,7 +24,7 @@ public class AutonomousDriveCommand extends Command {
   protected void execute() {
     Logger.Log("AutonomousDriveCommand Executed");
     if(x + amount > System.currentTimeMillis()) {
-      driveSubsystem.drive(.3,.3);
+      DriveSubsystem.drive(.3,.3);
     } else {
       isDone = true;
     }
@@ -33,17 +32,20 @@ public class AutonomousDriveCommand extends Command {
 
   @Override
   protected boolean isFinished() {
+    Logger.Log("AutonomousDriveCommand Finished");
     return isDone;
   }
 
   @Override
   protected void end() {
+    Logger.Log("AutonomousDriveCommand Ended");
     x = 0;
-    driveSubsystem.drive(0,0);
+    DriveSubsystem.drive(0,0);
   }
 
   @Override
   protected void interrupted() {
-    driveSubsystem.drive(0,0);
+    Logger.Log("AutonomousDriveCommand INTERRUPTED");
+    DriveSubsystem.drive(0,0);
   }
 }

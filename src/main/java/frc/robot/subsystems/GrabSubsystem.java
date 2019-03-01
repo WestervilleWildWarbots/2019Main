@@ -29,15 +29,21 @@ public class GrabSubsystem extends Subsystem {
   }
   
   public void grab( String dir) {
+    Logger.Log("grab active");
     if(dir == "grabOff"){
+
+      Logger.Log("grabOff");
+      
       gOffing = true;
     }
 
     if(dir == "relOff"){
+      Logger.Log("releaseOff");
       rOffing = true;
     }
 
   if(dir == "grab"){
+    Logger.Log("grabbing");
     grabSolL.set(Value.kForward);
     grabSolR.set(Value.kReverse);
 
@@ -45,6 +51,7 @@ public class GrabSubsystem extends Subsystem {
 }
 
 if(dir == "release"){
+  Logger.Log("releasing");
   grabSolL.set(Value.kReverse);
   grabSolR.set(Value.kForward);
 
@@ -52,28 +59,35 @@ if(dir == "release"){
 }
 
 if(dir == "off"){
+  Logger.Log("grab set off");
   gOffing = true;
   rOffing = true;
 }
 
 if(gOffing && rOffing){
+  Logger.Log("grab off");
   grabSolL.set(Value.kOff);
   grabSolR.set(Value.kOff);
 }
   }
   public void extend(boolean extendOff) {
-if(OI.getJoystickAxis(RobotMap.XBOX_CONTROLLER, Axis.RightY)<0){
-outSol.set(Value.kForward);
+    Logger.Log("extend active");
+    if(OI.getJoystickAxis(RobotMap.XBOX_CONTROLLER, Axis.RightY)<0){
+      Logger.Log("extending");
+      outSol.set(Value.kForward);
 
 }else if(OI.getJoystickAxis(RobotMap.XBOX_CONTROLLER, Axis.RightY)>0){
-outSol.set(Value.kReverse);
+  Logger.Log("extend in");  
+    outSol.set(Value.kReverse);
 
 }else{
+  Logger.Log("INVALID INPUT");
   outSol.set(Value.kOff);
 
 } 
 
 if(extendOff= true){
+  Logger.Log("extend off");
   outSol.set(Value.kOff);
 }
   }

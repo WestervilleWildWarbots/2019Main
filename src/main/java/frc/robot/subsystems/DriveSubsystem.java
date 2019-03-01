@@ -6,12 +6,9 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.AnalogInput;
-import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.Logger;
-import frc.robot.OI;
-import frc.robot.OI.Axis;
 import frc.robot.RobotMap;
 
 public class DriveSubsystem extends Subsystem {
@@ -66,8 +63,6 @@ private static AnalogGyro Gyro = new AnalogGyro(RobotMap.ANALOG_GYRO);
     frontLeft.setSelectedSensorPosition(0);
     frontRight.setSelectedSensorPosition(0);
 
-    //frontDist = new AnalogInput();
-
     backLeft.follow(frontLeft);
     backRight.follow(frontRight);
   }
@@ -107,7 +102,7 @@ private static AnalogGyro Gyro = new AnalogGyro(RobotMap.ANALOG_GYRO);
       return Gyro.getAngle();
   }
 
-  public void drive(double leftSpeed, double rightSpeed) {
+  public static void drive(double leftSpeed, double rightSpeed) {
     Logger.Log("DriveSubsystem drived");
     frontLeft.set(leftSpeed);
     frontRight.set(-rightSpeed);

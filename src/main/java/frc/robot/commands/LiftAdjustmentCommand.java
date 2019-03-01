@@ -32,15 +32,18 @@ public class LiftAdjustmentCommand extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
+        Logger.Log("LiftAdjustmentCommand Finished");
         return true; // Causes execute() to run a single time
     }
 
     // Called once after isFinished returns true
     protected void end() {
+        Logger.Log("LiftAdjustmentCommand Ended");
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+        Logger.Log("LiftAdjustmentCommand INTERRUPTED");
     }
 }
