@@ -7,7 +7,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.subsystems.GrabSubsystem;
 
 public class GrabCommand extends Command {
-  private GrabSubsystem grab = Robot.grabSubsystem;
+  private GrabSubsystem grabsys = Robot.grabSubsystem;
 
   String dirr;
 
@@ -21,8 +21,8 @@ public class GrabCommand extends Command {
   @Override
   protected void execute() {
     Logger.Log("GrabCommand Executed");
-    grab.grab(dirr);
-    grab.extend(false);
+    grabsys.grab(dirr);
+    grabsys.extend(false);
   }
 
   @Override
@@ -34,15 +34,15 @@ public class GrabCommand extends Command {
   @Override
   protected void end() {
     Logger.Log("Grab Command End");
-    grab.grab("off");
-    grab.extend(true);
+    grabsys.grab("off");
+    grabsys.extend(true);
   }
 
   @Override
   protected void interrupted() {
     Logger.Log("Grab Command INTERRUPTED");
-    grab.grab("off");
-    grab.extend(true);
+    grabsys.grab("off");
+    grabsys.extend(true);
 
   }
 }

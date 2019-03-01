@@ -8,8 +8,8 @@ import frc.robot.RobotMap;
 import frc.robot.subsystems.DriveSubsystem;
 
 public class DriveCommand extends Command {
-  //private DriveSubsystem drive = Robot.driveSubsystem;
-
+  private DriveSubsystem drivesys;
+ 
   public DriveCommand() {
   }
 
@@ -32,7 +32,7 @@ public class DriveCommand extends Command {
     double leftSpeed = (y-z)*throttle;
     double rightSpeed= (y+z)*throttle;
 
-    DriveSubsystem.drive(leftSpeed, rightSpeed);
+    drivesys.drive(leftSpeed, rightSpeed);
     
 //    Robot.liftSubsystem.moveArm(-OI.getJoystickAxis(RobotMap.XBOX_CONTROLLER, Axis.LeftY));
 
@@ -47,12 +47,12 @@ public class DriveCommand extends Command {
   @Override
   protected void end() {
     Logger.Log("DriveCommand Ended");
-   DriveSubsystem.drive(0,0);
+    drivesys.drive(0,0);
   }
 
   @Override
   protected void interrupted() {
     Logger.Log("DriveCommand INTERRUPTED");
-    DriveSubsystem.drive(0,0);
+    drivesys.drive(0,0);
   }
 }

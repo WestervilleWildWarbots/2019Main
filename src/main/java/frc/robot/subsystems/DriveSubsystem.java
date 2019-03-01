@@ -102,7 +102,7 @@ private static AnalogGyro Gyro = new AnalogGyro(RobotMap.ANALOG_GYRO);
       return Gyro.getAngle();
   }
 
-  public static void drive(double leftSpeed, double rightSpeed) {
+  public void drive(double leftSpeed, double rightSpeed) {
     Logger.Log("DriveSubsystem drived");
     frontLeft.set(leftSpeed);
     frontRight.set(-rightSpeed);
