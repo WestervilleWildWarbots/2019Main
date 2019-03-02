@@ -1,0 +1,11 @@
+Team Name
+Team Number
+Alliance Color
+Autonomous Description
+Number of Cargo
+Number of Hatches
+Cargo Ship Y/N
+Rocketship Y/N
+if Y, Level of Rocketship
+Level of Climb
+Other Notes
