@@ -25,15 +25,18 @@ public class LiftToTopCommand extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
+        Logger.Log("LiftToTopCommand Finished");
         return true; // Makes execute run a single time instead of repeatedly
     }
 
     // Called once after isFinished returns true
     protected void end() {
+        Logger.Log("LiftToTopCommand Ended");
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+        Logger.Log("LiftToTopCommand INTERRUPTED");
     }
 }

@@ -20,7 +20,7 @@ public class LiftCommand extends Command {
     // Called repeatedly when this Command is scheduled to run
     // Changes the position of the Arm based on the Joystick's left joystick
     protected void execute() {
-        Logger.Log("LiftCommand Execued");
+        Logger.Log("LiftCommand Executed");
     	double leftY = OI.getJoystickAxis(RobotMap.XBOX_CONTROLLER, Axis.LeftY);
     	if (leftY != 0) {
     		if(RobotMap.liftSetPoint <0 || (RobotMap.liftSetPoint >= 0 && leftY < 0)) {
@@ -38,17 +38,20 @@ public class LiftCommand extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
+        Logger.Log("LiftCommand Finished");
         return false;
     }
 
     // Called once after isFinished returns true
     protected void end() {
+        Logger.Log("LiftCommand Ended");
     	Robot.liftSubsystem.set(0);
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+        Logger.Log("LiftCommand INTERRUPTED");
     	Robot.liftSubsystem.set(0);
     }
 }

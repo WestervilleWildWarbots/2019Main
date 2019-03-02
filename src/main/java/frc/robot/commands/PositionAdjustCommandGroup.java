@@ -18,14 +18,17 @@ public class PositionAdjustCommandGroup extends Command {
 
   @Override
   protected boolean isFinished() {
+    Logger.Log("PositionAdjustCommandGroup Finished");
     return false;
   }
 
   @Override
   protected void end() {
+    Logger.Log("PositionAdjustCommandGroup Ended");
   }
 
   @Override
   protected void interrupted() {
+    Logger.Log("PositionAdjustCommandGroup Interrupted");
   }
 }
