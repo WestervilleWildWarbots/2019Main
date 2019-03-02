@@ -1,0 +1,11 @@
+What drive train do you use?
+What programming language did you use?
+What do you focus on during the match?
+How do you plan on scoring points?
+How many points do you think you can score in a match?
+Do you score with cargo, hatches, or both?
+Can you load the cargo ship?
+Can you load the rocketship? If so, which heights?
+Can you climb? If so, to which height?
+Does your robot have any special capabilities?
+
