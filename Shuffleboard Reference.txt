@@ -1,0 +1,22 @@
+Creating New Tab:
+
+ShuffleboardTab TabName = Shuffleboard.getTab("Tab Title");
+
+
+Method One (SmartDashboard):
+
+SmartDashboard.putNumber("string", value);
+
+
+Method Two (Shuffleboard):
+
+Shuffleboard.getTab("TabName").add("string", value").getEntry();
+
+//getEntry() allows updating of the data
+
+
+Method Three (Persistent):
+
+Shuffleboard.getTab("TabName").addPersistent("string", value");
+
+//Data is persistent
