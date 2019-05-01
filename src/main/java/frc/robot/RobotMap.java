@@ -3,6 +3,9 @@ package frc.robot;
 import edu.wpi.first.wpilibj.Sendable;
 
 public class RobotMap {
+  //set to true to use the pathfinder library, false for manual autonomous
+  public static final boolean USE_PATHFINDER_LIB = false;
+
   //Autonomous
   public static final double AUTONOMOUS_SPEED = .25;
 
@@ -10,27 +13,26 @@ public class RobotMap {
   public static boolean ALLOW_LIFT_MOVEMENT = true; // Enable / disable the lift from moving up and down
 
   // Cargo/hatch lifter
-	public static final int LIFT_TALON = 31;
-	public static double liftSetPoint = 0;
+  public static final int LIFT_TALON = 41;
+  public static double liftSetPoint = 0;
+  public static double armPos = 0;
+  public static boolean isAligned = false;
 
   //Posible drive methods
   public static final int DRIVE_STICK = 0;
-  public static final int XBOX_CONTROLLER = 1;
+  public static final int XBOX_CONTROLLER = 2;
   public static final int FRONT_DISTANCE_SENSOR = 7;
   public static final int REAR_DISTANCE_SENSOR = 8;
   public static final int LEFT_DISTANCE_SENSOR = 25;
   public static final int RIGHT_DISTANCE_SENSOR = 26;
   public static final int LINE_TRACKER = 6;
-  public static final int ANALOG_GYRO = 9;
+  public static final int ANALOG_GYRO = 1;
 
 
   //ids are wrong - written in as to prevent error
-  public static final int PNUM_GRABL = 6;
-  public static final int PNUM_RELEASEL = 1;
-  public static final int PNUM_GRABR = 2;
-  public static final int PNUM_RELEASER = 3;
-  public static final int PNUM_OUT = 4;
-  public static final int PNUM_IN = 5;
+  public static final int PNUM_GRABL = 2;
+  public static final int PNUM_GRABR = 0;
+  public static final int PNUM_OUT = 3;
   
   public static final int MOTOR_FL = 11;
   public static final int MOTOR_FR = 12;
@@ -40,16 +42,21 @@ public class RobotMap {
   public static final double DEFAULT_VALUE=0;
   
   // Arm buttons
-  public static final int ARM_UP_BUTTON = 4; // Button Y
+  public static final int ARM_UP_BUTTON = 2; // Button Y
   public static final int ARM_DOWN_BUTTON = 3; // Button X
 
   public static int ENCODER_L = 20;
   public static int ENCODER_R = 21;
   public static int ENCODER_LIFT = 24;
 
-public static double isAligned;
-
   //Sensors
   public static final int TOP_LIMIT_SWITCH_ID = 0;
-	public static final int BOTTOM_LIMIT_SWITCH_ID = 1;
+  public static final int BOTTOM_LIMIT_SWITCH_ID = 1;
+
+  //Autonomous drive constants
+  //TODO these must be assigned for things to work right
+  public static final int TICKS_PER_REVOLUTION = 0;
+  public static final double WHEEL_DIAMETER = 0;
+  public static final double MAX_VELOCITY = 0;
+  public static final boolean USE_ENCODERS = false;
 }

@@ -1,4 +1,4 @@
-package frc.robot.commands;
+/*package frc.robot.commands;
 
 import frc.robot.Logger;
 import frc.robot.OI;
@@ -55,3 +55,4 @@ public class LiftCommand extends Command {
     	Robot.liftSubsystem.set(0);
     }
 }
+*/

@@ -4,7 +4,7 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import frc.robot.commands.LiftAdjustmentCommand;
 import frc.robot.commands.*;
-import frc.robot.commands.GrabCommand;
+//import frc.robot.commands.GrabCommand;
 
 public class OI {
   // Makes the axis of the joystick exist
@@ -13,7 +13,7 @@ public class OI {
 
   // Makes the joystick and xbox controller exist
 
-  private static Joystick driveStick = new Joystick(RobotMap.DRIVE_STICK);
+  public static Joystick driveStick = new Joystick(RobotMap.DRIVE_STICK);
   private static Joystick xBoxController = new Joystick(RobotMap.XBOX_CONTROLLER);
 
   public static double getJoystickAxis(int joystickID, Axis axis) {
@@ -57,21 +57,23 @@ public class OI {
 
       return axisValue;
   }
-    private static JoystickButton armUp = new JoystickButton(xBoxController, RobotMap.ARM_UP_BUTTON);
-	private static JoystickButton armDown = new JoystickButton(xBoxController, RobotMap.ARM_DOWN_BUTTON);
-    private static JoystickButton maxOut = new JoystickButton(xBoxController, 3);
+    //private static JoystickButton armUp = new JoystickButton(xBoxController, RobotMap.ARM_UP_BUTTON);
+	//private static JoystickButton armDown = new JoystickButton(xBoxController, RobotMap.ARM_DOWN_BUTTON);
+    //private static JoystickButton maxOut = new JoystickButton(xBoxController, );
     
-    private static JoystickButton grabButton = new JoystickButton(xBoxController, 5);
-    private static JoystickButton releaseButton = new JoystickButton(xBoxController, 4);
+    //private static JoystickButton grabButton = new JoystickButton(xBoxController, 5);
+    //private static JoystickButton releaseButton = new JoystickButton(xBoxController, 4);
+    //private static JoystickButton pushButton = new JoystickButton(xBoxController, 1);
 
     public OI(){
-    armUp.whenPressed(new LiftAdjustmentCommand(-100));
-	armDown.whenPressed(new LiftAdjustmentCommand(100));
-    maxOut.whenPressed(new LiftCommand());
+    //armUp.whenPressed(new LiftAdjustmentCommand(-100));
+	//armDown.whenPressed(new LiftAdjustmentCommand(100));
+    //maxOut.whenPressed(new LiftCommand());
 
-    grabButton.whileHeld(new GrabCommand("grab"));
-    releaseButton.whileHeld(new GrabCommand("release"));
-    grabButton.whenInactive(new GrabCommand("grabOff"));
-    releaseButton.whenInactive(new GrabCommand("relOff"));
+    //grabButton.whenPressed(new GrabCommand("grab"));
+    //releaseButton.whenPressed(new GrabCommand("release"));
+    //.whenPressed(new GrabCommand("extend"));
+    
+
   }
 }

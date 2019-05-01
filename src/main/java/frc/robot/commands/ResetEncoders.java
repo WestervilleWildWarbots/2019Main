@@ -1,4 +1,4 @@
-package frc.robot.commands;
+/*package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Logger;
@@ -35,3 +35,4 @@ public class ResetEncoders extends Command {
     protected void interrupted() {
     }
 }
+*/

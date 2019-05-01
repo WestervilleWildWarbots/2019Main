@@ -1,4 +1,3 @@
-
 package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
@@ -11,43 +10,20 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.Logger;
 import frc.robot.RobotMap;
 
-public class DriveSubsystem extends Subsystem {
+import frc.robot.AutoDrivable;
+
+public class DriveSubsystem extends Subsystem implements AutoDrivable {
   private static WPI_TalonSRX frontLeft;
   private static WPI_TalonSRX frontRight;
   private static WPI_TalonSRX backLeft;
   private static WPI_TalonSRX backRight;
 
- private static AnalogInput  FrontDist = new AnalogInput(RobotMap.FRONT_DISTANCE_SENSOR);
- private static AnalogInput  RearDist = new AnalogInput(RobotMap.REAR_DISTANCE_SENSOR);
- private static  AnalogInput  LeftDist = new AnalogInput(RobotMap.LEFT_DISTANCE_SENSOR);
- private static AnalogInput  RightDist = new AnalogInput(RobotMap.RIGHT_DISTANCE_SENSOR);
+  //private static AnalogInput FrontDist = new AnalogInput(RobotMap.FRONT_DISTANCE_SENSOR);
+  //private static AnalogInput RearDist = new AnalogInput(RobotMap.REAR_DISTANCE_SENSOR);
+  //private static AnalogInput LeftDist = new AnalogInput(RobotMap.LEFT_DISTANCE_SENSOR);
+  //private static AnalogInput RightDist = new AnalogInput(RobotMap.RIGHT_DISTANCE_SENSOR);
 
-private static AnalogGyro Gyro = new AnalogGyro(RobotMap.ANALOG_GYRO);
-
-  /*
-   * NOTICE: Using the NetworkTable
-   * ==============================
-   *
-   * If you want to store data in the NetworkTable, you need to use a
-   * NetworkTableEntry. These objects work like key-pair values. To get an
-   * entry, call table.getEntry(String key).setValue(Object obj). The key
-   * should be the name of the information being stored. The obj in setValue()
-   * can be any object or primitive variable.
-   *
-   * Ex: table.getEntry("speed").setValue(42);
-   *
-   * To later retrieve this value (in any subsystem!), use
-   * table.getEntry.getDouble() or the appropriate type method eg
-   * getBoolean(). Note: you must pass a default value that will be returned
-   * in case the key doesn't exist or other errors occur. I recommend passing
-   * 0 when in doubt.
-   *
-   * Ex: double myVelocity = table.getDefault("speed").getDouble(0);
-   *
-   * The above gets the stored value and stores it into myVelocity.
-   * If you want to use a custom data object (don't do this unless you know what
-   * you're doing), call getValue().getValue() and cast to the appropriate type.
-   */
+  private static AnalogGyro Gyro = new AnalogGyro(RobotMap.ANALOG_GYRO);
 
   //initialize the NetworkTable and store a reference to it in table
   private NetworkTableInstance table;
@@ -58,30 +34,46 @@ private static AnalogGyro Gyro = new AnalogGyro(RobotMap.ANALOG_GYRO);
     frontRight = new WPI_TalonSRX(RobotMap.MOTOR_FR);
     backLeft = new WPI_TalonSRX(RobotMap.MOTOR_BL);
     backRight = new WPI_TalonSRX(RobotMap.MOTOR_BR);
-    frontLeft.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 0);
-    frontRight.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 0);
-    frontLeft.setSelectedSensorPosition(0);
-    frontRight.setSelectedSensorPosition(0);
+    //frontLeft.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 0);
+    //frontRight.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 0);
+    //frontLeft.setSelectedSensorPosition(0);
+    //frontRight.setSelectedSensorPosition(0);
+
+    frontRight.setInverted(true);
+    //frontDist = new AnalogInput();
 
     backLeft.follow(frontLeft);
     backRight.follow(frontRight);
   }
+/*
+  private void resetEncoders() {
+    frontLeft.getSensorCollection().setQuadraturePosition(0, 0);
+    frontRight.getSensorCollection().setQuadraturePosition(0, 0);
 
+  }
+*/
   @Override
   public void initDefaultCommand(){
-    
+
   }
-  
-  public static int getLeftEnc() { //test method
+  /*
+  public static int getLeftTicks() {
     Logger.Log("DriveSubsystem got left encoder");
     return frontLeft.getSensorCollection().getQuadraturePosition();
   }
-
-  public static int getRightEnc() { //test method
+*/
+  /*
+  public static int getRightTicks() {
     Logger.Log("DriveSubsystem got right encoder");
     return frontRight.getSensorCollection().getQuadraturePosition();
   }
-
+*/
+  public static int feetToTicks(double distanceInFeet){
+    double ticksPerFoot = RobotMap.TICKS_PER_REVOLUTION/RobotMap.WHEEL_DIAMETER;
+    int ticks = (int)(distanceInFeet * ticksPerFoot);
+    return ticks;
+  }
+  /*
   public static int getFrontDist() {
     return FrontDist.getValue();
   }
@@ -97,44 +89,83 @@ private static AnalogGyro Gyro = new AnalogGyro(RobotMap.ANALOG_GYRO);
   public static int getRightDist() {
     return RightDist.getValue();
   }
-
+*/
   public static double getGyro(){
       return Gyro.getAngle();
+  }
+
+  public double normalizeAngle(double angle){
+    if(angle < 0){
+      return angle + 360;
+    } else{
+      return angle;
+    }
   }
 
   public void drive(double leftSpeed, double rightSpeed) {
     Logger.Log("DriveSubsystem drived");
     frontLeft.set(leftSpeed);
-    frontRight.set(-rightSpeed);
+    frontRight.set(rightSpeed);
   }
 
-/* I Don't know what this is or why its like this and frankly it is dead to me - Robert
-  public void drive(double spd) {
-    if(OI.getJoystickAxis(RobotMap.DRIVE_STICK, Axis.Z) == 0){
-
-      if(OI.getJoystickAxis(RobotMap.DRIVE_STICK, Axis.X) != 0){
-
-        frontLeft.set(OI.getJoystickAxis(RobotMap.DRIVE_STICK, Axis.X)*spd);
-        frontRight.set(OI.getJoystickAxis(RobotMap.DRIVE_STICK, Axis.X)*-spd);
-      }
-    
-    }else if(OI.getJoystickAxis(RobotMap.DRIVE_STICK, Axis.Z)>0){
-      frontLeft.set(OI.getJoystickAxis(RobotMap.DRIVE_STICK,Axis.Z)* -spd);
-      frontRight.set(OI.getJoystickAxis(RobotMap.DRIVE_STICK, Axis.Z)*-spd);
-    
-    }else if(OI.getJoystickAxis(RobotMap.DRIVE_STICK, Axis.Z)<0){
-      frontLeft.set(OI.getJoystickAxis(RobotMap.DRIVE_STICK, Axis.Z)*spd);
-      frontRight.set(OI.getJoystickAxis(RobotMap.DRIVE_STICK, Axis.Z)*spd);
-
-    }else{
+  /* Begin AutoDrivable implementation */
+  @Override
+  public void stop(){
     frontLeft.set(0);
     frontRight.set(0);
-    }
-    backLeft.follow(frontLeft);
-    backRight.follow(frontRight);  
   }
-*/
 
+ 
+  public void turnToHeading(double angleInDegrees){
+    //This should turn the the specified heading and then stop
+    double normalizedAngle = normalizeAngle(angleInDegrees);
 
+    double initialHeading = getGyro();
+    double deltaAngle = normalizedAngle - initialHeading;
 
+    if(deltaAngle <= 180){
+      while(deltaAngle > 0){
+        frontLeft.set(.5);
+        frontRight.set(-.5);
+        deltaAngle = normalizedAngle - getGyro();
+      }
+    } else{
+      while(deltaAngle > 0){
+        frontLeft.set(-.5);
+        frontRight.set(.5);
+        deltaAngle = normalizedAngle - getGyro();
+      }
+    }
+    stop();
+  }
+
+  @Override
+  public void autoDrive(double feet){
+    /*
+    //This should drive $feet feet forward and then stop
+    int ticksToGo = feetToTicks(feet);
+    int initialLeftTicks = getLeftTicks();
+    //int initialRightTicks = getRightTicks();
+
+    //start motors
+    frontLeft.set(.5);
+    frontRight.set(.5);
+
+    while(ticksToGo > 0){
+      ticksToGo -= (getLeftTicks() - initialLeftTicks);
+      //environment checks (eg other robots, other emergency conditions)
+    }
+    stop();
+    */
+    frontLeft.set(.5);
+    frontRight.set(-.5);
+    try{
+      wait((long)(100 * feet));
+    } catch(Exception e){
+
+    }
+    stop();
+  }
+
+  /* End AutoDrivable implementation */
 }

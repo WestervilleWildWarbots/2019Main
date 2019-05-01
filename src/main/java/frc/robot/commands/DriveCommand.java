@@ -9,10 +9,12 @@ import frc.robot.subsystems.DriveSubsystem;
 
 public class DriveCommand extends Command {
   private DriveSubsystem drivesys;
- 
+  private final double speedScale = 1.0;
   public DriveCommand() {
+    if(drivesys == null){
+      drivesys = new DriveSubsystem();
+    }
   }
-
   @Override
   protected void initialize() {
   }
@@ -20,24 +22,16 @@ public class DriveCommand extends Command {
   @Override
   protected void execute() {
     Logger.Log("DriveCommand Executed");
-    double y = OI.getJoystickAxis(RobotMap.DRIVE_STICK, Axis.Y);
-    double z = OI.getJoystickAxis(RobotMap.DRIVE_STICK, Axis.Z);
-    if (z < 0) {
-      z = -z*z;
-    } else {
-      z = z*z;
-    }
-    double throttle = ((OI.getJoystickAxis(RobotMap.DRIVE_STICK, Axis.THROTTLE) + 1))/2;
+    double z = OI.driveStick.getZ();
+	    double y = OI.driveStick.getY();
+	    z *= Math.abs(z);
+	    Double leftPower = (y - z)* -speedScale;
+	    Double rightPower = (y + z)* speedScale;
 
-    double leftSpeed = (y-z)*throttle;
-    double rightSpeed= (y+z)*throttle;
-
-    drivesys.drive(leftSpeed, rightSpeed);
+      drivesys.drive(leftPower, rightPower);
+  }
     
 //    Robot.liftSubsystem.moveArm(-OI.getJoystickAxis(RobotMap.XBOX_CONTROLLER, Axis.LeftY));
-
-  }
-
   @Override
   protected boolean isFinished() {
     Logger.Log("DriveCommand Finished");
