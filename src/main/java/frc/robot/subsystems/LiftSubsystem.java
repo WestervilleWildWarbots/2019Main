@@ -1,4 +1,4 @@
-package frc.robot.subsystems;
+/*package frc.robot.subsystems;
 import frc.robot.RobotMap;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
@@ -9,10 +9,11 @@ import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.Logger;
-
+*/
 /**
  *
  */
+/*
 public class LiftSubsystem extends Subsystem {
 
 	private static WPI_TalonSRX liftTalon;
@@ -128,3 +129,4 @@ public class LiftSubsystem extends Subsystem {
     }
 
 }
+*/

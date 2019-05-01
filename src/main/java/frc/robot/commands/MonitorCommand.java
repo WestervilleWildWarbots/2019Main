@@ -1,4 +1,4 @@
-package frc.robot.commands;
+/*package frc.robot.commands;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
@@ -80,3 +80,4 @@ public class MonitorCommand extends Command {
     Logger.Log("Monitor Command INTERRUPTED");
   }
 }
+*/

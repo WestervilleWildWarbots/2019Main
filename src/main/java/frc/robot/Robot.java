@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commands.*;
 import frc.robot.subsystems.*;
 import edu.wpi.first.cameraserver.*;
+import frc.robot.AutonomousModeChooser;
 
 public class Robot extends TimedRobot {
 
@@ -15,29 +16,34 @@ public class Robot extends TimedRobot {
   public static DriveSubsystem driveSubsystem;
 
   public static GrabSubsystem grabSubsystem;
-  public static LiftSubsystem liftSubsystem;
+  //public static LiftSubsystem liftSubsystem;
   public static OI oi;
 
-  public static LiftCommand liftCommand;
+  //public static LiftCommand liftCommand;
   Command driveCommand;
   Command monitorCommand;
   Command autonomousCommand;
-  SendableChooser<Command> autonomousCommandDropdown = new SendableChooser<>();
+  Command grabCommand;
+  SendableChooser<Command> autonomousCommandDropdown;
+  private AutonomousModeChooser autonomousModeChooser;
 
   @Override
   public void robotInit() {
     CameraServer.getInstance().startAutomaticCapture(0);
     oi = new OI();
-    autonomousCommandDropdown.setDefaultOption("Default Auto", new DriveCommand());
-    SmartDashboard.putData("Auto mode", autonomousCommandDropdown);
 
     //set up subsystems
     driveSubsystem = new DriveSubsystem();
-    grabSubsystem = new GrabSubsystem();
-    liftSubsystem = new LiftSubsystem();
+    grabSubsystem = GrabSubsystem.GetInstance();
+    //liftSubsystem = new LiftSubsystem();
     driveCommand = new DriveCommand();
-    monitorCommand = new MonitorCommand();
-    liftCommand = new LiftCommand();
+    //monitorCommand = new MonitorCommand();
+    //liftCommand = new LiftCommand();
+    autonomousCommandDropdown = new SendableChooser<>();
+    autonomousModeChooser = new AutonomousModeChooser(autonomousCommandDropdown);
+    autonomousModeChooser.setup();
+
+    SmartDashboard.putData("Auto mode", autonomousCommandDropdown);
   }
 
   @Override
@@ -57,7 +63,7 @@ public class Robot extends TimedRobot {
   public void autonomousInit() {
     autonomousCommand = autonomousCommandDropdown.getSelected();
 
-    liftCommand.start();
+    //liftCommand.start();
 
     // schedule the autonomous command (example)
     if (autonomousCommand != null) {
@@ -74,8 +80,9 @@ public class Robot extends TimedRobot {
   public void teleopInit() {
     RobotMap.liftSetPoint=0;
     driveCommand.start();
-    monitorCommand.start();
-    liftSubsystem.resetEncoder();
+    //monitorCommand.start();
+    //liftSubsystem.resetEncoder();
+
     if (autonomousCommand != null) {
     autonomousCommand.cancel();
     }
