@@ -26,28 +26,40 @@ public class GrabSubsystem extends Subsystem {
   }
 
   public void openGrab(){
+    if(RobotMap.SAFETY_MODE == false){
     grabSolenoid.set(false);
     grabSolenoid.set(true);
+    }
   }
 
   public void closeGrab(){
+    if(RobotMap.SAFETY_MODE == false){
     grabSolenoid.set(false);
+    }
   }
 
   public void extend(){
+    if(RobotMap.SAFETY_MODE == false){
     extendSolenoid.set(true);
+    }
   }
 
   public void retract(){
+    if(RobotMap.SAFETY_MODE == false){
     extendSolenoid.set(false);
+    }
   }
 
   public void Break(){
+    if(RobotMap.SAFETY_MODE == false){
     breakSolenoid.set(true);
+    }
   }
 
   public void stopBreak(){
+    if(RobotMap.SAFETY_MODE == false){
     breakSolenoid.set(false);
+    }
   }
 
   @Override

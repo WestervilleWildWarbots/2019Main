@@ -6,6 +6,7 @@ import edu.wpi.first.wpilibj.Sendable;
 public class RobotMap {
   //set to true to use the pathfinder library, false for manual autonomous
   public static final boolean USE_PATHFINDER_LIB = false;
+  public static boolean SAFETY_MODE = false;
   //Autonomous
   public static final double AUTONOMOUS_SPEED = .25;
 

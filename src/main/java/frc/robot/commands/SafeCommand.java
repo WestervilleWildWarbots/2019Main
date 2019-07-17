@@ -2,14 +2,15 @@ package frc.robot.commands;
 
 import frc.robot.Logger;
 import frc.robot.Robot;
+import frc.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.subsystems.*;
 
-public class ExtendCommand extends Command {
+public class SafeCommand extends Command {
 
-  public ExtendCommand() {
-    requires(Robot.grabSubsystem);
+  public SafeCommand() {
+
   }
 
   @Override
@@ -18,7 +19,7 @@ public class ExtendCommand extends Command {
 
   @Override
   protected void execute() {
-    Robot.grabSubsystem.extend();
+    RobotMap.SAFETY_MODE = !RobotMap.SAFETY_MODE;
   }
 
   @Override

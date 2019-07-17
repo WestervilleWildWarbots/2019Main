@@ -16,6 +16,7 @@ public class OI {
   private static JoystickButton grabButton;
     private static JoystickButton pushButton;
     private static JoystickButton breakButton;
+    private static JoystickButton safeButton;
     // private static JoystickButton driveEnableButton;
     // private static JoystickButton driveDisableButton;
 
@@ -27,8 +28,11 @@ public class OI {
 
   private void assoc(){
     grabButton = new JoystickButton(armStick, 1);
-    pushButton = new JoystickButton(armStick, 3);
+   // pushButton = new JoystickButton(armStick, 3);
     breakButton = new JoystickButton(armStick, 2);
+    
+    safeButton = new JoystickButton(armStick, 3);
+
     // driveDisableButton = new JoystickButton(driveStick, 7);
     // driveEnableButton = new JoystickButton(driveStick, 8);
 
@@ -39,11 +43,10 @@ public class OI {
     grabButton.whileHeld(new GrabCommand());
     grabButton.whenReleased(new CloseValve());
 
-    pushButton.whileHeld(new ExtendCommand());
-
     breakButton.whileHeld(new ReleaseBreakCommand());
     breakButton.whenReleased(new BreakCommand());
 
+    safeButton.whenPressed(new SafeCommand());
     // driveDisableButton.whenPressed(new DriveCommand(false));
     // driveEnableButton.whenPressed(new DriveCommand(true));
 

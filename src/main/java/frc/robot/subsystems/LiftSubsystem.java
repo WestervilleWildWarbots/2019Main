@@ -101,7 +101,10 @@ public class LiftSubsystem extends Subsystem {
 */	
 	public void moveArm(double speed) {
 		Logger.Log("LiftSubsystem moved arm");
+		
+		if(RobotMap.SAFETY_MODE == false){
 		liftTalon.set(speed);
+	}
 	}
 /*	
 	public void set(double speed){

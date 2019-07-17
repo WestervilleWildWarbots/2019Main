@@ -15,6 +15,8 @@ public class Robot extends IterativeRobot {
   public static DriveSubsystem driveSubsystem;
   public static GrabSubsystem grabSubsystem;
   public static LiftSubsystem liftSubsystem;
+  
+  public static MonitorCommand monitorCommand;
 
   public static DriveCommand driveCommand;
   public static LiftCommand liftCommand;
@@ -32,13 +34,14 @@ public class Robot extends IterativeRobot {
     liftCommand = new LiftCommand();
     driveCommand = new DriveCommand();
     sandCommand = new AutonomousSandstormCommand();
+    monitorCommand = new MonitorCommand();
 
     CameraServer.getInstance().startAutomaticCapture();
     CameraServer.getInstance().startAutomaticCapture();
 
 
       oi = new OI();
-      
+    
   }
 
   @Override
@@ -72,6 +75,7 @@ public class Robot extends IterativeRobot {
 
     liftCommand.start();
     driveCommand.start();
+    monitorCommand.start();
   }
 
   @Override

@@ -29,6 +29,7 @@ public class MonitorCommand extends Command {
   @Override
   protected void execute() {
         Logger.Log("monitoring");
+        SmartDashboard.putBoolean("Safety Mode", RobotMap.SAFETY_MODE);
         //Encoders to SmartDashboard
        
         /* table.getEntry("encoder_valueLift").setValue(LiftSubsystem.getLiftEnc());
