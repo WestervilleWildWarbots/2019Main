@@ -1,49 +1,44 @@
 package frc.robot;
 	
-import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
-import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 import frc.robot.commands.*;
 import frc.robot.subsystems.*;
+import edu.wpi.cscore.CameraServerJNI;
 import edu.wpi.first.cameraserver.*;
-import frc.robot.AutonomousModeChooser;
 
-public class Robot extends TimedRobot {
+public class Robot extends IterativeRobot {
 
   //subsystems
   public static DriveSubsystem driveSubsystem;
-
   public static GrabSubsystem grabSubsystem;
-  //public static LiftSubsystem liftSubsystem;
+  public static LiftSubsystem liftSubsystem;
+
+  public static DriveCommand driveCommand;
+  public static LiftCommand liftCommand;
+  public static AutonomousSandstormCommand sandCommand;
+
   public static OI oi;
 
-  //public static LiftCommand liftCommand;
-  Command driveCommand;
-  Command monitorCommand;
-  Command autonomousCommand;
-  Command grabCommand;
-  SendableChooser<Command> autonomousCommandDropdown;
-  private AutonomousModeChooser autonomousModeChooser;
 
   @Override
   public void robotInit() {
-    CameraServer.getInstance().startAutomaticCapture(0);
-    oi = new OI();
-
-    //set up subsystems
     driveSubsystem = new DriveSubsystem();
-    grabSubsystem = GrabSubsystem.GetInstance();
-    //liftSubsystem = new LiftSubsystem();
+    grabSubsystem = GrabSubsystem.getInstance();
+    liftSubsystem = LiftSubsystem.getInstance();
+    liftSubsystem = new LiftSubsystem();
+    liftCommand = new LiftCommand();
     driveCommand = new DriveCommand();
-    //monitorCommand = new MonitorCommand();
-    //liftCommand = new LiftCommand();
-    autonomousCommandDropdown = new SendableChooser<>();
-    autonomousModeChooser = new AutonomousModeChooser(autonomousCommandDropdown);
-    autonomousModeChooser.setup();
+    sandCommand = new AutonomousSandstormCommand();
 
-    SmartDashboard.putData("Auto mode", autonomousCommandDropdown);
+    CameraServer.getInstance().startAutomaticCapture();
+    CameraServer.getInstance().startAutomaticCapture();
+
+
+      oi = new OI();
+      
   }
 
   @Override
@@ -61,15 +56,11 @@ public class Robot extends TimedRobot {
 
   @Override
   public void autonomousInit() {
-    autonomousCommand = autonomousCommandDropdown.getSelected();
 
     //liftCommand.start();
-
-    // schedule the autonomous command (example)
-    if (autonomousCommand != null) {
-    autonomousCommand.start();
-    }
+    driveCommand.start();
   }
+
 
   @Override
   public void autonomousPeriodic() {
@@ -78,14 +69,9 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopInit() {
-    RobotMap.liftSetPoint=0;
-    driveCommand.start();
-    //monitorCommand.start();
-    //liftSubsystem.resetEncoder();
 
-    if (autonomousCommand != null) {
-    autonomousCommand.cancel();
-    }
+    liftCommand.start();
+    driveCommand.start();
   }
 
   @Override
@@ -95,5 +81,6 @@ public class Robot extends TimedRobot {
 
   @Override
   public void testPeriodic() {
+    //LiveWindow.run();
   }
 }

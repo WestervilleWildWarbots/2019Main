@@ -1,61 +1,57 @@
 package frc.robot.subsystems;
 
-import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import frc.robot.Logger;
-import frc.robot.OI;
 import frc.robot.RobotMap;
-import frc.robot.OI.Axis;
-import edu.wpi.first.wpilibj.DoubleSolenoid;
-import edu.wpi.first.wpilibj.Solenoid;
-import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
+import frc.robot.commands.CloseValve;
 
+import edu.wpi.first.wpilibj.Solenoid;
 
 public class GrabSubsystem extends Subsystem {
- // Solenoid grabSolL = new Solenoid(1,RobotMap.PNUM_GRABL);
-  //Solenoid grabSolR = new Solenoid(1,RobotMap.PNUM_GRABR);
-  public static GrabSubsystem instance;
-  public Solenoid left, right, middle;
+  private static GrabSubsystem instance;
+  private Solenoid grabSolenoid;
+  private Solenoid extendSolenoid;
+  private Solenoid breakSolenoid;
 
   public GrabSubsystem() {
-    left = new Solenoid(0);
-    left = new Solenoid(2);
-    left = new Solenoid(3);
+     grabSolenoid = new Solenoid(1, RobotMap.PNUM_GRAB);
+     extendSolenoid = new Solenoid(1, RobotMap.PNUM_OUT);
+     breakSolenoid = new Solenoid(1, RobotMap.PNUM_BREAK);
   }
 
-  public static GrabSubsystem GetInstance()
-  {
-    if (instance == null)
-    {
+  public static GrabSubsystem getInstance(){
+    if (instance == null){
       instance = new GrabSubsystem();
     }
     return instance;
   }
 
+  public void openGrab(){
+    grabSolenoid.set(false);
+    grabSolenoid.set(true);
+  }
+
+  public void closeGrab(){
+    grabSolenoid.set(false);
+  }
+
+  public void extend(){
+    extendSolenoid.set(true);
+  }
+
+  public void retract(){
+    extendSolenoid.set(false);
+  }
+
+  public void Break(){
+    breakSolenoid.set(true);
+  }
+
+  public void stopBreak(){
+    breakSolenoid.set(false);
+  }
+
   @Override
   public void initDefaultCommand() {
-  }
-  
-  public void grab( String dir) {
-    Logger.Log("grab active");
-
-  if(dir == "grab"){
-    Logger.Log("grabbing");
-  //  grabSolL.set(true);
-//    grabSolR.set(true);
-
-
-}
-
-if(dir == "release"){
-  Logger.Log("releasing");
-  //grabSolL.set(false);
- // grabSolR.set(false);
-
-}
-  }
-  public void extend() {
-    Logger.Log("extend");
-      left.set(true);
+    setDefaultCommand(new CloseValve());
   }
 }

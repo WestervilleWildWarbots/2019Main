@@ -1,4 +1,4 @@
-/*package frc.robot.commands;
+package frc.robot.commands;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
@@ -30,7 +30,8 @@ public class MonitorCommand extends Command {
   protected void execute() {
         Logger.Log("monitoring");
         //Encoders to SmartDashboard
-        table.getEntry("encoder_valueLift").setValue(LiftSubsystem.getLiftEnc());
+       
+        /* table.getEntry("encoder_valueLift").setValue(LiftSubsystem.getLiftEnc());
         SmartDashboard.putNumber("Lift Encoder", LiftSubsystem.getLiftEnc());
 
         table.getEntry("encoder_valueLeft").setValue(DriveSubsystem.getLeftEnc());
@@ -63,6 +64,8 @@ public class MonitorCommand extends Command {
         //Gyro to SmartDashboard
         table.getEntry("gyroAngle").setValue(DriveSubsystem.getGyro());
         SmartDashboard.putNumber("Gyro Angle", DriveSubsystem.getGyro());
+        */
+
   }
   @Override
   protected boolean isFinished() {
@@ -80,4 +83,3 @@ public class MonitorCommand extends Command {
     Logger.Log("Monitor Command INTERRUPTED");
   }
 }
-*/

@@ -1,8 +1,9 @@
-/*package frc.robot.commands;
+package frc.robot.commands;
 
 import frc.robot.Logger;
 import frc.robot.OI;
 import frc.robot.OI.Axis;
+import frc.robot.subsystems.LiftSubsystem;
 import frc.robot.Robot;
 import frc.robot.RobotMap;
 import edu.wpi.first.wpilibj.command.Command;
@@ -10,7 +11,7 @@ import edu.wpi.first.wpilibj.command.Command;
 public class LiftCommand extends Command {
 	
     public LiftCommand() {
-         
+      
     }
 
     // Called just before this Command runs the first time
@@ -21,38 +22,36 @@ public class LiftCommand extends Command {
     // Changes the position of the Arm based on the Joystick's left joystick
     protected void execute() {
         Logger.Log("LiftCommand Executed");
-    	double leftY = OI.getJoystickAxis(RobotMap.XBOX_CONTROLLER, Axis.LeftY);
-    	if (leftY != 0) {
-    		if(RobotMap.liftSetPoint <0 || (RobotMap.liftSetPoint >= 0 && leftY < 0)) {
-    			RobotMap.liftSetPoint += (int) leftY * 80;
-    			Robot.liftSubsystem.setPos(RobotMap.liftSetPoint);
-    	} else {
-    		RobotMap.liftSetPoint = 0;
-    		Robot.liftSubsystem.setPos(RobotMap.liftSetPoint);
-    	}
-    } else {
-    	Robot.liftSubsystem.setPos(RobotMap.liftSetPoint);
-    	}
+      //  double v = 0;
+    
+           double v = 1  * OI.armStick.getY();
+       /* }else if(LiftSubsystem.getBaseLimit()){
+            v = -20;
+        }else if(LiftSubsystem.getTopLimit()){
+            v = 20;
+        }*/
+
+        Robot.liftSubsystem.moveArm(v);     
+
     }
     
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        Logger.Log("LiftCommand Finished");
+        Logger.Log("LiftCommand Finished"); 
         return false;
     }
 
     // Called once after isFinished returns true
     protected void end() {
         Logger.Log("LiftCommand Ended");
-    	Robot.liftSubsystem.set(0);
+    	//Robot.liftSubsystem.moveArm(0);
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
         Logger.Log("LiftCommand INTERRUPTED");
-    	Robot.liftSubsystem.set(0);
+    	//Robot.liftSubsystem.moveArm(0);
     }
 }
-*/

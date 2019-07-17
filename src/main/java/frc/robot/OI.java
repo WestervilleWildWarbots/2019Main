@@ -2,34 +2,64 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import frc.robot.commands.LiftAdjustmentCommand;
 import frc.robot.commands.*;
-//import frc.robot.commands.GrabCommand;
+import frc.robot.commands.GrabCommand;
+import frc.robot.commands.CloseValve;
 
 public class OI {
-  // Makes the axis of the joystick exist
 
   public static enum Axis {X, Y, Z, LeftY, RightY, THROTTLE, RightTab};
 
-  // Makes the joystick and xbox controller exist
+  public static Joystick driveStick;
+  public static Joystick armStick;
+    
+  private static JoystickButton grabButton;
+    private static JoystickButton pushButton;
+    private static JoystickButton breakButton;
+    // private static JoystickButton driveEnableButton;
+    // private static JoystickButton driveDisableButton;
 
-  public static Joystick driveStick = new Joystick(RobotMap.DRIVE_STICK);
-  private static Joystick xBoxController = new Joystick(RobotMap.XBOX_CONTROLLER);
+    public OI(){
+    driveStick = new Joystick(RobotMap.DRIVE_STICK);
+    armStick = new Joystick(RobotMap.ARM_STICK);
+    assoc();  
+  }
 
-  public static double getJoystickAxis(int joystickID, Axis axis) {
+  private void assoc(){
+    grabButton = new JoystickButton(armStick, 1);
+    pushButton = new JoystickButton(armStick, 3);
+    breakButton = new JoystickButton(armStick, 2);
+    // driveDisableButton = new JoystickButton(driveStick, 7);
+    // driveEnableButton = new JoystickButton(driveStick, 8);
 
-      // Establishes the joystick and its axes
+    actions();
+  }
+
+  private void actions(){    
+    grabButton.whileHeld(new GrabCommand());
+    grabButton.whenReleased(new CloseValve());
+
+    pushButton.whileHeld(new ExtendCommand());
+
+    breakButton.whileHeld(new ReleaseBreakCommand());
+    breakButton.whenReleased(new BreakCommand());
+
+    // driveDisableButton.whenPressed(new DriveCommand(false));
+    // driveEnableButton.whenPressed(new DriveCommand(true));
+
+}
+
+  public static void getJoystickAxis(int joystickID, Axis axis) {
 
       Joystick joystick;
 
-      double axisValue = 0;
+     //double axisValue = 0;
 
-      if (joystickID == RobotMap.DRIVE_STICK) {
+      /*if (joystickID == RobotMap.DRIVE_STICK {
           joystick = driveStick;
       } else if (joystickID == RobotMap.XBOX_CONTROLLER) {
         joystick = xBoxController;
       } else {
-          System.out.println("Wrong joystick id");
           return 0;
       }
 
@@ -50,30 +80,10 @@ public class OI {
     }
 
       // Creates dead zone
-
       if (Math.abs(axisValue) < .1) {
           axisValue = 0;
       }
 
-      return axisValue;
-  }
-    //private static JoystickButton armUp = new JoystickButton(xBoxController, RobotMap.ARM_UP_BUTTON);
-	//private static JoystickButton armDown = new JoystickButton(xBoxController, RobotMap.ARM_DOWN_BUTTON);
-    //private static JoystickButton maxOut = new JoystickButton(xBoxController, );
-    
-    //private static JoystickButton grabButton = new JoystickButton(xBoxController, 5);
-    //private static JoystickButton releaseButton = new JoystickButton(xBoxController, 4);
-    //private static JoystickButton pushButton = new JoystickButton(xBoxController, 1);
-
-    public OI(){
-    //armUp.whenPressed(new LiftAdjustmentCommand(-100));
-	//armDown.whenPressed(new LiftAdjustmentCommand(100));
-    //maxOut.whenPressed(new LiftCommand());
-
-    //grabButton.whenPressed(new GrabCommand("grab"));
-    //releaseButton.whenPressed(new GrabCommand("release"));
-    //.whenPressed(new GrabCommand("extend"));
-    
-
+      return axisValue; */
   }
 }

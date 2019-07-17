@@ -1,4 +1,4 @@
-package frc.robot.commands;
+/*package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Logger;
@@ -49,4 +49,4 @@ public class AutonomousDriveCommand extends Command {
     Logger.Log("AutonomousDriveCommand INTERRUPTED");
     drivesys.drive(0,0);
   }
-}
+}*/

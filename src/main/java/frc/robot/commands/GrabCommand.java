@@ -7,10 +7,9 @@ import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.subsystems.*;
 
 public class GrabCommand extends Command {
-  public GrabSubsystem solsys = Robot.grabSubsystem;
 
-  public GrabCommand(boolean isopen) {
-    
+  public GrabCommand() {
+    requires(Robot.grabSubsystem);
   }
 
   @Override
@@ -19,22 +18,19 @@ public class GrabCommand extends Command {
 
   @Override
   protected void execute() {
+    Robot.grabSubsystem.openGrab();
   }
 
   @Override
   protected boolean isFinished() {
-    Logger.Log("Grab Command Finished");
-    return false;
+    return true;
   }
 
   @Override
   protected void end() {
-    Logger.Log("Grab Command End");
   }
 
   @Override
   protected void interrupted() {
-    Logger.Log("Grab Command INTERRUPTED");
-
   }
 }
