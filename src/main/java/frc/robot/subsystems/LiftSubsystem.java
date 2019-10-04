@@ -7,10 +7,11 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.PIDController;
+import edu.wpi.first.wpilibj.PIDOutput;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.Logger;
 
-public class LiftSubsystem extends Subsystem {
+public class LiftSubsystem extends Subsystem implements PIDOutput{
 
 	private static WPI_TalonSRX liftTalon;
 	private static WPI_TalonSRX liftFollowTalon;
@@ -20,6 +21,12 @@ public class LiftSubsystem extends Subsystem {
 	private static LiftSubsystem instance;
 	private NetworkTableInstance table;
 	
+	public final PIDController armController;
+
+	private final double p = 0;
+	private final double i = 0;
+	private final double d = 0;
+
 	//private DigitalInput limitBase;	
 	//private DigitalInput limitTop;
 
@@ -32,7 +39,7 @@ public class LiftSubsystem extends Subsystem {
 
 		liftFollowTalon.follow(liftTalon);
 
-
+		armController = new PIDController(p, i, d, , this);
 
 		/*
 		resetEncoder();
@@ -130,5 +137,10 @@ public class LiftSubsystem extends Subsystem {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
     }
+
+	@Override
+	public void pidWrite(double output) {
+
+	}
 
 }
