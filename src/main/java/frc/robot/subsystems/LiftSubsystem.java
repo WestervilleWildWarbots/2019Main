@@ -6,6 +6,7 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.PIDOutput;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -20,6 +21,8 @@ public class LiftSubsystem extends Subsystem implements PIDOutput{
 	private static DigitalInput  LimitBase = new DigitalInput(RobotMap.BOTTOM_LIMIT_SWITCH_ID);
 	private static LiftSubsystem instance;
 	private NetworkTableInstance table;
+
+	private Encoder liftEncoder = new Encoder();
 	
 	public final PIDController armController;
 
@@ -72,11 +75,11 @@ public class LiftSubsystem extends Subsystem implements PIDOutput{
 		}
 		return instance;
 	  }
-/*
+
 	public static int getLiftEnc(){
 		return liftTalon.getSensorCollection().getQuadraturePosition();
 	}
-*/
+
 	/*public static boolean getBaseLimit() {
 		return LimitBase.get();
 	}
@@ -96,7 +99,7 @@ public class LiftSubsystem extends Subsystem implements PIDOutput{
 			return false;
 		}
 	}*/
-/*
+
 	public void setPos(double goTo) {
 		Logger.Log("LiftSubsystem set position");
 		if(getLiftEnc() >= 0){
@@ -105,12 +108,12 @@ public class LiftSubsystem extends Subsystem implements PIDOutput{
 		liftTalon.set(ControlMode.Position, goTo);
 		}
 	}
-*/	
+
 	public void moveArm(double speed) {
 		Logger.Log("LiftSubsystem moved arm");
 		liftTalon.set(speed);
 	}
-/*	
+	
 	public void set(double speed){
 		Logger.Log("LiftSubsystem set motor speed");
 		if(RobotMap.ALLOW_LIFT_MOVEMENT){
@@ -122,17 +125,17 @@ public class LiftSubsystem extends Subsystem implements PIDOutput{
 		Logger.Log("LiftSubsystem got encoder velocity");
 		return liftTalon.getSensorCollection().getQuadratureVelocity();
 	}
-*/	
+
 	public void resetEncoder(){
 		Logger.Log("LiftSubsystem reset encoder");
 		liftTalon.getSensorCollection().setQuadraturePosition(0, 0);
 	}
-/*	
+
 	public double getCurrent(){
 		Logger.Log("LiftSubsystem got current");
 		return liftTalon.getOutputCurrent();
 	}
-*/
+
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
