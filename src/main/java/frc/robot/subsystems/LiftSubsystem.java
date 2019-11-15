@@ -22,8 +22,7 @@ public class LiftSubsystem extends Subsystem implements PIDOutput{
 	private static LiftSubsystem instance;
 	private NetworkTableInstance table;
 
-	private Encoder liftEncoder = new Encoder();
-	
+	private Encoder liftEncoder = new Encoder(LimitBase, LimitTop);
 	public final PIDController armController;
 
 	private final double p = 0;
@@ -42,7 +41,7 @@ public class LiftSubsystem extends Subsystem implements PIDOutput{
 
 		liftFollowTalon.follow(liftTalon);
 
-		armController = new PIDController(p, i, d, , this);
+		armController = new PIDController(p, i, d, this);
 
 		/*
 		resetEncoder();
