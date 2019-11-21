@@ -35,6 +35,7 @@ public class RobotMap {
   public static final int RIGHT_DISTANCE_SENSOR = 26;
   public static final int LINE_TRACKER = 6;
   public static final int ANALOG_GYRO = 1;
+  public static final boolean TESTING_PID_VALUES = false;
 
 
   //ids are wrong - written in as to prevent error

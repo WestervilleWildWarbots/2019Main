@@ -22,7 +22,7 @@ public class LiftSubsystem extends Subsystem implements PIDOutput{
 	private static LiftSubsystem instance;
 	private NetworkTableInstance table;
 
-	private Encoder liftEncoder = new Encoder();
+	private Encoder liftEncoder; 
 	
 	public final PIDController armController;
 
@@ -39,7 +39,7 @@ public class LiftSubsystem extends Subsystem implements PIDOutput{
 		//table.getEntry("toplimit").setValue(LimitBase.get());
 		liftTalon = new WPI_TalonSRX(RobotMap.LIFT_TALON);
 		liftFollowTalon = new WPI_TalonSRX(RobotMap.LIFT_TALON_II);
-
+		liftEncoder = new Encoder();
 		liftFollowTalon.follow(liftTalon);
 
 		armController = new PIDController(p, i, d, , this);
